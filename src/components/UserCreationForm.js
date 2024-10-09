@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../style/UserCreationForm.css';
 import axios from 'axios';
+import { host } from '../script/variables';
 
 function UserCreationForm() {
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ function UserCreationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3002/user/create', formData);
+      const response = await axios.post(`${host}/user/create`, formData);
       alert(response.data.msg);
     } catch (error) {
       alert('Error creating user: ' + error.response?.data?.msg || error.message);

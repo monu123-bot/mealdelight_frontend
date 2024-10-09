@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { host } from '../script/variables';
 
 const UpdatePaymentOrderStatus = () => {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const UpdatePaymentOrderStatus = () => {
         }
     
         // Set up the request headers with the token
-        const response = await fetch('http://localhost:3002/payment/update_order_status', {
+        const response = await fetch(`${host}/payment/update_order_status`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +33,6 @@ const UpdatePaymentOrderStatus = () => {
             alert('There is an error')
         }
         
-                
     }
 
     useEffect(() => {

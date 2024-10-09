@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../style/loginForm.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { host } from '../script/variables';
 function Login() {
     const navigate = useNavigate();
   const [phone, setphone] = useState('');
@@ -10,7 +11,7 @@ function Login() {
   
   const login =async (data)=>{
     try {
-      const resp = await axios.post(`http://localhost:3002/user/login`, data);
+      const resp = await axios.post(`${host}/user/login`, data);
       console.log('headers are ',resp)
       if (resp.status === 200) {
         

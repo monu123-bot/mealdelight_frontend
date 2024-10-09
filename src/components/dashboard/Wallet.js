@@ -4,6 +4,7 @@ import {load} from '@cashfreepayments/cashfree-js';
 // import { updateOrderStatus } from '../../../../../server/Controller/Payment';
 import { useLocation } from 'react-router-dom';
 import WalletHistory from './WalletHistory';
+import { host } from '../../script/variables';
 const Wallet = ({user,setUser}) => {
     const location = useLocation();
     const [sessionId,setSessionId] = useState(null)
@@ -39,7 +40,7 @@ initializeSDK();
         customer_email: `${user.email}`
     },
     order_meta: {
-        return_url: `http://localhost:3000/uos?order_id=${order_id}`,
+        return_url: `http://themealdelight.in/uos?order_id=${order_id}`,
         notify_url: "https://www.cashfree.com/devstudio/preview/pg/webhooks/75802411",
         payment_methods: "cc,dc,upi"
     },
@@ -54,7 +55,7 @@ initializeSDK();
             }
     
             // Set up the request headers with the token
-            const response = await fetch('http://localhost:3002/payment/create_order', {
+            const response = await fetch(`${host}/payment/create_order`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import '../../style/userdashboard/history.css';
+import { host } from '../../script/variables';
 
 const History = () => {
   const [history, setHistory] = useState([]);
@@ -17,7 +18,7 @@ const History = () => {
         throw new Error('Authentication token not found');
       }
 
-      const response = await fetch(`http://localhost:3002/user/history?page=${pageNumber}&limit=5`, {
+      const response = await fetch(`${host}/user/history?page=${pageNumber}&limit=5`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

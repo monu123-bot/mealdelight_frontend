@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../style/userdashboard/plans.css';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
+import { host } from '../../script/variables';
 
 const Plans = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Plans = () => {
         throw new Error("No authentication token found");
       }
 
-      const response = await fetch(`http://localhost:3002/coupons/verify?name=${name}`, {
+      const response = await fetch(`${host}/coupons/verify?name=${name}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +52,7 @@ const Plans = () => {
         throw new Error("No authentication token found");
       }
 
-      const response = await fetch(`http://localhost:3002/plans/get_plans?page=${page}&limit=5`, {
+      const response = await fetch(`${host}/plans/get_plans?page=${page}&limit=5`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +79,7 @@ const Plans = () => {
         throw new Error("No authentication token found");
       }
 
-      const response = await fetch(`http://localhost:3002/plans/get_my_plans`, {
+      const response = await fetch(`${host}/plans/get_my_plans`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +126,7 @@ const Plans = () => {
         throw new Error("No authentication token found");
       }
 
-      const response = await fetch(`http://localhost:3002/plans/subscribe`, {
+      const response = await fetch(`${host}/plans/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

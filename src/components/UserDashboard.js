@@ -4,6 +4,7 @@ import Dues from './dashboard/Dues'
 import Wallet from './dashboard/Wallet'
 import Plans from './dashboard/Plans'
 import '../style/userdashboard.css'
+import { host } from '../script/variables'
 const UserDashboard = () => {
     const [user,setUser] = useState(null)
     const [main_val,setMainval] = useState(2)
@@ -16,7 +17,7 @@ const UserDashboard = () => {
             }
     
             // Set up the request headers with the token
-            const response = await fetch('http://localhost:3002/user/user_details', {
+            const response = await fetch(`${host}/user/user_details`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
