@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../style/userdashboard/walletHistory.css';
+import { host } from '../../script/variables';
 
 const WalletHistory = () => {
   const [history, setHistory] = useState([]);
@@ -12,7 +13,7 @@ const WalletHistory = () => {
       if (!token) {
         throw new Error("No authentication token found");
       }
-      const response = await fetch(`http://localhost:3002/user/payment_history?page=${pageNumber}`, {
+      const response = await fetch(`${host}/user/payment_history?page=${pageNumber}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
