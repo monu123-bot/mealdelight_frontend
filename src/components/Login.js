@@ -36,6 +36,8 @@ login({phone,password})
 
   return (
     <div className="form-container">
+      <small>Already joined ? </small>
+      <br/><br/>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
          
@@ -64,7 +66,7 @@ login({phone,password})
         </div>
        
         <button type="submit" className="btn btn-primary">
-          Submit
+          Login
         </button>
       </form>
     </div>

@@ -35,6 +35,10 @@ function UserCreationForm() {
   };
 
   return (
+    <><div className='logo_div'>
+    <img className='logo_img' src='/logo_transparent.png' />
+    
+    </div>
     <div className="user-creation-form">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -85,9 +89,9 @@ function UserCreationForm() {
           <input type="text" name="address" value={formData.address} onChange={handleChange} required />
         </div>
         
-        <button type="submit" className="btn">Create User</button>
+        <button type="submit" className="btn">Save</button>
       </form>
-    </div>
+    </div></>
   );
 }
 

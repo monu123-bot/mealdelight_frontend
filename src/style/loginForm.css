@@ -5,7 +5,7 @@
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: #044243;
     color: #044243;
     text-align: center;
   }
@@ -36,8 +36,8 @@
   }
   
   .btn-primary {
-    background-color: #044243;
-    color: #fff;
+    background-color: #00f6ff;
+    color: #044243;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -46,5 +46,9 @@
   
   .btn-primary:hover {
     background-color: #0056b3;
+  }
+  .form-container small{
+    color: #00f6ff;
+    
   }
   
