@@ -9,8 +9,9 @@ const Home = () => {
   return (
    <>
    <div className='home-container' >
+    <div className='header-div'>
 <div className='logo_div'>
-<img className='logo_img' src='/logo_transparent.png' />
+<img className='logo_img' src='/logo_transparent.svg' />
 
 </div>
 <div className='text-1'>
@@ -19,9 +20,11 @@ const Home = () => {
   <p className='text-11'>WITH</p>
   <p className='text-12'>US</p>
 </div>
-
+</div>
 <div className='q1' >
-  <p className='q1-h'>What is Meal Delight ?</p>
+  <p className='q1-h'>Meal Delight
+
+  </p>
   <p className='q1-p'>Meal Delight is your go-to kitchen for fresh, hygienic, and healthy meals that taste just like home. We bring the comfort of home-cooked food straight to your door step, ensuring every bite is nutritious and full of care
 
 </p><p className='q1-p'>
