@@ -149,3 +149,95 @@ justify-content: right;
   margin-left: auto;
   margin-right: auto;
 }
+
+.success-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+/* Animated circle background for the checkmark */
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #cdedf6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: pulse 1.5s ease infinite;
+}
+
+/* Checkmark inside the circle */
+.checkmark {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+}
+
+/* Checkmark drawing */
+.checkmark::before {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 12px;
+  border-left: 5px solid #064344;
+  border-bottom: 5px solid #064344;
+  top: 22px;
+  left: 16px;
+  transform: rotate(-45deg);
+  animation: draw-check 0.5s ease forwards;
+}
+
+/* Success message text */
+.success-message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #cdedf6;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.5s forwards;
+}
+
+/* Pulse effect around the circle */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 25px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* Checkmark drawing animation */
+@keyframes draw-check {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  50% {
+    width: 25px;
+    height: 12px;
+  }
+}
+
+/* Fade-in animation for success text */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
