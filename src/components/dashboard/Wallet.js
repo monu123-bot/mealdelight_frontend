@@ -9,9 +9,9 @@ const Wallet = ({user,setUser}) => {
     const location = useLocation();
     const [sessionId,setSessionId] = useState(null)
 let cashfree;
-var initializeSDK = async function () {          
+var initializeSDK = async function () {                      
     cashfree = await load({
-        mode: "sandbox"
+        mode: "production"
     });
 };
 initializeSDK();
@@ -23,6 +23,7 @@ initializeSDK();
     };
 
     const handleAddToWallet =async () => {
+        console.log('this is 1')
         let curTimeStamp =Date.now()
         let order_id = `${user._id}-${curTimeStamp}`
         if (!amount) {
@@ -40,7 +41,7 @@ initializeSDK();
         customer_email: `${user.email}`
     },
     order_meta: {
-        return_url: `http://themealdelight.in/uos?order_id=${order_id}`,
+        return_url: `https://themealdelight.in/uos?order_id=${order_id}`,
         notify_url: "https://www.cashfree.com/devstudio/preview/pg/webhooks/75802411",
         payment_methods: "cc,dc,upi"
     },
@@ -127,3 +128,6 @@ initializeSDK();
 }
 
 export default Wallet
+
+
+
