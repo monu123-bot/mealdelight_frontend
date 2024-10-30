@@ -5,6 +5,7 @@ import { host } from '../script/variables';
 import ProgressBar from "@ramonak/react-progress-bar";
 import {SkewLoader} from "react-spinner"
 import { fn } from 'moment/moment';
+import Login from './Login';
 
 function UserCreationForm() {
 
@@ -130,8 +131,6 @@ const [message,setMessage] = useState('')
       if(resp.status===201){
         setMessage(resp.data.msg)
       }
-     
-      
   } catch (error) {
     setMessage('Server is busy, Please try after some time')
       console.log("Error show", error)
@@ -512,8 +511,9 @@ useEffect(()=>{
     <div className="success-message">
       Your account has been created successfully!
     </div>
+    
   </div>
-      
+  <Login/>
     </>}
 
       

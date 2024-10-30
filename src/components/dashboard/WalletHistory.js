@@ -6,7 +6,11 @@ const WalletHistory = () => {
   const [history, setHistory] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
+  const toggleDropdown = (orderId) => {
+    setActiveDropdown(activeDropdown === orderId ? null : orderId);
+  };
   const fetchPaymentHistory = async (pageNumber) => {
     try {
       const token = localStorage.getItem('mealdelight');
@@ -46,7 +50,44 @@ const WalletHistory = () => {
       setPage((prevPage) => prevPage + 1);
     }
   };
-
+  const claimPayment = async (orderId) => {
+    try {
+      const token = localStorage.getItem('mealdelight');
+      if (!token) {
+        throw new Error("No authentication token found");
+      }
+  
+      const response = await fetch(`${host}/payment/claim`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ order_id: orderId })
+      });
+  
+      if (response.ok) {
+        const updatedItem = await response.json(); // Assuming it returns the updated item
+        updateHistoryAfterClaim(updatedItem); // Update the history array
+        alert("Your claim has been successfully processed.");
+      } else {
+        alert("Could not process your claim. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error claiming payment:", error);
+      alert("An error occurred while claiming the payment. Please try again later.");
+    }
+  };
+  
+  const updateHistoryAfterClaim = (updatedItem) => {
+    setHistory(prevHistory =>
+      prevHistory.map(item =>
+        item.order_id === updatedItem.order_id
+          ? { ...item, ...updatedItem } // Merge updated fields with existing item
+          : item
+      )
+    );
+  };
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -57,7 +98,24 @@ const WalletHistory = () => {
       <h3>Wallet Payment History</h3>
       {history.map((item) => (
         <div key={item.order_id} className="history-item">
-          <p><strong>Order ID:</strong> {item.order_id}</p>
+          <div className="history-header">
+            <p><strong>Order ID:</strong> {item.order_id}</p>
+          {  (item.isClaimed==false && item.order_status=='FAILED' ) ? (
+  <div className="dots-menu" onClick={() => toggleDropdown(item.order_id)}>
+    •••
+    {activeDropdown === item.order_id && (
+      <div className="dropdown">
+        <p onClick={() => claimPayment(item.order_id)}>Claim</p>
+        {/* Uncomment and add other options as needed */}
+        {/* <p onClick={() => console.log("Another option")}>Another option</p> */}
+      </div>
+    )}
+  </div>
+) : (
+  <span>{ item.order_status=='FAILED' && item.claim_status}</span>
+)}
+            
+          </div>
           <p><strong>Amount:</strong> {item.order_amount} {item.order_currency}</p>
           <p><strong>Status:</strong> {item.order_status}</p>
           <p><strong>Created At:</strong> {new Date(item.createdAt).toLocaleString()}</p>

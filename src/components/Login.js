@@ -36,8 +36,7 @@ login({phone,password})
 
   return (
     <div className="form-container">
-      <small>Already joined ? </small>
-      <br/><br/>
+      <br/>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
          
