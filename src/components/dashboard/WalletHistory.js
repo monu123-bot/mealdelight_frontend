@@ -52,6 +52,15 @@ const WalletHistory = () => {
   };
   const claimPayment = async (orderId) => {
     try {
+      // Optimistically update the claim status on frontend
+      setHistory(prevHistory =>
+        prevHistory.map(item =>
+          item.order_id === orderId
+            ? { ...item, isClaimed: true, claim_status: 'Processing' } // Show a 'Processing' status
+            : item
+        )
+      );
+  
       const token = localStorage.getItem('mealdelight');
       if (!token) {
         throw new Error("No authentication token found");
@@ -67,15 +76,24 @@ const WalletHistory = () => {
       });
   
       if (response.ok) {
-        const updatedItem = await response.json(); // Assuming it returns the updated item
-        updateHistoryAfterClaim(updatedItem); // Update the history array
+        const updatedItem = await response.json(); // Get the confirmed updated item from backend
+        updateHistoryAfterClaim(updatedItem); // Finalize the UI update
         alert("Your claim has been successfully processed.");
       } else {
-        alert("Could not process your claim. Please try again.");
+        throw new Error("Could not process your claim. Please try again.");
       }
     } catch (error) {
       console.error("Error claiming payment:", error);
       alert("An error occurred while claiming the payment. Please try again later.");
+  
+      // Revert optimistic update on error
+      setHistory(prevHistory =>
+        prevHistory.map(item =>
+          item.order_id === orderId
+            ? { ...item, isClaimed: false, claim_status: '' } // Reset claim status on failure
+            : item
+        )
+      );
     }
   };
   
