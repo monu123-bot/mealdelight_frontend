@@ -120,10 +120,10 @@ const [message,setMessage] = useState('')
       console.log('headers are ',resp)
       if (resp.status === 200) {
       setMessage("OTP has been sent")
-          console.log('otp is ',resp.data.otp)
+          console.log('otp is ',resp.data.otpId)
           setPhoneOtpSent(true)
-          setOtpId(resp.data._id)
-          setExpiresAt(resp.data.expireAt)
+          setOtpId(resp.data.otpId)
+          // setExpiresAt(resp.data.expireAt)
           setOtpSending(false)
       // localStorage.setItem('mealdelight', token1);
       // navigate('/dashboard');
@@ -415,13 +415,19 @@ const [message,setMessage] = useState('')
           alert('Enter name')
           return
       }
+      setPhone()
     }
     if(index==1){
-      if(!isPhoneValid(phone)){
+      if(!isPhoneValid(phone) ){
         
         alert("Enter Phone Number")
         return
       }
+      if(!isPhoneVerified){
+        alert("Verify Phone Number")
+        return 
+      }
+      setEmail()
       
     }
     if(index==2){
@@ -429,12 +435,15 @@ const [message,setMessage] = useState('')
         alert("Enter Email")
         return
       }
+      setPassword()
     }
     if(index==3){
       if(!isPasswordValid()){
         alert("Enter Email")
         return
       }
+      setApartment()
+
     }
     
       if(index+1<content.length){

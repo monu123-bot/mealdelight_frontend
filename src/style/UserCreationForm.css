@@ -149,22 +149,21 @@ justify-content: right;
   margin-left: auto;
   margin-right: auto;
 }
-
 .success-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 300px;
-  margin: 50px auto;
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
   text-align: center;
 }
 
 /* Animated circle background for the checkmark */
 .circle {
-  width: 100px;
-  height: 100px;
+  width: 60px; /* Adjusted size to better fit the new container */
+  height: 60px;
   border-radius: 50%;
   background-color: #cdedf6;
   display: flex;
@@ -176,8 +175,8 @@ justify-content: right;
 
 /* Checkmark inside the circle */
 .checkmark {
-  width: 60px;
-  height: 60px;
+  width: 35px; /* Adjusted size */
+  height: 35px;
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -188,12 +187,12 @@ justify-content: right;
 .checkmark::before {
   content: '';
   position: absolute;
-  width: 25px;
-  height: 12px;
+  width: 18px; /* Adjusted width */
+  height: 9px; /* Adjusted height */
   border-left: 5px solid #064344;
   border-bottom: 5px solid #064344;
-  top: 22px;
-  left: 16px;
+  top: 8px; /* Adjusted top position */
+  left: 6px; /* Adjusted left position */
   transform: rotate(-45deg);
   animation: draw-check 0.5s ease forwards;
 }
@@ -227,8 +226,8 @@ justify-content: right;
     height: 0;
   }
   50% {
-    width: 25px;
-    height: 12px;
+    width: 18px;
+    height: 9px;
   }
 }
 
