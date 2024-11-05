@@ -1,6 +1,8 @@
 import React from 'react'
 import '../style/Home.css';
 import Login from './Login';
+import Footer from './Footer';
+import Header from './Header';
 
 const Home = () => {
   
@@ -8,6 +10,7 @@ const Home = () => {
   
   return (
    <>
+   <Header/>
    <div className='home-container' >
     <div className='header-div'>
 <div className='logo_div'>
@@ -76,7 +79,7 @@ Refined and packed spices often contain chemicals that can lead to long-term hea
 <br/>
 <div className='q1 div-small'>
   <p className='q1-h'>Haven't joined yet ?</p>
-  <p className='join-now'><a href='/regform' >join now</a></p>
+  <a href='/regform' ><p className='join-now'>join now</p></a>
   
 </div>
 
@@ -89,6 +92,7 @@ Refined and packed spices often contain chemicals that can lead to long-term hea
 </div>
 
 </div>
+<Footer/>
 {/* <div class="wave">
   
   

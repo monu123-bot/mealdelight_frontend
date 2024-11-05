@@ -31,7 +31,7 @@
     min-height: 100vh;
     height: fit-content;
     padding: 10px;
-    width: 100vw;
+    width: 98vw;
   }
   /* html, body {
     margin: 0;
@@ -144,6 +144,7 @@
   color: #044243;
 }
 .join-now{
+  color: white;
   border: 1px solid #044243;
   padding: 20px;
   border-radius:20px ;

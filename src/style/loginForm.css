@@ -53,4 +53,9 @@
     color: #00f6ff;
     
   }
-  
+  .login-btn{
+    color: #044243;
+    background-color: white;
+    border-radius: 12px;
+    padding: 5px;
+  }

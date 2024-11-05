@@ -64,7 +64,7 @@ login({phone,password})
           />
         </div>
        
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn-sm login-btn">
           Login
         </button>
       </form>
