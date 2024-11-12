@@ -11,15 +11,18 @@ const Plans = () => {
   const [hasMore, setHasMore] = useState(true);
   const [expandedPlan, setExpandedPlan] = useState(null);
   const [myPlans, setMyPlans] = useState([]);
-  const [couponStates, setCouponStates] = useState({}); // Object to store coupon states for each plan
+  const [couponName, setCouponName] = useState('');
+  const [planId, setPlanId] = useState(null);
+  const [isCouponVerified, setIsCouponVerified] = useState(false);
+  const [couponDiscount, setCouponDiscount] = useState(0);
 
-  const verifyCoupon = async (name, planId) => {
+  const verifyCoupon = async (name, currentPlanId) => {
     try {
       const token = localStorage.getItem('mealdelight');
       if (!token) {
         throw new Error("No authentication token found");
       }
-
+  
       const response = await fetch(`${host}/coupons/verify?name=${name}`, {
         method: 'GET',
         headers: {
@@ -29,28 +32,33 @@ const Plans = () => {
       });
 
       if (!response.ok) {
-        setCouponStates(prevState => ({
-          ...prevState,
-          [planId]: { couponName: name, coupon: null, isCouponVerified: false }
-        }));
+        setPlanId(currentPlanId);
+        setCouponName(name);
+        setIsCouponVerified(false);
       } else {
         const data = await response.json();
-        setCouponStates(prevState => ({
-          ...prevState,
-          [planId]: { couponName: name, coupon: data, isCouponVerified: true }
-        }));
+        setPlanId(currentPlanId);
+        setCouponName(name);
+        setCouponDiscount(data.discount);
+        setIsCouponVerified(true);
       }
     } catch (error) {
       console.error('Error verifying coupon:', error.message);
     }
   };
 
+  const handleCouponInputChange = (name, currentPlanId) => {
+    setCouponName(name);
+    setPlanId(currentPlanId);
+    if (name.length > 5) {
+      verifyCoupon(name, currentPlanId);
+    }
+  };
+
   const fetchPlans = async () => {
     try {
       const token = localStorage.getItem('mealdelight');
-      if (!token) {
-        throw new Error("No authentication token found");
-      }
+      if (!token) throw new Error("No authentication token found");
 
       const response = await fetch(`${host}/plans/get_plans?page=${page}&limit=5`, {
         method: 'GET',
@@ -60,9 +68,7 @@ const Plans = () => {
         },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch plans");
-      }
+      if (!response.ok) throw new Error("Failed to fetch plans");
 
       const data = await response.json();
       setPlans((prevPlans) => [...prevPlans, ...data.plans]);
@@ -75,9 +81,7 @@ const Plans = () => {
   const fetchMyPlans = async () => {
     try {
       const token = localStorage.getItem('mealdelight');
-      if (!token) {
-        throw new Error("No authentication token found");
-      }
+      if (!token) throw new Error("No authentication token found");
 
       const response = await fetch(`${host}/plans/get_my_plans`, {
         method: 'GET',
@@ -87,9 +91,7 @@ const Plans = () => {
         },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch my plans");
-      }
+      if (!response.ok) throw new Error("Failed to fetch my plans");
 
       const data = await response.json();
       setMyPlans(data.plans);
@@ -109,22 +111,19 @@ const Plans = () => {
     }
   };
 
-  const toggleMenu = (planId) => {
-    setExpandedPlan(expandedPlan === planId ? null : planId);
+  const toggleMenu = (currentPlanId) => {
+    setExpandedPlan(expandedPlan === currentPlanId ? null : currentPlanId);
   };
 
-  const subscribe = async (planId) => {
+  const subscribe = async (currentPlanId) => {
     try {
       const token = localStorage.getItem('mealdelight');
-      const couponData = couponStates[planId] || {};
       const payload = {
-        planId: planId,
-        couponName: couponData.couponName || null,
+        planId: currentPlanId,
+        couponName: couponName || null,
       };
 
-      if (!token) {
-        throw new Error("No authentication token found");
-      }
+      if (!token) throw new Error("No authentication token found");
 
       const response = await fetch(`${host}/plans/subscribe`, {
         method: 'POST',
@@ -135,15 +134,23 @@ const Plans = () => {
         body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to subscribe to plan");
-      } else {
-        const data = await response.json();
-        navigate('/dashboard');
-      }
+      if (!response.ok) throw new Error("Failed to subscribe to plan");
+
+      const data = await response.json();
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error subscribing to plan:', error.message);
     }
+  };
+
+  const subscribeAlert = async (currentPlanId) => {
+    const userConfirmed = window.confirm("Are you sure you want to subscribe to this plan?");
+    if (userConfirmed) await subscribe(currentPlanId);
+  };
+
+  const calculateFinalPrice = (price, discount) => {
+    const discountedPrice = price - (price * discount / 100);
+    return isCouponVerified ? discountedPrice - (discountedPrice * couponDiscount / 100) : discountedPrice;
   };
 
   const remainingDays = (purchasedDate, period) => {
@@ -154,33 +161,12 @@ const Plans = () => {
 
     if (diff > 0) {
       const diffDuration = moment.duration(diff);
-      if (diffDuration.days() > 0) {
-        return `${diffDuration.days()} day(s) remaining`;
-      } else {
-        return `Expiring in ${diffDuration.hours()} hour(s) and ${diffDuration.minutes()} minute(s)`;
-      }
+      return diffDuration.days() > 0 ? `${diffDuration.days()} day(s) remaining` : `Expiring in ${diffDuration.hours()} hour(s) and ${diffDuration.minutes()} minute(s)`;
     } else {
       return 'Plan has expired';
     }
   };
 
-  const calculateFinalPrice = (price, discount, planId) => {
-    const couponData = couponStates[planId] || {};
-    if (couponData.isCouponVerified && couponData.coupon) {
-      const discountedPrice = price - (price * discount / 100);
-      return discountedPrice - (discountedPrice * couponData.coupon.discount / 100);
-    } else {
-      return price - (price * discount / 100);
-    }
-  };
-const subscribeAlert = async (planId)=>{
-  const userConfirmed = window.confirm("Are you sure you want to subscribe to this plan?");
-  if (userConfirmed) {
-      await subscribe(planId);
-  } else {
-      return; // User canceled, do nothing
-  }
-}
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -203,60 +189,23 @@ const subscribeAlert = async (planId)=>{
                 <>
                   <input
                     type="text"
-                    value={couponStates[plan._id]?.couponName || ''}
-                    onChange={(e) => verifyCoupon(e.target.value, plan._id)}
+                    value={planId === plan._id ? couponName : ''}
+                    onChange={(e) => handleCouponInputChange(e.target.value, plan._id)}
                     placeholder="Coupon"
                   />
-                  {couponStates[plan._id]?.isCouponVerified && couponStates[plan._id]?.coupon && (
-                    <p>Coupon: {couponStates[plan._id].coupon.discount}% applied</p>
+                  {planId === plan._id && isCouponVerified && couponDiscount > 0 && (
+                    <p>Coupon: {couponDiscount}% applied</p>
                   )}
                 </>
               ) : (
                 'No Coupons for trial'
               )}
 
-              <br />
-              <button onClick={() => toggleMenu(plan.plan_id)}>
-                {expandedPlan === plan.plan_id ? 'Hide Menu' : 'View Menu'}
-              </button>
+       
+
               <button onClick={() => subscribeAlert(plan.plan_id)}>
-                Subscribe (Pay: ₹{calculateFinalPrice(plan.planDetails.price, plan.planDetails.discount, plan._id).toFixed(2)})
+                Subscribe (Pay: ₹{calculateFinalPrice(plan.planDetails.price, plan.planDetails.discount).toFixed(2)})
               </button>
-              {expandedPlan === plan.plan_id && (
-                <div className="menu">
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '100%',
-                    height: 0,
-                    paddingTop: '100%', // Maintain the aspect ratio
-                    boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)',
-                    marginTop: '1.6em',
-                    marginBottom: '0.9em',
-                    overflow: 'hidden',
-                    borderRadius: '8px',
-                    willChange: 'transform',
-                  }}
-                >
-                  <iframe
-                    loading="lazy"
-                    style={{
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
-                      top: 0,
-                      left: 0,
-                      border: 'none',
-                      padding: 0,
-                      margin: 0,
-                    }}
-                    src={`${plan.planDetails.menu}?embed`} // Correctly using template literals in React
-                    allowFullScreen // Use camelCase in React for attributes
-                    allow="fullscreen"
-                  ></iframe>
-                </div>
-              </div>
-              )}
             </>
           )}
         </div>
@@ -273,60 +222,24 @@ const subscribeAlert = async (planId)=>{
             <>
               <input
                 type="text"
-                value={couponStates[plan._id]?.couponName || ''}
-                onChange={(e) => verifyCoupon(e.target.value, plan._id)}
+                value={planId === plan._id ? couponName : ''}
+                onChange={(e) => handleCouponInputChange(e.target.value, plan._id)}
                 placeholder="Coupon"
               />
-              {couponStates[plan._id]?.isCouponVerified && couponStates[plan._id]?.coupon && (
-                <p>Coupon: {couponStates[plan._id].coupon.discount}% applied</p>
+              {planId === plan._id && isCouponVerified && couponDiscount > 0 && (
+                <p>Coupon: {couponDiscount}% applied</p>
               )}
             </>
           ) : (
             'No Coupons for trial'
           )}
 
-          <br />
           <button onClick={() => toggleMenu(plan._id)}>
             {expandedPlan === plan._id ? 'Hide Menu' : 'View Menu'}
           </button>
           <button onClick={() => subscribeAlert(plan._id)}>
-            Subscribe (Pay: ₹{calculateFinalPrice(plan.price, plan.discount, plan._id).toFixed(2)})
+            Subscribe (Pay: ₹{calculateFinalPrice(plan.price, plan.discount).toFixed(2)})
           </button>
-          {expandedPlan === plan._id && (
-           <div className="menu">
-           <div
-             style={{
-               position: 'relative',
-               width: '100%',
-               height: 0,
-               paddingTop: '100%', // Maintain the aspect ratio
-               boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)',
-               marginTop: '1.6em',
-               marginBottom: '0.9em',
-               overflow: 'hidden',
-               borderRadius: '8px',
-               willChange: 'transform',
-             }}
-           >
-             <iframe
-               loading="lazy"
-               style={{
-                 position: 'absolute',
-                 width: '100%',
-                 height: '100%',
-                 top: 0,
-                 left: 0,
-                 border: 'none',
-                 padding: 0,
-                 margin: 0,
-               }}
-               src={`${plan.menu}?embed`} // Correctly using template literals in React
-               allowFullScreen // Use camelCase in React for attributes
-               allow="fullscreen"
-             ></iframe>
-           </div>
-         </div>
-          )}
         </div>
       ))}
     </div>

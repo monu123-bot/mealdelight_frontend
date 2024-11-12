@@ -8,15 +8,15 @@ const Footer = () => {
         {/* Company Info Section */}
         <div className="footer-section">
           <h4>About Us</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
+          <p>Our dedicated team ensures that each meal is prepared with the same love and attention as if it were made in your own kitchen. Enjoy the goodness of wholesome, home-style food that supports your well-being, one delicious bite at a time.</p>
         </div>
 
         {/* Contact Section */}
         <div className="footer-section">
           <h4>Contact Us</h4>
-          <p>Email: contact@company.com</p>
-          <p>Phone: +1 234 567 890</p>
-          <p>Address: 123 Main St, City, Country</p>
+          <p>Email: admin@themealdelight.in</p>
+          <p>Phone: +91 8377840464 </p>
+          <p>Address: Saraswati Vihar, Gurugram</p>
         </div>
 
         {/* Social Media Links */}

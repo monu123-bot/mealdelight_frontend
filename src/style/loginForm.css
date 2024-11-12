@@ -26,6 +26,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    text-align: left;
   }
   
   .form-text {
@@ -58,4 +59,7 @@
     background-color: white;
     border-radius: 12px;
     padding: 5px;
+    cursor: pointer;
+    
   }
+  
