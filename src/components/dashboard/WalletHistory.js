@@ -114,6 +114,7 @@ const WalletHistory = () => {
   return (
     <div className="wallet-history-container">
       <h3>Wallet Payment History</h3>
+      {(history.length===0) && "Loading..."}
       {history.map((item) => (
         <div key={item.order_id} className="history-item">
           <div className="history-header">
