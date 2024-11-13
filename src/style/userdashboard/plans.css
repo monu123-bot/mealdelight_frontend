@@ -5,6 +5,7 @@
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
   }
   
   h2 {
@@ -13,9 +14,12 @@
   }
   
   .plan-card {
+    width: 80%;
     background-color: #fff;
     padding: 15px;
-    margin: 10px 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }

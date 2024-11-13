@@ -3,6 +3,7 @@ import '../style/Home.css';
 import Login from './Login';
 import Footer from './Footer';
 import Header from './Header';
+import HomePlans from './HomePlans';
 
 const Home = () => {
   
@@ -76,6 +77,8 @@ Refined and packed spices often contain chemicals that can lead to long-term hea
 
 </p>
 </div>
+<br/>
+<HomePlans/>
 <br/>
 <div className='q1 div-small'>
   <p className='q1-h'>Haven't joined yet ?</p>

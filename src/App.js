@@ -4,6 +4,7 @@ import UserCreationForm from './components/UserCreationForm';
 import Home from './components/Home';
 import UserDashboard from './components/UserDashboard';
 import UpdatePaymentOrderStatus from './components/UpdatePaymentOrderStatus';
+import SinglePlan from './components/SinglePlan';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route   path='/regform' Component={UserCreationForm}    />
           <Route   path='/dashboard' Component={UserDashboard}    />
           <Route   path='/uos' Component={UpdatePaymentOrderStatus}    />
+          <Route path="/plandetails" element={<SinglePlan />} />
        </Routes>
       </Router>
       
