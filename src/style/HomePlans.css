@@ -4,7 +4,8 @@
     overflow: hidden; /* Keeps content constrained in the container */
     margin-left: auto;
     margin-right: auto;
-    max-width: 50%;
+    width: 90%;
+    max-width: 700px;
   }
   
   .plans-slider {
