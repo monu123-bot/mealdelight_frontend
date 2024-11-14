@@ -1,11 +1,11 @@
 .single-plan-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 50px auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    text-align: center;
   }
   
   .single-plan-container h2 {
@@ -36,4 +36,16 @@
   .subscribe-btn:hover {
     background-color: #45a049;
   }
-  
+  .plan-card {
+    width: 80%;
+    background-color: #fff;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .log-sin{
+    text-align: center;
+  }

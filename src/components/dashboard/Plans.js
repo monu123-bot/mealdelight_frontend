@@ -213,9 +213,6 @@ const Plans = () => {
             ) : (
               'No Coupons for trial'
             )}
-            <button onClick={() => toggleMenu(plan.plan_id)}>
-              {expandedPlan === plan.plan_id ? 'Hide Menu' : 'View Menu'}
-            </button>
             <button onClick={() => subscribeAlert(plan.plan_id)}>
               Subscribe (Pay: ₹{calculateFinalPrice(plan.planDetails.price, plan.planDetails.discount).toFixed(2)})
             </button>
@@ -227,6 +224,7 @@ const Plans = () => {
     <h2>Available Plans</h2>
     {(plans.length===0) && "Loading..."}
     {plans.map((plan) => (
+
       <div key={plan._id} className="plan-card">
         <h3>{plan.name}</h3>
         <p>Price: ₹{plan.price}</p>

@@ -5,7 +5,13 @@ import Wallet from './dashboard/Wallet'
 import Plans from './dashboard/Plans'
 import '../style/userdashboard.css'
 import { host } from '../script/variables'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { verifyToken } from '../script/tokenVerification'
 const UserDashboard = () => {
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
     const [user,setUser] = useState(null)
     const [main_val,setMainval] = useState(2)
     const fetchUser = async()=>{
@@ -42,7 +48,27 @@ const UserDashboard = () => {
         }
     }
     useEffect(()=>{
-fetchUser()
+        const checkLogin = async () => {
+            try {
+             
+              const token_resp = await verifyToken();
+              console.log(token_resp);
+        
+              if (!token_resp.isVerified) {
+                
+                navigate('/')
+                
+              }
+              else{
+                fetchUser()
+              }
+        
+             
+            } catch (error) {
+              console.error("Error in useEffect:", error);
+            }
+          };
+          checkLogin()
     },[])
   return (
     <div className='dash-cont'>

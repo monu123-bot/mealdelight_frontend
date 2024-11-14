@@ -39,7 +39,7 @@ const HomePlans = () => {
   return (
 
     <div className="home-plans-container">
-      <h2>Home Plans</h2>
+      <h2 className='q1-h'>Meal Plans</h2>
       <div className="plans-slider">
         {plans.map((plan) => (
            <Link 
