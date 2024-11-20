@@ -213,9 +213,16 @@ const Plans = () => {
             ) : (
               'No Coupons for trial'
             )}
+
+            <div>
             <button onClick={() => subscribeAlert(plan.plan_id)}>
-              Subscribe (Pay: ₹{calculateFinalPrice(plan.planDetails.price, plan.planDetails.discount).toFixed(2)})
+              Renew 
             </button>
+            </div>
+            
+           
+            
+           
           </>
         )}
       </div>
@@ -285,7 +292,7 @@ const Plans = () => {
         </div>
   
         <button onClick={() => subscribeAlert(plan._id)}>
-          Subscribe (Pay: ₹{calculateFinalPrice(plan.price, plan.discount).toFixed(2)})
+          Buy Now
         </button>
       </div>
     ))}

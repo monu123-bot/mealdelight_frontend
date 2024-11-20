@@ -75,8 +75,8 @@ const [message,setMessage] = useState('')
       case 'apartment':
         setApartment(value);
         break;
-      case 'address':
-        setAddress(value);
+      // case 'address':
+      //   setAddress(value);
         break;
       default:
         break;
@@ -176,7 +176,8 @@ const [message,setMessage] = useState('')
   const saveUser = async ()=>{
     setMessage('Saving Your Details...')
     const data = {
-      firstName:fName, lastName:lName, email:email, phone:phone, password:password, street:street, apartment:apartment, city:city, state:state, postalCode:postalcode,address:address
+      firstName:fName, lastName:lName, email:email, phone:phone, password:password
+      // , street:street, apartment:apartment, city:city, state:state, postalCode:postalcode,address:address
     }
     try {
       const resp = await axios.post(`${host}/user/create`, data);
@@ -190,7 +191,7 @@ const [message,setMessage] = useState('')
       console.log("Error show in frontend", error)
   }
   }
-  const columns = ['name','phone','email','password','postalCode','street','apartment','address']
+  const columns = ['name','phone','email','password','postalCode','street','apartment']
   const content = [
     {
       html: (
@@ -275,80 +276,80 @@ const [message,setMessage] = useState('')
           <br/>
         </>
       )
-    },
-    {
-      html: (
-        <>
-          <p className='reg-form-h'>{fName} <br/> Let's connect <br/> Your address ?</p><br/>
+    }
+    // {
+    //   html: (
+    //     <>
+    //       <p className='reg-form-h'>{fName} <br/> Let's connect <br/> Your address ?</p><br/>
          
         
-          <input 
-            className='inp' 
-            type="text" 
-            value={apartment} 
-            onChange={(e) => handleInputChange('apartment', e.target.value)} 
-            placeholder='Apartment /Flat' 
-          />
-          <br/>
-           <input 
-            className='inp' 
-            type="text" 
-            value={street} 
-            onChange={(e) => handleInputChange('street', e.target.value)} 
-            placeholder='Street' 
-          />
+    //       <input 
+    //         className='inp' 
+    //         type="text" 
+    //         value={apartment} 
+    //         onChange={(e) => handleInputChange('apartment', e.target.value)} 
+    //         placeholder='Apartment /Flat' 
+    //       />
+    //       <br/>
+    //        <input 
+    //         className='inp' 
+    //         type="text" 
+    //         value={street} 
+    //         onChange={(e) => handleInputChange('street', e.target.value)} 
+    //         placeholder='Street' 
+    //       />
           
-          <br/>
-          <input 
-            className='inp' 
-            type="text" 
-            value={postalcode} 
-            onChange={(e) => handlePostalCodeChange(e.target.value)} 
-            placeholder='Zip Code' 
-          />
-          <br/>
-          {isSearchingPostalCode && <p style={{color:"#cdedf6",marginLeft:"auto",marginRight:"auto"}}>{message}</p>}
-          {
-          postOffices && postOffices.length > 0 && (
-        <select className="inp" value={selectedPostOffice} onChange={handlePostOfficeChange}  style={{ marginTop: '7px', marginBottom: '7px', marginLeft: '2px', marginRight: '2px' }} >
-          <option value="">Select Post Office</option>
-          {postOffices.map((postOffice,index) => (
-            <option key={index} value={postOffice.Name}>
-              {postOffice.Name}
-            </option>
-          ))}
-        </select>
-      )}
-      <br/>
-      <input 
-            className='inp' 
-            type="text" 
-            value={city} 
+    //       <br/>
+    //       <input 
+    //         className='inp' 
+    //         type="text" 
+    //         value={postalcode} 
+    //         onChange={(e) => handlePostalCodeChange(e.target.value)} 
+    //         placeholder='Zip Code' 
+    //       />
+    //       <br/>
+    //       {isSearchingPostalCode && <p style={{color:"#cdedf6",marginLeft:"auto",marginRight:"auto"}}>{message}</p>}
+    //       {
+    //       postOffices && postOffices.length > 0 && (
+    //     <select className="inp" value={selectedPostOffice} onChange={handlePostOfficeChange}  style={{ marginTop: '7px', marginBottom: '7px', marginLeft: '2px', marginRight: '2px' }} >
+    //       <option value="">Select Post Office</option>
+    //       {postOffices.map((postOffice,index) => (
+    //         <option key={index} value={postOffice.Name}>
+    //           {postOffice.Name}
+    //         </option>
+    //       ))}
+    //     </select>
+    //   )}
+    //   <br/>
+    //   <input 
+    //         className='inp' 
+    //         type="text" 
+    //         value={city} 
             
-            placeholder='City' 
+    //         placeholder='City' 
             
-          />
-          <br/>
-           <input 
-            className='inp' 
-            type="text" 
-            value={state} 
+    //       />
+    //       <br/>
+    //        <input 
+    //         className='inp' 
+    //         type="text" 
+    //         value={state} 
             
-            placeholder='State' 
+    //         placeholder='State' 
             
-          />
-      <br/>
-          <textarea 
-            className='inp' 
-            type="text" 
-            value={address} 
-            onChange={(e) => handleInputChange('address', e.target.value)} 
-            placeholder='Full Address' 
-          />
-          <br/>
-        </>
-      )
-    }
+    //       />
+    //   <br/>
+    //       <textarea 
+    //         className='inp' 
+    //         type="text" 
+    //         value={address} 
+    //         onChange={(e) => handleInputChange('address', e.target.value)} 
+    //         placeholder='Full Address' 
+    //       />
+    //       <br/>
+    //     </>
+    //   )
+    // }
   ];
   const isNameValid = ()=>{
    // Check if first or last name is empty
