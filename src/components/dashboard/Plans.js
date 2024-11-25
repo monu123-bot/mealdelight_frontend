@@ -15,6 +15,17 @@ const Plans = () => {
   const [isCouponVerified, setIsCouponVerified] = useState(false);
   const [couponData, setCouponData] = useState(null);
   const [activePlanId, setActivePlanId] = useState(null); // Track currently inputting plan ID
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const [step, setStep] = useState("payment"); // Steps: 'payment' or 'address'
+  const [selectedPayment, setSelectedPayment] = useState("");
+ const [addresses,setAddress] = useState(['hno 645 saraswati bihar ','building 811 '])
+  const handlePaymentSelection = (paymentMethod) => {
+    setSelectedPayment(paymentMethod);
+    setStep("address");
+  };
 
   const verifyCoupon = async (name, planId) => {
     try {
@@ -176,7 +187,12 @@ const Plans = () => {
       await subscribe(planId);
     }
   };
+const ChoosePaymentOption = async (planId)=>{
 
+     
+
+
+}
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -291,11 +307,77 @@ const Plans = () => {
           ></iframe>
         </div>
   
-        <button onClick={() => subscribeAlert(plan._id)}>
+        <button  onClick={openModal}>
           Buy Now
         </button>
       </div>
     ))}
+    {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+        <div
+          className="modal-content"
+          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
+        >
+          <div className="modal-header">
+            <h5 className="modal-title">
+              {step === "payment" ? "Choose Payment Option" : "Select Delivery Address"}
+            </h5>
+            <button className="close-btn" onClick={closeModal}>
+              &times;
+            </button>
+          </div>
+  
+          <div className="modal-body">
+            {step === "payment" && (
+              <div className="payment-options">
+                <div
+                  className="option"
+                  onClick={() => handlePaymentSelection("MealDelight Wallet")}
+                >
+                  <img src="wallet.png" alt="Wallet" className="option-icon" />
+                  <br />
+                  <span className="option-text">MealDelight Wallet</span>
+                </div>
+                <div
+                  className="option"
+                  onClick={() => handlePaymentSelection("UPI")}
+                >
+                  <img src="mobile-banking.png" alt="Cashfree" className="option-icon" />
+                  <br />
+                  <span className="option-text">UPI</span>
+                </div>
+              </div>
+            )}
+  
+            {step === "address" && (
+              <div className="address-selection">
+                <p>Selected Payment Method: {selectedPayment}</p>
+                <ul className="address-list">
+                  {addresses.map((address, index) => (
+                    <li
+                      key={index}
+                      className="address-item"
+                      onClick={() => alert(`Address Selected: ${address}`)}
+                    >
+                      {address}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+  
+          <div className="modal-footer">
+            {step === "address" && (
+              <button className="btn-secondary" onClick={() => setStep("payment")}>
+                Back to Payment Options
+              </button>
+            )}
+           
+          </div>
+        </div>
+      </div>
+      )}
   </div>
   
   );
