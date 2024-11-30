@@ -40,6 +40,7 @@ const [planId,setPlanId] = useState(null)
         
     }
     const subscribe = async (planId) => {
+      console.log('subscribe called')
       try {
         const payload = {
           planId: planId,
@@ -85,7 +86,7 @@ const [planId,setPlanId] = useState(null)
         const orderId = params.get('order_id');
         const planId = params.get('plan_id')
         setPlanId(planId)
-      console.log('order id is ',orderId)
+      console.log('order id is ',orderId,planId)
         UpdateOrderStatus(orderId);
        
     }, []);
