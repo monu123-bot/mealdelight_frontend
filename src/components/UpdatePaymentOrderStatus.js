@@ -72,12 +72,12 @@ const UpdatePaymentOrderStatus = () => {
           const data = await response.json();
           const message = data.message || 'Failed to subscribe to plan';
           
-          throw new Error(message);
+          
         }
     
         // If subscription succeeds
        
-        const data = await response.json();
+        
         navigate('/dashboard');
       } catch (error) {
         console.error('Error subscribing to plan:', error.message);
