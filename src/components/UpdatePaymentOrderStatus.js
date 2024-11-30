@@ -5,7 +5,7 @@ import { host } from '../script/variables';
 
 const UpdatePaymentOrderStatus = () => {
     const navigate = useNavigate();
-const [planId,setPlanId] = useState(null)
+
     const location = useLocation();
     const UpdateOrderStatus = async (orderId,planId)=>{
 
