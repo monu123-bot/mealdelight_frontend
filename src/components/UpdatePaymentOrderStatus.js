@@ -7,7 +7,7 @@ const UpdatePaymentOrderStatus = () => {
     const navigate = useNavigate();
 const [planId,setPlanId] = useState(null)
     const location = useLocation();
-    const UpdateOrderStatus = async (orderId)=>{
+    const UpdateOrderStatus = async (orderId,planId)=>{
 
         const token = localStorage.getItem('mealdelight');
         if (!token) {
@@ -81,14 +81,15 @@ const [planId,setPlanId] = useState(null)
     };
 
     useEffect(() => {
-        // Parse query parameters from the URL
-        const params = new URLSearchParams(location.search);
-        const orderId = params.get('order_id');
-        const planId = params.get('plan_id')
-        setPlanId(planId)
+
+      // Parse query parameters from the URL
+      const params = new URLSearchParams(location.search);
+      const orderId = params.get('order_id');
+      const planId = params.get('plan_id')
+      // setPlanId(planId)
       console.log('order id is ',orderId,planId)
-        UpdateOrderStatus(orderId);
-       
+      UpdateOrderStatus(orderId,planId);
+      
     }, []);
   return (
     <div>
