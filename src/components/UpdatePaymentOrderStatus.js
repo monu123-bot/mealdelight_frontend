@@ -41,6 +41,11 @@ const UpdatePaymentOrderStatus = () => {
     }
     const subscribe = async (planId) => {
       console.log('subscribe called')
+        if(planId===null){
+            navigate('/dashboard')
+            
+
+        }
       try {
         const payload = {
           planId: planId,
