@@ -72,7 +72,7 @@ initializeSDK();
      customer_email: `${user.email}`
  },
  order_meta: {
-     return_url: `https://themealdelight.in/uos?order_id=${order_id}`,
+     return_url: `https://themealdelight.in/uos?order_id=${order_id}&plan_id=${activePlanId}`,
      notify_url: "https://www.cashfree.com/devstudio/preview/pg/webhooks/75802411",
      payment_methods: "cc,dc,upi"
  },
@@ -127,23 +127,9 @@ initializeSDK();
 
   // Initiate payment
   cashfree.checkout(checkoutOptions);
-
+ 
 };
 
-const handleRedirect = async () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const paymentStatus = urlParams.get('status'); // Adjust this based on Cashfree's query parameters
-
-  if (paymentStatus === 'SUCCESS') {
-    console.log('Payment successful! Subscribing to the plan...');
-    await subscribe(activePlanId);
-  } else {
-    console.error('Payment failed:', paymentStatus);
-  }
-};
-
-// Call handleRedirect when the redirect page is loaded
-window.onload = handleRedirect;
 
 
 

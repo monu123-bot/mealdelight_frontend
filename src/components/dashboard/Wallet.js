@@ -41,7 +41,7 @@ initializeSDK();
         customer_email: `${user.email}`
     },
     order_meta: {
-        return_url: `https://themealdelight.in/uos?order_id=${order_id}`,
+        return_url: `https://themealdelight.in/uos?order_id=${order_id}&plan_id=${null}`,
         notify_url: "https://www.cashfree.com/devstudio/preview/pg/webhooks/75802411",
         payment_methods: "cc,dc,upi"
     },
