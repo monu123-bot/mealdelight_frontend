@@ -90,7 +90,7 @@ const UserDashboard = () => {
         {main_val === 0 && <History />}
         
         {main_val === 1 && <Wallet user={user} setUser={setUser} />}
-        {main_val === 2 && <Plans />}
+        {main_val === 2 && <Plans user={user} setUser={setUser}  />}
     </div>
     
     </>}

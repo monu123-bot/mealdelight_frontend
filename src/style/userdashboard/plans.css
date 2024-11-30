@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 .plans-container {
     max-width: 800px;
     margin: 0 auto;
@@ -370,5 +372,108 @@
 
   .address-item {
     padding: 8px;
+  }
+}
+/* Subscription Review Container */
+.subscription-review {
+  width: 80%;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* Section Title */
+.subscription-review p:first-of-type {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2a2a2a;
+  margin-bottom: 20px;
+}
+
+/* Label and Value Styling */
+.subscription-review p {
+  font-size: 1.1rem;
+  margin: 12px 0;
+  text-align: left;
+}
+
+.subscription-review p:nth-of-type(2),
+.subscription-review p:nth-of-type(4),
+.subscription-review p:nth-of-type(6) {
+  font-weight: 500;
+  color: #444;
+}
+
+.subscription-review p:nth-of-type(3),
+.subscription-review p:nth-of-type(5),
+.subscription-review p:nth-of-type(7) {
+  font-weight: 400;
+  color: #555;
+}
+
+/* Highlight Discount */
+.subscription-review p:nth-of-type(7) {
+  color: #28a745; /* Success green */
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Align Text in Columns */
+.subscription-review p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subscription-review p span {
+  font-weight: 500;
+}
+
+/* Subscribe Button */
+.subscription-review .btn-secondary {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+.subscription-review .btn-secondary:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 8px rgba(0, 91, 187, 0.3);
+  transform: translateY(-2px);
+}
+
+.subscription-review .btn-secondary:active {
+  background-color: #003f8a;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .subscription-review {
+    padding: 20px;
+  }
+
+  .subscription-review p {
+    font-size: 1rem;
+  }
+
+  .subscription-review .btn-secondary {
+    width: 100%;
+    font-size: 1rem;
   }
 }
