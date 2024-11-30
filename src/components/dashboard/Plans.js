@@ -118,21 +118,32 @@ initializeSDK();
      setUpiAmount(null);
  };
  const doPayment = async (sessionid, order_id) => {
-     console.log('Initiating payment...');
-     
-     let checkoutOptions = {
-         paymentSessionId: sessionid,
-         redirectTarget: "_self"
-         
-     };
+  console.log('Initiating payment...');
 
-    cashfree.checkout(checkoutOptions);
-    subscribe(activePlanId)
-     
-     
-     
- };
+  let checkoutOptions = {
+    paymentSessionId: sessionid,
+    redirectTarget: "_self",
+  };
 
+  // Initiate payment
+  cashfree.checkout(checkoutOptions);
+
+};
+
+const handleRedirect = async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentStatus = urlParams.get('status'); // Adjust this based on Cashfree's query parameters
+
+  if (paymentStatus === 'SUCCESS') {
+    console.log('Payment successful! Subscribing to the plan...');
+    await subscribe(activePlanId);
+  } else {
+    console.error('Payment failed:', paymentStatus);
+  }
+};
+
+// Call handleRedirect when the redirect page is loaded
+window.onload = handleRedirect;
 
 
 
