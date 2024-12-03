@@ -15,6 +15,7 @@ const Plans = ({user,setUser}) => {
   const [myPlans, setMyPlans] = useState([]);
   const [coupon, setCoupon] = useState('');
   const [isCouponVerified, setIsCouponVerified] = useState(false);
+  const [isPlanActive,setIsActive] = useState(false)
   const [couponData, setCouponData] = useState({
     discount:0
 
@@ -283,24 +284,49 @@ initializeSDK();
     }
   };
   
+  const remainingDays = (expiringAt) => {
+    const expiryMoment = new Date(expiringAt); // Parse the ISO date string
+    const now = new Date();
 
-  const remainingDays = (purchasedDate, period) => {
-    const purchasedMoment = moment(purchasedDate);
-    const expiryMoment = purchasedMoment.add(period, 'days');
-    const now = moment();
-    const diff = expiryMoment.diff(now);
+    const diff = expiryMoment - now; // Calculate the difference in milliseconds
 
     if (diff > 0) {
-      const diffDuration = moment.duration(diff);
-      if (diffDuration.days() > 0) {
-        return `${diffDuration.days()} day(s) remaining`;
-      } else {
-        return `Expiring in ${diffDuration.hours()} hour(s) and ${diffDuration.minutes()} minute(s)`;
-      }
+        // Convert milliseconds to days, hours, and minutes
+        const diffInSeconds = diff / 1000; // Convert to seconds
+        const diffInMinutes = Math.floor(diffInSeconds / 60); // Convert to minutes
+        const days = Math.floor(diffInMinutes / 1440); // 1440 minutes in a day
+        const hours = Math.floor((diffInMinutes % 1440) / 60); // Remaining hours
+        const minutes = Math.floor(diffInMinutes % 60); // Remaining minutes
+
+        if (days > 0) {
+            return `${days} day(s) remaining`;
+        } else if (hours > 0) {
+            return `Expiring in ${hours} hour(s) and ${minutes} minute(s)`;
+        } else {
+            return `Expiring in ${minutes} minute(s)`;
+        }
     } else {
-      return 'Plan has expired';
+        return 'Plan has expired';
     }
-  };
+};
+
+const checkActive = (planId)=>{
+  console.log('checking for ',planId)
+   myPlans.forEach((plan)=>{
+
+    if(plan.plan_id==planId){
+      setIsActive(true)
+      alert('This plan is already active, validity will be added in available plan')
+     
+    }
+    else{
+      setIsActive(false)
+    }
+   })
+   openModal();
+   return
+}
+
 
   const calculateFinalPrice = (price, discount) => {
     if(selectedPayment==='UPI'){
@@ -339,8 +365,8 @@ const ChoosePaymentOption = async (planId)=>{
     {myPlans.map((plan) => (
       <div key={plan._id} className="plan-card">
         <h3>{plan.planDetails.name}</h3>
-        <p>{remainingDays(plan.purchasedDate, plan.planDetails.period)}</p>
-        {remainingDays(plan.purchasedDate, plan.planDetails.period) === 'Plan has expired' && (
+        <p>{remainingDays(plan.expiringAt)}</p>
+        {remainingDays(plan.expiringAt) === 'Plan has expired' && (
           <>
             <p>Price: ₹{plan.planDetails.price}</p>
             {plan.planDetails.discount > 0 && <p>Discount: {plan.planDetails.discount}%</p>}
@@ -443,11 +469,13 @@ const ChoosePaymentOption = async (planId)=>{
   
         <button
   onClick={() => {
-    openModal();
+    
     setActivePlanId(plan._id); // Track the active plan for coupons
     setActivePlanName(plan.name)
     setActivePlanDiscount(plan.discount)
     setActivePlanPrice(plan.price)
+    setStep("payment")
+    checkActive(plan._id)
      // Track the selected plan for subscribing
   }}
 >
@@ -473,6 +501,7 @@ const ChoosePaymentOption = async (planId)=>{
           </div>
   
           <div className="modal-body">
+            <p>{(isPlanActive) && 'This Plan Is Already Active, Validity will be increased on the current plan' }</p>
             {step === "payment" && (
               <div className="payment-options">
                 <div
