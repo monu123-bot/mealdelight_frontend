@@ -5,7 +5,7 @@ import { host } from '../script/variables';
 
 const UpdatePaymentOrderStatus = () => {
     const navigate = useNavigate();
-const [planId,setPlanId] = useState(null)
+
     const location = useLocation();
     const UpdateOrderStatus = async (orderId,planId)=>{
 
@@ -41,6 +41,11 @@ const [planId,setPlanId] = useState(null)
     }
     const subscribe = async (planId) => {
       console.log('subscribe called')
+        if(planId===null){
+            navigate('/dashboard')
+            
+
+        }
       try {
         const payload = {
           planId: planId,
@@ -67,12 +72,12 @@ const [planId,setPlanId] = useState(null)
           const data = await response.json();
           const message = data.message || 'Failed to subscribe to plan';
           
-          throw new Error(message);
+          
         }
     
         // If subscription succeeds
        
-        const data = await response.json();
+        
         navigate('/dashboard');
       } catch (error) {
         console.error('Error subscribing to plan:', error.message);
