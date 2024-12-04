@@ -76,7 +76,7 @@ const UserDashboard = () => {
        
     <div className='wallet'>
     <p>Hyy {user.firstName} </p> 
-        <p>Available Balance (INR): {user.walletbalance} </p>
+        <p>Available Balance (INR):{Number(user.walletbalance).toFixed(2)} </p>
     </div>
     <div className='action'>
         <div className='action-options'>
