@@ -1,0 +1,93 @@
+/* General Form Styling */
+.address-form {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Input Fields */
+  .inp {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .inp:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Textarea Field */
+  textarea.inp {
+    height: 80px;
+    resize: none;
+  }
+  
+  /* Select Dropdown */
+  select.inp {
+    cursor: pointer;
+  }
+  
+  /* Button Styling */
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Message Styling */
+  .search-message {
+    font-size: 12px;
+    color: #ff5722;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 600px) {
+    .address-form {
+      padding: 15px;
+    }
+  
+    .form-title {
+      font-size: 1.2em;
+    }
+  
+    .inp {
+      font-size: 12px;
+    }
+  
+    .submit-btn {
+      font-size: 14px;
+    }
+  }
+  

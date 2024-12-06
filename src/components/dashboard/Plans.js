@@ -5,6 +5,8 @@ import moment from 'moment';
 import { host } from '../../script/variables';
 import { useLocation } from 'react-router-dom';
 import {load} from '@cashfreepayments/cashfree-js';
+import AddNewAddress from './AddNewAddress';
+import AddressList from './AddressList';
 
 const Plans = ({user,setUser}) => {
   const navigate = useNavigate();
@@ -33,6 +35,22 @@ const Plans = ({user,setUser}) => {
  const [activePlanDiscount,setActivePlanDiscount] = useState(null)
  const [subscribeMessage,setSubscribeMessage] = useState(null)
  const [upiAmount,setUpiAmount] = useState(null)
+ const [selectedAddress,setSelectedAddress] = useState(null)
+ 
+
+ 
+ const [formData, setFormData] = useState({
+  recievers_name: '',
+  recievers_phone: '',
+  apartment: '',
+  street: '',
+  city: '',
+  state: '',
+  country: 'IN',
+  postalCode: '',
+  address: '',
+});
+ 
   // upi payment start
  const location = useLocation();
  const [sessionId,setSessionId] = useState(null)
@@ -131,7 +149,35 @@ initializeSDK();
  
 };
 
+const fetchAddress = async () => {
+  try {
+    const token = localStorage.getItem('mealdelight');
+    if (!token) {
+      throw new Error("No authentication token found");
+    }
 
+    const response = await fetch(`${host}/user/get_address?page=${page}&limit=5`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch addresses");
+    }
+
+    const data = await response.json();
+
+    // Assuming `data.address` contains the list of addresses
+    setAddress((prevAddress) => [...prevAddress, ...data.address]);
+    setHasMore(data.hasMore); // Set if more addresses are available
+    setPage((prevPage) => prevPage + 1); // Increment the page for pagination
+  } catch (error) {
+    console.error('Error fetching addresses:', error.message);
+  }
+};
 
 
 
@@ -142,9 +188,13 @@ initializeSDK();
  }
   const handlePaymentSelection = (paymentMethod) => {
     setSelectedPayment(paymentMethod);
+    fetchAddress()
+    
     setStep("address");
   };
-
+const addNewAddress =()=>{
+  setStep('add_address')
+}
   const verifyCoupon = async (name, planId) => {
     try {
       const token = localStorage.getItem('mealdelight');
@@ -475,6 +525,7 @@ const ChoosePaymentOption = async (planId)=>{
     setActivePlanDiscount(plan.discount)
     setActivePlanPrice(plan.price)
     setStep("payment")
+    setPage(1)
     checkActive(plan._id)
      // Track the selected plan for subscribing
   }}
@@ -527,51 +578,60 @@ const ChoosePaymentOption = async (planId)=>{
               <div className="address-selection">
                 <p>Selected Payment Method: {selectedPayment}</p>
                 <br/>
-                
+                <li 
+                      className="address-item"
+                      onClick={() => {addNewAddress()}} >
+                    Add New Address
+                  </li>
                 
                 <ul className="address-list">
-                  {addresses.map((address, index) => (
-                    <li
-                      key={index}
-                      className="address-item"
-                      onClick={() => {setSelectedAddres(address)
-
-
-                      }}
-                    >
-                      {address}
-                    </li>
-                  ))}
+                  <AddressList selectedAddress={selectedAddress} setSelectedAddress={setSelectedAddress} />
+                 
                 </ul>
                 
               </div>
             )}
-            {step === "review" && (
-              <div className="subscription-review">
-                {subscribeMessage}
-                <p>Selected Address : </p>
-                <p>{selectedAddres}</p>
-                <p>Selected Plan : </p>
-                <p>{activePlanName}</p>
-                <p>Price: ₹{activePlanPrice}</p>
-                <p>Discount : {activePlanDiscount}%</p>
-        { isCouponVerified &&  activePlanDiscount > 0 && <p>Coupon Discount: {couponData.discount}%</p>}
-        {(selectedPayment==='UPI') && <small>Coupon discount is applicable only on Wallet payments </small>}
-
-        <p>Net Payable Amount : ₹{calculateFinalPrice(activePlanPrice,activePlanDiscount)}</p>
-
-        {(selectedPayment==='UPI') ? 
-      <>
-      <button className="btn-secondary" onClick={() =>{handleAddToWallet()} }>
-              Subscribe
-            </button>
-      </>   : <button className="btn-secondary" onClick={() =>subscribe(activePlanId) }>
-              Subscribe
-            </button>
-      }
-       
-              </div>
+            {step === "add_address" && (
+              <>
+              <AddNewAddress formData={formData} setFormData={setFormData} step={step} setStep={setStep} />
+            </>
             )}
+            {
+            step === "review" && (
+              <div className="subscription-review">
+              {subscribeMessage}
+              <p>Selected Address: </p>
+              {/* Display address fields correctly */}
+              <p>{selectedAddress ? `${selectedAddress.recievers_name}, ${selectedAddress.street}, ${selectedAddress.city}, ${selectedAddress.state}, ${selectedAddress.country}, ${selectedAddress.postalCode}` : "No address selected"}</p>
+            
+              <p>Selected Plan: </p>
+              <p>{activePlanName}</p>
+              <p>Price: ₹{activePlanPrice}</p>
+              <p>Discount: {activePlanDiscount}%</p>
+            
+              {/* Conditional rendering for coupon discount */}
+              {isCouponVerified && activePlanDiscount > 0 && <p>Coupon Discount: {couponData.discount}%</p>}
+              
+              {/* Inform user about payment types */}
+              {selectedPayment === 'UPI' && <small>Coupon discount is applicable only on Wallet payments.</small>}
+            
+              <p>Net Payable Amount: ₹{calculateFinalPrice(activePlanPrice, activePlanDiscount)}</p>
+            
+              {/* Conditional button rendering based on selected payment method */}
+              {selectedPayment === 'UPI' ? (
+                <button className="btn-secondary" onClick={handleAddToWallet}>
+                  Subscribe
+                </button>
+              ) : (
+                <button className="btn-secondary" onClick={() => subscribe(activePlanId)}>
+                  Subscribe
+                </button>
+              )}
+            </div>
+            
+            )
+            }
+            
           </div>
   
           <div className="modal-footer">
@@ -585,6 +645,8 @@ const ChoosePaymentOption = async (planId)=>{
             </button>
             </>
             )}
+
+
            
           </div>
         </div>
