@@ -296,6 +296,7 @@ const addNewAddress =()=>{
       const payload = {
         planId: planId,
         couponName: isCouponVerified ? coupon : null,
+        addressId:selectedAddress._id
       };
   
       if (selectedPayment === 'UPI') {

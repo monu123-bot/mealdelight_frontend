@@ -3,9 +3,7 @@ import axios from 'axios';
 import '../../style/userdashboard/addNewAddress.css'; // Add relevant styles
 import { host } from '../../script/variables';
 
-const AddNewAddress = ({ formData, setFormData,step,setStep }) => {
-  
-
+const AddNewAddress = ({ formData, setFormData, step, setStep }) => {
   const [postOffices, setPostOffices] = useState([]);
   const [selectedPostOffice, setSelectedPostOffice] = useState('');
   const [isSearchingPostalCode, setIsSearchingPostalCode] = useState(false);
@@ -50,66 +48,82 @@ const AddNewAddress = ({ formData, setFormData,step,setStep }) => {
       handleInputChange('state', selectedOffice.State);
     }
   };
+
   const saveAddress = async () => {
     try {
-        // Validate required fields
-        const { recievers_name, recievers_phone, street, city, state, postalCode, address } = formData;
-console.log(recievers_name)
-        if (!recievers_name || !recievers_phone || !street || !city || !state || !postalCode || !address) {
-            alert("Please fill all required fields.");
-            return;
-        }
+      // Validate required fields
+      const {
+        recievers_name,
+        recievers_phone,
+        street,
+        city,
+        state,
+        postalCode,
+        address,
+        isDefault,
+      } = formData;
 
-        // Retrieve the token
-        const token = localStorage.getItem('mealdelight');
-        if (!token) {
-            throw new Error("No authentication token found");
-        }
+      if (!recievers_name || !recievers_phone || !street || !city || !state || !postalCode || !address) {
+        alert('Please fill all required fields.');
+        return;
+      }
 
-        // Make API call
-        const response = await fetch(`${host}/user/addAddress`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ recievers_name, recievers_phone, street, city, state, postalCode, address })
-        });
+      // Retrieve the token
+      const token = localStorage.getItem('mealdelight');
+      if (!token) {
+        throw new Error('No authentication token found');
+      }
 
-        // Handle response
-        if (!response.ok) {
-            const errorDetails = await response.json();
-            throw new Error(errorDetails.message || "Failed to save address");
-        }
+      // Make API call
+      const response = await fetch(`${host}/user/addAddress`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          recievers_name,
+          recievers_phone,
+          street,
+          city,
+          state,
+          postalCode,
+          address,
+          isDefault, // Include the new property
+        }),
+      });
 
-        const resp = await response.json();
-        console.log('Address successfully added:', resp);
-        
-        // Clear form and show success
-        
-        setFormData({
-            recievers_name: '',
-            recievers_phone: '',
-            apartment: '',
-            street: '',
-            city: '',
-            state: '',
-            country: 'IN',
-            postalCode: '',
-            address: ''
-        });
-       setStep('address')
+      // Handle response
+      if (!response.ok) {
+        const errorDetails = await response.json();
+        throw new Error(errorDetails.message || 'Failed to save address');
+      }
+
+      const resp = await response.json();
+      console.log('Address successfully added:', resp);
+
+      // Clear form and reset step
+      setFormData({
+        recievers_name: '',
+        recievers_phone: '',
+        apartment: '',
+        street: '',
+        city: '',
+        state: '',
+        country: 'IN',
+        postalCode: '',
+        address: '',
+        isDefault: false,
+      });
+      setStep('address');
     } catch (error) {
-        console.error('Error in adding address:', error.message);
-        alert(`Error: ${error.message}`);
+      console.error('Error in adding address:', error.message);
+      alert(`Error: ${error.message}`);
     }
-};
-
-
-  
+  };
 
   return (
-    <div className="address-form" >
+    <div className="address-form">
       <h2 className="form-title">Add New Address</h2>
       <input
         className="inp"
@@ -153,11 +167,7 @@ console.log(recievers_name)
       />
       {isSearchingPostalCode && <p className="search-message">{message}</p>}
       {postOffices.length > 0 && (
-        <select
-          className="inp"
-          value={selectedPostOffice}
-          onChange={handlePostOfficeChange}
-        >
+        <select className="inp" value={selectedPostOffice} onChange={handlePostOfficeChange}>
           <option value="">Select Post Office</option>
           {postOffices.map((postOffice, index) => (
             <option key={index} value={postOffice.Name}>
@@ -166,30 +176,8 @@ console.log(recievers_name)
           ))}
         </select>
       )}
-      <input
-        className="inp"
-        type="text"
-        value={formData.city}
-        placeholder="City"
-        readOnly
-        required
-      />
-      <input
-        className="inp"
-        type="text"
-        value={formData.state}
-        placeholder="State"
-        readOnly
-        required
-      />
-      <input
-        className="inp"
-        type="text"
-        // value={formData.country}
-        // onChange={(e) => handleInputChange('country', e.target.value)}
-        placeholder="India"
-        required
-      />
+      <input className="inp" type="text" value={formData.city} placeholder="City" readOnly required />
+      <input className="inp" type="text" value={formData.state} placeholder="State" readOnly required />
       <textarea
         className="inp"
         value={formData.address}
@@ -197,7 +185,15 @@ console.log(recievers_name)
         placeholder="Full Address"
         required
       />
-      <button type="submit" onClick={()=>{saveAddress()}} className="submit-btn">
+      <div className="default-address">
+        <input
+          type="radio"
+          checked={formData.isDefault}
+          onChange={() => handleInputChange('isDefault', !formData.isDefault)}
+        />
+        Make this address default
+      </div>
+      <button type="submit" onClick={saveAddress} className="submit-btn">
         Save Address
       </button>
     </div>

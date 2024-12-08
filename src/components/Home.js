@@ -4,6 +4,7 @@ import Login from './Login';
 import Footer from './Footer';
 import Header from './Header';
 import HomePlans from './HomePlans';
+import StoreMap from './home/Map';
 
 const Home = () => {
   
@@ -87,7 +88,7 @@ Refined and packed spices often contain chemicals that can lead to long-term hea
 </div>
 
 <Login/>
-
+<StoreMap/>
 <div className='div-small' >
 
 <br/>
@@ -95,6 +96,7 @@ Refined and packed spices often contain chemicals that can lead to long-term hea
 </div>
 
 </div>
+
 <Footer/>
 {/* <div class="wave">
   
