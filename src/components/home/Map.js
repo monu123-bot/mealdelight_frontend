@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { host } from '../../script/variables';
-import '../../style/Home/map.css'
+import React, { useEffect, useState } from "react";
+import { host } from "../../script/variables";
+import "../../style/Home/map.css";
+
 const StoreMap = () => {
   const [stores, setStores] = useState([]);
   const [containerSize, setContainerSize] = useState({ width: 800, height: 600 });
@@ -9,6 +10,7 @@ const StoreMap = () => {
 
   const indiaBounds = { minLat: 6, maxLat: 37, minLong: 68, maxLong: 97 };
 
+  // Map latitude and longitude to SVG coordinates
   const mapCoordinatesToSVG = (latitude, longitude) => {
     const { width, height } = containerSize;
     const x = ((longitude - indiaBounds.minLong) / (indiaBounds.maxLong - indiaBounds.minLong)) * width;
@@ -16,14 +18,15 @@ const StoreMap = () => {
     return { x, y };
   };
 
+  // Fetch store data from the API
   const fetchStores = async () => {
     try {
       const response = await fetch(`${host}/darkkitchen/get-list`);
-      if (!response.ok) throw new Error('Failed to fetch stores');
+      if (!response.ok) throw new Error("Failed to fetch stores");
       const data = await response.json();
       setStores(data);
     } catch (error) {
-      console.error('Error fetching stores:', error.message);
+      console.error("Error fetching stores:", error.message);
     }
   };
 
@@ -31,8 +34,9 @@ const StoreMap = () => {
     fetchStores();
   }, []);
 
+  // Update container size on window resize
   const updateContainerSize = () => {
-    const container = document.getElementById('map-container');
+    const container = document.getElementById("map-container");
     if (container) {
       setContainerSize({
         width: container.offsetWidth,
@@ -42,10 +46,10 @@ const StoreMap = () => {
   };
 
   useEffect(() => {
-    updateContainerSize(); // Set initial size
-    window.addEventListener('resize', updateContainerSize);
+    updateContainerSize();
+    window.addEventListener("resize", updateContainerSize);
     return () => {
-      window.removeEventListener('resize', updateContainerSize);
+      window.removeEventListener("resize", updateContainerSize);
     };
   }, []);
 
@@ -60,48 +64,29 @@ const StoreMap = () => {
 
   return (
     <div className="container">
-      {/* Left Section: Map */}
+      {/* Map Section */}
       <div id="map-container" className="map-container">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 800 600"
-          preserveAspectRatio="xMidYMid meet"
-          className="map-svg"
-        >
-          {/* Background India Map */}
-          <image
-            href="/india.svg"
-            x="0"
-            y="0"
-            width="800"
-            height="600"
-            preserveAspectRatio="xMidYMid meet"
-          />
+        <img src="/in.svg" alt="India Map" className="india-map" />
 
-          {/* Store Markers */}
-          {stores.map((store, index) => {
-            const { x, y } = mapCoordinatesToSVG(
-              store.location.coordinates[1],
-              store.location.coordinates[0]
-            );
-            return (
-              <circle
-                key={index}
-                cx={x}
-                cy={y}
-                r="5"
-                fill="red"
-                stroke="black"
-                strokeWidth="1"
-                onClick={() => handleStoreClick(store)} // Set the store on click
-                style={{ cursor: 'pointer' }}
-              />
-            );
-          })}
-        </svg>
+        {/* Highlight Store Locations */}
+        {stores.map((store) => {
+          const { x, y } = mapCoordinatesToSVG(
+            store.location.coordinates[1],
+            store.location.coordinates[0]
+          );
+          return (
+            <div
+              key={store.id}
+              className="location-indicator"
+              style={{ left: `${x}px`, top: `${y}px` }}
+              onClick={() => handleStoreClick(store)}
+              title={store.name}
+            />
+          );
+        })}
       </div>
 
-      {/* Popup for Mobile View */}
+      {/* Popup for Store Details */}
       {isPopupVisible && (
         <div className="popup">
           <div className="popup-content">
@@ -118,7 +103,6 @@ const StoreMap = () => {
             <p>
               <strong>Longitude:</strong> {selectedStore?.location.coordinates[0]}
             </p>
-            {/* Add more details as required */}
           </div>
         </div>
       )}
