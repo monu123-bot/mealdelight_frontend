@@ -82,6 +82,7 @@ const History = () => {
               <h3>{transaction.planName}</h3>
               <p>Purchased Date: {new Date(transaction.purchaseDate).toLocaleDateString()}</p>
               <p>Expiry Date: {new Date(transaction.expiryDate).toLocaleDateString()}</p>
+              <p>Delivery address : {transaction.address.city}</p>
             </li>
           ))}
         </ul>
