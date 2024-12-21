@@ -1,112 +1,208 @@
-/* General Layout */
-/* General Layout */
-.container {
+/* General Styles */
+.map-wrapper {
+  box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 600px;
-  height: 70vh;
-  padding: 5px;
-  overflow: auto;
-  margin-left: auto;
-  margin-right: auto;
-
-  /* Scrollbar styling */
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: #888 #f1f1f1; /* Thumb and track colors for Firefox */
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
 }
 
-/* Webkit Browsers (Chrome, Safari) */
-.container::-webkit-scrollbar {
-  width: 8px; /* Width of vertical scrollbar */
-  height: 8px; /* Height of horizontal scrollbar */
-}
-
-.container::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Background color of the track */
-  border-radius: 10px; /* Rounded corners for the track */
-}
-
-.container::-webkit-scrollbar-thumb {
-  background: #888; /* Color of the scrollbar thumb */
-  border-radius: 10px; /* Rounded corners for the thumb */
-}
-
-.container::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color on hover */
-}
-
-  
 .map-container {
-  position: relative;
-  /* overflow: auto; */
-  width: 800px;
-  height: 600px;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1000px;
+  overflow: hidden;
 }
 
-/* India Map */
-.india-map {
+/* Responsive SVG */
+.map-container svg {
   width: 100%;
   height: auto;
-  position: relative;
+  max-height: 600px;
 }
 
 /* Location Indicator */
 .location-indicator {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background-color: red;
   border-radius: 50%;
   cursor: pointer;
-  transform: translate(-50%, -50%);
-  border: 2px solid white;
+  transition: transform 0.2s ease;
 }
 
-/* Popup */
+.location-indicator:hover {
+  transform: scale(1.2);
+}
+
+/* Popup Styles */
 .popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  max-width: 400px;
-  width: 90%;
+  border-radius: 8px;
   padding: 20px;
+  z-index: 1000;
+  height: fit-content;
+  max-height: 50%;
+  overflow-y: auto;
+  text-align: center;
+  align-items: center;
 }
 
 .popup-content {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+  text-align: left;
   position: relative;
 }
 
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 15px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Close Button */
 .close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
   position: absolute;
   top: 10px;
   right: 10px;
-  background: none;
-  border: none;
-  font-size: 18px;
   cursor: pointer;
+  color: #333;
 }
 
 .close-btn:hover {
   color: red;
 }
-  /* Fade-in Animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -45%);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
+
+/* Timeline Styles */
+.timeline {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative;
+  width: 100%;
+}
+
+.timeline-bubble {
+  width: 15px;
+  height: 15px;
+  background-color: #007bff;
+  border-radius: 50%;
+  margin-right: 20px;
+  position: relative;
+}
+
+.timeline-content {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+.timeline-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 2px solid #007bff;
+  height: 100%;
+  z-index: -1;
+}
+
+.line {
+  border: 2px solid black;
+  width: 1px;
+  background-color: #333;
+  margin-left: auto;
+  margin-right: auto;
+  height: 20px;
+  margin: 3px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .map-container svg {
+    max-height: 400px;
   }
-  .highlight-green {
-    fill: green;
+
+  .popup {
+    width: 70%;
+    max-width: 500px;
   }
+
+  .popup-content {
+    width: 90%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+  .map-container svg {
+    max-height: 300px;
+  }
+
+  .popup {
+    width: 80%;
+    padding: 10px;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-bubble {
+    margin-bottom: 10px;
+  }
+
+  .timeline-content {
+    width: 100%;
+  }
+}
