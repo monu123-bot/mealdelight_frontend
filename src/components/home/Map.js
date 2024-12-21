@@ -259,7 +259,7 @@ const StoreMap = () => {
               {cityMap.get(selectedState).sort((a, b) => new Date(a.opendate) - new Date(b.opendate)).map((cityInfo, index) => (
                 <>
                 <div className="timeline-item" key={index}>
-                  <div className="timeline-bubble"></div>
+                  
                   <div className="timeline-content">
                     <strong>{cityInfo.name}</strong>
                     <p><strong>Open Date:</strong> {formatDate(cityInfo.opendate)}</p>
