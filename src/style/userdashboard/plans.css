@@ -479,3 +479,70 @@
     font-size: 1rem;
   }
 }
+.plan-card-header{
+  display: flex;
+  flex-direction: row;
+}
+.plan-card-heading{
+  width: 80%;
+}
+.plan-card-option{
+  width: 20%;
+  text-align: end;
+  padding: 2px;
+}
+.enhanced-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa; /* Light gray background */
+  border-top: 1px solid #dee2e6; /* Subtle border */
+}
+
+.pause-options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pause-label {
+  font-size: 14px;
+  color: #495057; /* Subtle text color */
+}
+
+.pause-policies-link {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.pause-policies-link:hover {
+  text-decoration: underline;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.confirm-button {
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+}
+.confirm-button.disabled {
+  background-color: #d6d8db;
+  color: #6c757d;
+  cursor: not-allowed;
+}

@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import {load} from '@cashfreepayments/cashfree-js';
 import AddNewAddress from './AddNewAddress';
 import AddressList from './AddressList';
+import PauseCalander from './PauseCalander';
 
 const Plans = ({user,setUser}) => {
   const navigate = useNavigate();
@@ -26,6 +27,14 @@ const Plans = ({user,setUser}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const [isPauseModalOpen, setIsPauseModalOpen] = useState(false);
+  const openPauseModal = () => setIsPauseModalOpen(true);
+  const closePauseModal = () => setIsPauseModalOpen(false);
+  const [pausePlanId,setPausePlanId]=  useState(null)
+
+  const [selectedDays,setSelectedDays] = useState(null)
+  const [expiringDate,setExpiringDate] = useState(null)
   const [step, setStep] = useState("payment"); // Steps: 'payment' or 'address'
   const [selectedPayment, setSelectedPayment] = useState("");
  const [addresses,setAddress] = useState(['hno 645 saraswati bihar ','building 811 '])
@@ -36,9 +45,20 @@ const Plans = ({user,setUser}) => {
  const [subscribeMessage,setSubscribeMessage] = useState(null)
  const [upiAmount,setUpiAmount] = useState(null)
  const [selectedAddress,setSelectedAddress] = useState(null)
- 
+   const [activeDropdown, setActiveDropdown] = useState(null);
+   const [isPolicyChecked, setIsPolicyChecked] = useState(false);
 
- 
+  const handleConfirm = () => {
+    if (isPolicyChecked) {
+      console.log("Paused");
+    } else {
+      alert("Please agree to the pause policies before confirming.");
+    }
+  };
+
+ const toggleDropdown = (orderId) => {
+  setActiveDropdown(activeDropdown === orderId ? null : orderId);
+};
  const [formData, setFormData] = useState({
   recievers_name: '',
   recievers_phone: '',
@@ -70,7 +90,6 @@ initializeSDK();
 
  const handleAddToWallet =async () => {
   const upiAmount = calculateFinalPrice(activePlanPrice, activePlanDiscount);
-  
 
   console.log(upiAmount)
      console.log('this is 1')
@@ -132,8 +151,6 @@ initializeSDK();
      } catch (error) {
          console.error('Error fetching user details:', error.message);
      }
-
-
      setUpiAmount(null);
  };
  const doPayment = async (sessionid, order_id) => {
@@ -178,9 +195,6 @@ const fetchAddress = async () => {
     console.error('Error fetching addresses:', error.message);
   }
 };
-
-
-
  /// payment add end
 
  const handleReview = (review)=>{
@@ -378,7 +392,6 @@ const checkActive = (planId)=>{
    return
 }
 
-
   const calculateFinalPrice = (price, discount) => {
     if(selectedPayment==='UPI'){
       couponData.discount = 0
@@ -400,9 +413,12 @@ const checkActive = (planId)=>{
   };
 const ChoosePaymentOption = async (planId)=>{
 
-     
-
-
+}
+const openPauseModel =(planId,expiringDate)=>{
+  setExpiringDate(expiringDate)
+  setPausePlanId(planId)
+  
+  openPauseModal()
 }
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -411,11 +427,29 @@ const ChoosePaymentOption = async (planId)=>{
 
   return (
     <div>
+   
     <h2>Active Plans</h2>
     {(plans.length===0) && "Loading..."}
     {myPlans.map((plan) => (
       <div key={plan._id} className="plan-card">
-        <h3>{plan.planDetails.name}</h3>
+        <div className='plan-card-header'>
+          
+          <h3 className='plan-card-heading'>{plan.planDetails.name}</h3>
+          <span  onClick={() => toggleDropdown(plan._id)} className='plan-card-option dots-menu'>•••
+
+          {activeDropdown === plan._id && (
+      <div className="dropdown">
+        <p onClick={()=>{
+          openPauseModel(plan._id,plan.expiringAt)
+        }} >Pause </p>
+        <p>Pause 1</p>
+        {/* Uncomment and add other options as needed */}
+        {/* <p onClick={() => console.log("Another option")}>Another option</p> */}
+      </div>
+    )}
+          </span>
+          </div>
+        
         <p>{remainingDays(plan.expiringAt)}</p>
         {remainingDays(plan.expiringAt) === 'Plan has expired' && (
           <>
@@ -446,15 +480,11 @@ const ChoosePaymentOption = async (planId)=>{
               Renew 
             </button>
             </div>
-            
-           
-            
-           
           </>
         )}
       </div>
     ))}
-  
+ 
     <h2>Available Plans</h2>
     {(plans.length===0) && "Loading..."}
     {plans.map((plan) => (
@@ -535,6 +565,7 @@ const ChoosePaymentOption = async (planId)=>{
 </button>
       </div>
     ))}
+    {/* buy now model starting  */}
     {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
         <div
@@ -650,6 +681,65 @@ const ChoosePaymentOption = async (planId)=>{
 
            
           </div>
+        </div>
+      </div>
+      )}
+
+      {/* plan  Pause model starting  */}
+      {isPauseModalOpen && (
+        <div className="modal-overlay" onClick={closePauseModal}>
+        <div
+          className="modal-content"
+          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
+        >
+          <div className="modal-header">
+            <h5 className="modal-title">
+              Select period 
+              
+            </h5>
+            
+
+            <button className="close-btn" onClick={closePauseModal}>
+              &times;
+            </button>
+          </div>
+          <small>It should be continious and less than 11 days</small>
+
+          <div className="modal-body">
+           
+
+           <PauseCalander endDate={expiringDate}  planId={pausePlanId} />
+            
+          </div>
+  
+          <div className="modal-footer enhanced-modal-footer">
+      <div className="pause-options">
+        <input
+          id="pause-radio"
+          type="radio"
+          checked={isPolicyChecked}
+          onChange={() => setIsPolicyChecked(!isPolicyChecked)}
+        />
+        <label htmlFor="pause-radio" className="pause-label">
+          Pause Plan
+        </label>
+        <a href="#" className="pause-policies-link">
+          View Pause Policies
+        </a>
+      </div>
+      <div className="action-buttons">
+        <button
+          className={`btn btn-secondary confirm-button ${
+            isPolicyChecked ? "" : "disabled"
+          }`}
+          onClick={handleConfirm}
+          disabled={!isPolicyChecked}
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+
         </div>
       </div>
       )}

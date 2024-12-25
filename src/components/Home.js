@@ -77,9 +77,18 @@ Refined and packed spices often contain chemicals that can lead to long-term hea
 </p>
 
 </p>
-</div>
 <br/>
+
 <HomePlans/>
+<div className='q1' >
+<p className='q1-h'>
+
+<b>Our Presence</b></p>
+<StoreMap/>
+
+</div>
+</div>
+
 <br/>
 <div className='q1 div-small'>
   <p className='q1-h'>Haven't joined yet ?</p>
@@ -88,7 +97,7 @@ Refined and packed spices often contain chemicals that can lead to long-term hea
 </div>
 
 <Login/>
-<StoreMap/>
+
 <div className='div-small' >
 
 <br/>
