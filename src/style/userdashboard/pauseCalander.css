@@ -70,3 +70,27 @@
     color: #333;
   }
   
+  .calendar-day {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    cursor: pointer;
+    background-color: #fff; /* Default color */
+    transition: background-color 0.3s;
+  }
+  
+  .calendar-day.paused {
+    background-color: lightgreen; /* Light green for paused and newly selected dates */
+  }
+  
+  .calendar-day.selected {
+    background-color: lightgreen; /* Same light green for newly selected dates */
+  }
+  
+  .calendar-day:hover {
+    background-color: #f0f0f0; /* Slight hover effect */
+  }
+  .fetched {
+    background-color: lightgreen !important;
+  }
+  

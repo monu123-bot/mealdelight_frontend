@@ -1,14 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../style/userdashboard/pauseCalander.css";
+import { host } from "../../script/variables";
 
-const PauseCalander = ({ endDate, planId }) => {
+const PauseCalander = ({ endDate, planTransactionId, pausedDates,setPausedDates,saveDatesToBackend}) => {
   const maxDays = 10;
-  const startDate = new Date(); // Current date as the start date
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() + 1);
   endDate = new Date(endDate);
 
-  const [selectedDates, setSelectedDates] = useState([]);
+  const [dates, setDates] = useState([]); // Array to manage all dates between start and end
 
-  // Generate calendar days for the current range
+  // Fetch paused slots from the backend
+  useEffect(() => {
+    const fetchPausedSlots = async () => {
+      try {
+        const token = localStorage.getItem('mealdelight');
+        if (!token) {
+          throw new Error("No authentication token found");
+        }
+
+        const response = await fetch(`${host}/plans/getPausedSlots/${planTransactionId}`, {
+          method: "GET",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          // Set paused dates from backend
+          setPausedDates(result.pausedSlots || []);
+        } else {
+          alert("Failed to fetch paused slots!");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("An error occurred while fetching paused slots.");
+      }
+    };
+
+    fetchPausedSlots();
+  }, [planTransactionId]);
+
+  // Generate days between start and end dates
   const generateDays = (start, end) => {
     const days = [];
     let current = new Date(start);
@@ -21,84 +56,56 @@ const PauseCalander = ({ endDate, planId }) => {
 
   const days = generateDays(startDate, endDate);
 
-  // Handle date click
+  // Handle the selection and deselection of dates
   const handleDateClick = (date) => {
-    const dateStr = date.toISOString().split("T")[0]; // Store in YYYY-MM-DD format
+    console.log(pausedDates)
+    const dateStr = date.toISOString().split("T")[0];
 
-    if (selectedDates.length === 0) {
-      // Select the first date
-      setSelectedDates([dateStr]);
+    // Check if the date is already in the pausedDates array
+    const isPaused = pausedDates.includes(dateStr);
+
+    if (isPaused) {
+      // If the date is already paused, remove it from the pausedDates array
+      setPausedDates((prevPausedDates) => prevPausedDates.filter(d => d !== dateStr));
     } else {
-      const firstDate = new Date(selectedDates[0]);
-      const lastDate = new Date(selectedDates[selectedDates.length - 1]);
-      const clickedDate = new Date(dateStr);
-
-      if (dateStr === selectedDates[0]) {
-        // Deselect the first date
-        setSelectedDates((prevDates) => prevDates.slice(1));
-      } else if (dateStr === selectedDates[selectedDates.length - 1]) {
-        // Deselect the last date
-        setSelectedDates((prevDates) => prevDates.slice(0, -1));
-      } else {
-        let start, end;
-
-        if (clickedDate < firstDate) {
-          start = clickedDate;
-          end = lastDate;
-        } else if (clickedDate > lastDate) {
-          start = firstDate;
-          end = clickedDate;
-        } else {
-          start = firstDate;
-          end = lastDate;
-        }
-
-        // Generate the new range of dates
-        const range = [];
-        let current = new Date(start);
-        while (current <= end) {
-          range.push(current.toISOString().split("T")[0]);
-          current.setDate(current.getDate() + 1);
-        }
-
-        if (range.length > maxDays) {
-          alert(`You can select up to ${maxDays} days only.`);
-          return;
-        }
-
-        setSelectedDates(range);
+      // If the date is not paused, check if the total number of paused days exceeds maxDays
+      if (pausedDates.length >= maxDays) {
+        alert(`You can select up to ${maxDays} days in total.`);
+        return;
       }
+      // Add the new date to the pausedDates array
+      setPausedDates((prevPausedDates) => [...prevPausedDates, dateStr]);
     }
   };
 
-  // Check if a date is selected
-  const isDateSelected = (date) =>
-    selectedDates.includes(date.toISOString().split("T")[0]);
+  // Check if the date is in the paused dates
+  const isDatePaused = (date) => pausedDates.includes(date.toISOString().split("T")[0]);
+
+  
 
   return (
-    <>
-      <div className="pause-calendar">
-        <div className="calendar-grid">
-          {days.map((day) => {
-            const isSelected = isDateSelected(day);
+    <div className="calendar-grid">
+      {days.map((day) => {
+        const isPaused = isDatePaused(day);
 
-            return (
-              <div
-                key={day}
-                className={`calendar-day ${isSelected ? "selected" : ""}`}
-                onClick={() => handleDateClick(day)}
-              >
-                <span>{day.getDate()}</span>
-                <small>
-                  {day.toLocaleString("default", { month: "short" })},{" "}
-                  {day.getFullYear()}
-                </small>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </>
+        return (
+          <div
+            key={day}
+            className={`calendar-day ${isPaused ? "paused" : ""}`}
+            onClick={() => handleDateClick(day)}
+            style={{ backgroundColor: isPaused ? "lightgreen" : "" }} // Light green for paused dates
+          >
+            <span>{day.getDate()}</span>
+            <small>
+              {day.toLocaleString("default", { month: "short" })}, {day.getFullYear()}
+            </small>
+          </div>
+        );
+      })}
+      <button onClick={saveDatesToBackend}>
+        Save Dates
+      </button>
+    </div>
   );
 };
 

@@ -31,7 +31,7 @@ const Plans = ({user,setUser}) => {
   const [isPauseModalOpen, setIsPauseModalOpen] = useState(false);
   const openPauseModal = () => setIsPauseModalOpen(true);
   const closePauseModal = () => setIsPauseModalOpen(false);
-  const [pausePlanId,setPausePlanId]=  useState(null)
+  const [PausePlanTransactionId,setPausePlanTransactionId]=  useState(null)
 
   const [selectedDays,setSelectedDays] = useState(null)
   const [expiringDate,setExpiringDate] = useState(null)
@@ -47,10 +47,50 @@ const Plans = ({user,setUser}) => {
  const [selectedAddress,setSelectedAddress] = useState(null)
    const [activeDropdown, setActiveDropdown] = useState(null);
    const [isPolicyChecked, setIsPolicyChecked] = useState(false);
+   const [pausedDates, setPausedDates] = useState([]); // Array to manage paused dates from backend
+
+
+
+   // Function to save the selected paused dates to the backend
+  const saveDatesToBackend = async () => {
+    const selectedDates = pausedDates;
+    console.log(selectedDates)
+    const token = localStorage.getItem('mealdelight');
+    if (!token) {
+      throw new Error("No authentication token found");
+    }
+
+    try {
+      const response = await fetch(`${host}/plans/pausePlan`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          PausePlanTransactionId,
+          selectedDates,
+        }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        alert("Dates saved successfully!");
+        console.log(result);
+      } else {
+        alert("Failed to save dates!");
+        console.error(result);
+      }
+    } catch (err) {
+      console.error("Error:", err);
+      alert("An error occurred while saving the dates.");
+    }
+  };
 
   const handleConfirm = () => {
     if (isPolicyChecked) {
       console.log("Paused");
+      saveDatesToBackend()
     } else {
       alert("Please agree to the pause policies before confirming.");
     }
@@ -416,7 +456,7 @@ const ChoosePaymentOption = async (planId)=>{
 }
 const openPauseModel =(planId,expiringDate)=>{
   setExpiringDate(expiringDate)
-  setPausePlanId(planId)
+  setPausePlanTransactionId(planId)
   
   openPauseModal()
 }
@@ -708,7 +748,7 @@ const openPauseModel =(planId,expiringDate)=>{
           <div className="modal-body">
            
 
-           <PauseCalander endDate={expiringDate}  planId={pausePlanId} />
+           <PauseCalander endDate={expiringDate}  planTransactionId={PausePlanTransactionId} pausedDates={pausedDates} setPausedDates={setPausedDates} saveDatesToBackend={saveDatesToBackend} />
             
           </div>
   
