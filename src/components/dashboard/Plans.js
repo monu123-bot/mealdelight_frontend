@@ -352,6 +352,7 @@ const addNewAddress =()=>{
         couponName: isCouponVerified ? coupon : null,
         addressId:selectedAddress._id
       };
+      console.log('payload is ---------------------',payload)
      if(payload.planId == null || payload.addressId==null ){
           alert('some issue in address selection')
           return
