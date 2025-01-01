@@ -7,7 +7,7 @@ const UpdatePaymentOrderStatus = () => {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const UpdateOrderStatus = async (orderId,planId)=>{
+    const UpdateOrderStatus = async (orderId,planId,addressId)=>{
 
         const token = localStorage.getItem('mealdelight');
         if (!token) {
@@ -27,7 +27,7 @@ const UpdatePaymentOrderStatus = () => {
         // Handle response
         if (response.ok) {
             if(planId!=null){
-              await subscribe(planId)
+              await subscribe(planId,addressId)
             }
             else{
               navigate('/dashboard');
@@ -39,7 +39,7 @@ const UpdatePaymentOrderStatus = () => {
         }
         
     }
-    const subscribe = async (planId) => {
+    const subscribe = async (planId,addressId) => {
       console.log('subscribe called')
         if(planId===null){
             navigate('/dashboard')
@@ -49,7 +49,8 @@ const UpdatePaymentOrderStatus = () => {
       try {
         const payload = {
           planId: planId,
-          couponName:  null,
+          couponName: null,
+          addressId:addressId
         };
     
         
@@ -90,10 +91,11 @@ const UpdatePaymentOrderStatus = () => {
       // Parse query parameters from the URL
       const params = new URLSearchParams(location.search);
       const orderId = params.get('order_id');
-      const planId = params.get('plan_id')
+      const planId = params.get('plan_id');
+      const addressId = params.get('address_id');
       // setPlanId(planId)
       console.log('order id is ',orderId,planId)
-      UpdateOrderStatus(orderId,planId);
+      UpdateOrderStatus(orderId,planId,addressId);
       
     }, []);
   return (
