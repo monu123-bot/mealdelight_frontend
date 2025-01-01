@@ -352,7 +352,10 @@ const addNewAddress =()=>{
         couponName: isCouponVerified ? coupon : null,
         addressId:selectedAddress._id
       };
-  
+     if(payload.planId == null || payload.addressId==null ){
+          alert('some issue in address selection')
+          return
+     }
       if (selectedPayment === 'UPI') {
         payload.couponName = null; // Reset couponName after adding to wallet
        
