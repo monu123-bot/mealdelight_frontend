@@ -459,7 +459,12 @@ const checkActive = (planId)=>{
 const ChoosePaymentOption = async (planId)=>{
 
 }
-const openPauseModel =(planId,expiringDate)=>{
+const openPauseModel =(planId,expiringDate,planPeriod)=>{
+  console.log(planPeriod)
+  if (planPeriod<30){
+    alert('Pause is not allowed on trial plans')
+    return
+  }
   setExpiringDate(expiringDate)
   setPausePlanTransactionId(planId)
   
@@ -480,13 +485,17 @@ const openPauseModel =(planId,expiringDate)=>{
         <div className='plan-card-header'>
           
           <h3 className='plan-card-heading'>{plan.planDetails.name}</h3>
+
           <span  onClick={() => toggleDropdown(plan._id)} className='plan-card-option dots-menu'>•••
 
-          {activeDropdown === plan._id && (
+          {  activeDropdown === plan._id && (
       <div className="dropdown">
+        
         <p onClick={()=>{
-          openPauseModel(plan._id,plan.expiringAt)
+          
+          openPauseModel(plan._id,plan.expiringAt,plan.planDetails.period)
         }} >Pause </p>
+      
         <p>Pause 1</p>
         {/* Uncomment and add other options as needed */}
         {/* <p onClick={() => console.log("Another option")}>Another option</p> */}
