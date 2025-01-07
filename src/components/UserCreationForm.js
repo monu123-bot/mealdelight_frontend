@@ -416,7 +416,7 @@ const [message,setMessage] = useState('')
           alert('Enter name')
           return
       }
-      setPhone()
+      setPhone('')
     }
     if(index==1){
       if(!isPhoneValid(phone) ){
@@ -428,7 +428,7 @@ const [message,setMessage] = useState('')
         alert("Verify Phone Number")
         return 
       }
-      setEmail()
+      setEmail('')
       
     }
     if(index==2){
@@ -436,14 +436,14 @@ const [message,setMessage] = useState('')
         alert("Enter Email")
         return
       }
-      setPassword()
+      setPassword('')
     }
     if(index==3){
       if(!isPasswordValid()){
         alert("Enter Email")
         return
       }
-      setApartment()
+      setApartment('')
 
     }
     
