@@ -32,19 +32,15 @@ const UpdatePaymentOrderStatus = () => {
             else{
               navigate('/dashboard');
             }
-           
         }
         else{
             alert('There is an error')
         }
-        
     }
     const subscribe = async (planId,addressId) => {
       console.log('subscribe called')
         if(planId===null){
             navigate('/dashboard')
-            
-
         }
       try {
         const payload = {
@@ -52,9 +48,6 @@ const UpdatePaymentOrderStatus = () => {
           couponName: null,
           addressId:addressId
         };
-    
-        
-    
         const token = localStorage.getItem('mealdelight');
         if (!token) {
           throw new Error('No authentication token found');

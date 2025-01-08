@@ -449,9 +449,9 @@ const [message,setMessage] = useState('')
     
       if(index+1<content.length){
         setIndex(index+1)
-      }
-      
-  }
+      }
+      
+  }
   const handlePrev = ()=>{
      if(index-1>=0){
       setIndex(index-1)
