@@ -8,6 +8,7 @@ import {load} from '@cashfreepayments/cashfree-js';
 import AddNewAddress from './AddNewAddress';
 import AddressList from './AddressList';
 import PauseCalander from './PauseCalander';
+import DeliveryComp from '../DeliveryComp';
 
 const Plans = ({user,setUser}) => {
   const navigate = useNavigate();
@@ -485,6 +486,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
         <div className='plan-card-header'>
           
           <h3 className='plan-card-heading'>{plan.planDetails.name}</h3>
+          <DeliveryComp userId={user._id} planId={plan._id}/>
 
           <span  onClick={() => toggleDropdown(plan._id)} className='plan-card-option dots-menu'>•••
 
