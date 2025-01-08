@@ -25,5 +25,7 @@ const verifyToken = async () => {
       return { isVerified: false, message: 'Internal server error' };
     }
   };
-
-  export {verifyToken}
+const checkLogin =()=>{
+  return false
+}
+  export {verifyToken,checkLogin}

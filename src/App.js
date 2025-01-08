@@ -5,6 +5,10 @@ import Home from './components/Home';
 import UserDashboard from './components/UserDashboard';
 import UpdatePaymentOrderStatus from './components/UpdatePaymentOrderStatus';
 import SinglePlan from './components/SinglePlan';
+import BlogsHome from './components/blogs/BlogsHome';
+import WriteBlog from './components/blogs/WriteBlog';
+import SingleBlog from './components/blogs/SingleBlog';
+import BlogStats from './components/blogs/BlogStats';
 
 function App() {
   return (
@@ -14,7 +18,11 @@ function App() {
         <Routes>
           <Route path='/'  Component={Home}   exact/>
           <Route   path='/regform' Component={UserCreationForm}    />
+          <Route   path='/blog' Component={BlogsHome}    />
           <Route   path='/dashboard' Component={UserDashboard}    />
+          <Route   path='/write' Component={WriteBlog}    />
+          <Route   path='/blog/:title' Component={SingleBlog}   />
+          <Route   path='/blog/stats/:authoremail' Component={BlogStats}   />
           <Route   path='/uos' Component={UpdatePaymentOrderStatus}    />
           <Route path="/plandetails" element={<SinglePlan />} />
        </Routes>
