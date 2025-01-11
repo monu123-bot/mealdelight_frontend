@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const ReactEditorJS = createReactEditorJS();
 
 const BlogEditor = ({ title, titleAv }) => {
+  
   const editorCore = React.useRef(null);
   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
@@ -45,8 +46,8 @@ const BlogEditor = ({ title, titleAv }) => {
       alert('Please choose a JPEG or PNG file format');
       return;
     }
-
-    const filename = `${Date.now()}_${Math.floor(Math.random() * 1000)}_${file.name}`;
+   let file_name = file.name.replace(/\s+/g, '');
+    const filename = `${Date.now()}_${Math.floor(Math.random() * 1000)}_${file_name}`;
 
     const params = {
       Bucket: S3_BUCKET,

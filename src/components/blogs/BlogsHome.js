@@ -97,8 +97,9 @@ const BlogsHome = () => {
         />
         <button onClick={handleSearch} style={{ width: '20%' ,margin:'2px',borderRadius:'12px'}} className='btn btn-sm btn-primary'>Search</button>
       </div>
+      
       <div className='write-blog-button'>
-        <Link to={`/write`} >Write your blog</Link>
+        <Link to={`/write`} >Write your fitness article</Link>
       </div>
       <div className='blog-main-container'>
         <InfiniteScroll

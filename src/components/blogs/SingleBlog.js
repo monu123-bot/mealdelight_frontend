@@ -212,6 +212,8 @@ const [tagBlogs,setTagBlogs] = useState([])
         console.log('useeffect run');
         checkLogin();
         fetchBlog();
+        
+        
     }, [title]);
    useEffect(()=>{fetchMoreWithAuthor()
 
@@ -230,13 +232,13 @@ const [tagBlogs,setTagBlogs] = useState([])
                     <div className='single-blog-header'>
                         {blog.authorDetails && (
                             <p>
-                                <img style={{ width: '20px' }} src={blog.authorDetails.image} alt="Author" />
+                                {/* <img style={{ width: '20px' }} src={blog.authorDetails.image} alt="Author" /> */}
                                 <Link to={`/user?id=${encrypt(blog.authorDetails.email)}`}>
                                     {blog.authorDetails.username}
                                 </Link>
                             </p>
                         )}
-                        <small>Published {timeAgo(blog.createdAt)} ago</small>
+                        {/* <small>Published {timeAgo(blog.createdAt)} ago</small> */}
                     </div>
                     <br />
                     <div className='blog-div roboto-thin' dangerouslySetInnerHTML={{ __html: blog.body.map(objToHtml).join('') }} />
@@ -251,7 +253,7 @@ const [tagBlogs,setTagBlogs] = useState([])
                     </div>
                     <hr />
                     <br/>
-                    <div className='single-blog-footer'>
+                    {/* <div className='single-blog-footer'>
                         <div className='single-blog-like'>
                             {isClapped ? (
                                 <PiHandsClappingDuotone onClick={() => clapp(blog._id)} style={{ fontSize: '30px', color: 'red' }} />
@@ -260,7 +262,7 @@ const [tagBlogs,setTagBlogs] = useState([])
                             )}
                             {claps} claps
                         </div>
-                    </div>
+                    </div> */}
                 </>
             )}
             <br/>

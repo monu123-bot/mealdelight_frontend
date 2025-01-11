@@ -46,6 +46,7 @@ console.log(select)
 
 
 const checkTitleAvailability = async (title)=>{
+// write title to remove spaces from it 
 
   try {
     const response = await fetch(`${host}/blog/checktitle?tname=${title}`, {

@@ -48,7 +48,7 @@ const Blog = ({ blog }) => {
 
         <div className='blog-card-head1'>
           <div className='blog-card-thumbnail'>
-            <img className='blog-card-thumbnail' src={`${blog.thumbnail}`} />
+            {/* <img className='blog-card-thumbnail' src={`${blog.thumbnail}`} /> */}
           </div>
           <div className='blog-card-head-0'> 
           <div className='blog-card-head-1'>
@@ -71,7 +71,7 @@ const Blog = ({ blog }) => {
 
       <div className='blog-card-footer'>
 
-
+{/* 
         <div className='blog-card-like'>
         <FcLike className='icons' />
         <p><b>  {blog.likeCount}</b></p>
@@ -85,7 +85,7 @@ const Blog = ({ blog }) => {
         </div>
         <div className='blog-card-authorname'>
           {blog.authorName}
-        </div>
+        </div> */}
         <div className='blog-card-tags'>
           {blog.tags.map((tag) => (
             <p className='blog-card-tag cutive-mono-regular'>#{tag}</p>
