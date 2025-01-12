@@ -1,0 +1,46 @@
+.home-blogs-container {
+    padding: 20px;
+    text-align: start;
+    overflow: hidden; /* Keeps content constrained in the container */
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    max-width: 700px;
+}
+
+.blogs-slider {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 20px;
+    padding-bottom: 10px; /* Space to avoid content being cut off */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.blogs-slider::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in WebKit browsers */
+}
+
+.blog-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
+    padding: 20px;
+    min-width: 250px; /* Defines fixed width for scrolling */
+    min-height: 200px;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.blog-card h3 {
+    color: #044243;
+}
+
+.blog-card p {
+    color: #d1d5db; /* Light grey text for blog details */
+    margin-top: 10px;
+}
+
+.blog-card:hover {
+    transform: scale(1.05);
+}

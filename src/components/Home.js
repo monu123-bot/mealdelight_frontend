@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Header from './Header';
 import HomePlans from './HomePlans';
 import StoreMap from './home/Map';
+import HomeArticles from './HomeArticles';
 
 const Home = () => {
 
@@ -97,7 +98,7 @@ const Home = () => {
         </div>
 
         <Login />
-
+        <HomeArticles/>
         <div className='div-small' >
 
           <br />
@@ -105,7 +106,7 @@ const Home = () => {
         </div>
 
       </div>
-
+      
       <Footer />
       {/* <div class="wave">
   
