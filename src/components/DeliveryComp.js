@@ -5,7 +5,7 @@ import { AblyProvider, ChannelProvider, useChannel, useConnectionStateListener }
 
 
 const DeliveryComp = ({userId,planId}) => {
-    const client = new Ably.Realtime({ key: `${process.env.ABLY_API_KEY}` });
+    const client = new Ably.Realtime({ key: `${process.env.REACT_APP_ABLY_API_KEY}` });
   return (
     <div>
         <AblyProvider client={client}>
