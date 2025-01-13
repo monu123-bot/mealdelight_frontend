@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { host } from '../script/variables';
 import '../style/HomeArticles.css';
 import { Link } from 'react-router-dom';
-
+import { MdOutlineReadMore } from "react-icons/md";
 const HomeArticles = () => {
   const [blogs, setBlogs] = useState([]);
 
@@ -46,6 +46,14 @@ const HomeArticles = () => {
             </div>
           </Link>
         ))}
+        <Link 
+            key={'more'}
+            to={`/blog`} // Correct query parameter for blogs
+          >
+            <div className="blog-card">
+            <MdOutlineReadMore style={{fontSize:'200px',color:'#cdedf6'}} />
+            </div>
+          </Link>
       </div>
     </div>
   );
