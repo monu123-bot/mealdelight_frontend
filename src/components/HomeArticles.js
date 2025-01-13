@@ -33,7 +33,7 @@ const HomeArticles = () => {
 
   return (
     <div className="home-blogs-container">
-      <h2 className="blogs-header">Latest Blogs</h2>
+       <h2 className='q1-h'>Latest Articles</h2>
       <div className="blogs-slider">
         {blogs.map((blog) => (
           <Link 
@@ -41,7 +41,8 @@ const HomeArticles = () => {
             to={`/blog/${blog.title}`} // Correct query parameter for blogs
           >
             <div className="blog-card">
-              <h3>{blog.title}</h3>
+              <p>{blog.title}</p>
+              <img style={{width:'200px'}} src={`${blog.thumbnail}`} />
             </div>
           </Link>
         ))}

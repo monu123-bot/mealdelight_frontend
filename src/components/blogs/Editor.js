@@ -9,6 +9,7 @@ import Embed from '@editorjs/embed';
 import { host } from '../../script/variables';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import { useNavigate } from 'react-router-dom';
+import ThumbnailUploader from './Thumbnail';
 
 const ReactEditorJS = createReactEditorJS();
 
@@ -18,6 +19,7 @@ const BlogEditor = ({ title, titleAv }) => {
   const navigate = useNavigate();
   const [tags, setTags] = useState([]);
   const [taglist, setTagList] = useState([{ value: 'dosa', label: 'dosa' }]);
+  const [thumbnailUrl,setThumbnailUrl] = useState('#')
   const [isSaving, setIsSaving] = useState(false);
   const token = localStorage.getItem('mealdelight');
 
@@ -94,6 +96,20 @@ const BlogEditor = ({ title, titleAv }) => {
       console.log(error);
     }
   };
+  const handleThumbnailUpload = async(event)=>{
+    
+    const file = event.target.files[0];
+    if (!file) return;
+
+    try {
+      const imageUrl = await uploadFile(file);
+      setThumbnailUrl(imageUrl);
+      alert('Thumbnail uploaded successfully!');
+    } catch (error) {
+      console.error('Error uploading thumbnail:', error);
+      alert('Thumbnail upload failed.');
+    }
+  }
 
   const handleInitialize = React.useCallback((instance) => {
     editorCore.current = instance;
@@ -115,6 +131,7 @@ const BlogEditor = ({ title, titleAv }) => {
       body: savedData.blocks,
       status: 'published',
       tags: tags,
+      thumbnail:thumbnailUrl
     };
 
     try {
@@ -200,6 +217,7 @@ const BlogEditor = ({ title, titleAv }) => {
 
   return (
     <>
+   <ThumbnailUploader uploadFile={uploadFile}  thumbnailUrl={thumbnailUrl} setThumbnailUrl={setThumbnailUrl}/>
       <div className='blog-write-editor'>
         <ReactEditorJS onInitialize={handleInitialize} tools={EDITOR_JS_TOOLS} />
       </div>

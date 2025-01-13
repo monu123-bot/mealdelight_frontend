@@ -22,7 +22,7 @@ const WriteBlog = () => {
   const { quill, quillRef } = useQuill();
   const [tags,setTags] = useState([])
   const [titleAv,setTitleAv] = useState(true)
-
+  
   const [isPublished,setIsPublished] = useState(false)
   const token = localStorage.getItem('mealdelight');
 
@@ -83,6 +83,7 @@ const checkTitleAvailability = async (title)=>{
       
       <br/>
       <div className='blog-write-container'>
+        
       <div className='blog-write-title'>
       
       <textarea
@@ -105,7 +106,7 @@ const checkTitleAvailability = async (title)=>{
       </div>
       
       <div className='blog-write-main-div'>
-      <Editor title={title} titleAv={titleAv} />
+      <Editor title={title} titleAv={titleAv}  />
      
       
       </div>

@@ -1,46 +1,68 @@
 .home-blogs-container {
     padding: 20px;
-    text-align: start;
-    overflow: hidden; /* Keeps content constrained in the container */
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    max-width: 700px;
-}
-
-.blogs-slider {
+    background-color: #cdedf6;
+    border-radius: 8px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .blogs-header {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .blogs-slider {
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    gap: 20px;
-    padding-bottom: 10px; /* Space to avoid content being cut off */
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-}
-
-.blogs-slider::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in WebKit browsers */
-}
-
-.blog-card {
-    background-color: white;
+    overflow-x: auto;
+    gap: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+    padding-bottom: 10px;
+  }
+  
+  .blogs-slider::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .blogs-slider::-webkit-scrollbar-thumb {
+    background-color: #888;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
-    padding: 20px;
-    min-width: 250px; /* Defines fixed width for scrolling */
-    min-height: 200px;
-    text-align: left;
-    transition: transform 0.3s ease;
-}
-
-.blog-card h3 {
+  }
+  
+  .blog-card {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    min-width: 200px;
+    max-width: 200px;
+    height: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .blog-card p {
+    font-size: 12px;
+    font-weight: 500;
     color: #044243;
-}
-
-.blog-card p {
-    color: #d1d5db; /* Light grey text for blog details */
-    margin-top: 10px;
-}
-
-.blog-card:hover {
-    transform: scale(1.05);
-}
+    margin-bottom: 10px;
+  }
+  
+  .blog-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    max-height: 120px;
+  }
+  
