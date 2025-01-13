@@ -225,6 +225,24 @@ const [tagBlogs,setTagBlogs] = useState([])
 
     return (
         <div className='single-blog-container'>
+            {!blog && (
+  <div 
+    style={{
+      backgroundColor: '#f8d7da', 
+      color: '#721c24', 
+      border: '1px solid #f5c6cb', 
+      borderRadius: '5px', 
+      padding: '15px', 
+      textAlign: 'center', 
+      fontSize: '16px', 
+      fontWeight: 'bold', 
+      boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+    }}
+  >
+    <span>📝 Now your article is under review... it will be live once approved by our team.</span>
+  </div>
+)}
+
             {blog && (
                 <>
                     <h1 className='rajdhani-font'>{blog.title}</h1>
