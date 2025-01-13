@@ -486,6 +486,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
         <div className='plan-card-header'>
           
           <h3 className='plan-card-heading'>{plan.planDetails.name}</h3>
+          
           <DeliveryComp userId={user._id} planId={plan._id}/>
 
           <span  onClick={() => toggleDropdown(plan._id)} className='plan-card-option dots-menu'>•••
@@ -572,7 +573,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
           {expandedPlan === plan._id ? 'Hide Menu' : 'View Menu'}
         </button>
   
-        <div
+        {/* <div
           style={{
             position: 'relative',
             width: '100%',
@@ -602,7 +603,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
             allowFullScreen
             allow="fullscreen"
           ></iframe>
-        </div>
+        </div> */}
   
         <button
   onClick={() => {
