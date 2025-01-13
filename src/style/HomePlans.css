@@ -6,6 +6,7 @@
     margin-right: auto;
     width: 90%;
     max-width: 700px;
+    
   }
   
   .plans-slider {
@@ -26,11 +27,12 @@
     background-color: #044243;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
-    padding: 20px;
+    padding: 10px;
     min-width: 250px; /* Defines fixed width for scrolling */
     min-height: 200px;
     text-align: left;
     transition: transform 0.3s ease;
+    height: 200px;
     
   }
   .plan-card  h3{
@@ -40,4 +42,24 @@
   .plan-card:hover {
     transform: scale(1.05);
   }
-  
+  .plan-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    max-height: 120px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .plan-img-div{
+    padding: 10px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .plan-discount{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }

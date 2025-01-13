@@ -46,12 +46,33 @@ const HomePlans = () => {
            key={plan._id} 
            to={`/plandetails?plan_id=${plan._id}`} // Correct query parameter format
          >
-           <div className="plan-card">
-             <h3>{plan.name}</h3>
-             <p>Price: ₹{plan.price}</p>
-             {plan.discount > 0 && <p>Discount: {plan.discount}%</p>}
-             {/* Add any other plan details here */}
-           </div>
+          <div className="plan-card" style={{ position: 'relative' }}>
+  <h3>{plan.name}</h3>
+  <div className='plan-img-div'>
+    <img style={{ width: '200px' }} src={`${plan.thumbnail}`} alt={plan.name} />
+  </div>
+  {/* Display discount as a star */}
+  {plan.discount > 0 && (
+    <div 
+      className="plan-discount" 
+      style={{
+        position: 'absolute', 
+        top: '10px', 
+        right: '10px', 
+        backgroundColor: 'red', 
+        color: 'white', 
+        padding: '5px 10px', 
+        borderRadius: '50%', 
+        fontSize: '14px', 
+        fontWeight: 'bold', 
+        boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)',
+      }}
+    >
+      <span>⭐ {plan.discount}%</span>
+    </div>
+  )}
+  {/* Add any other plan details here */}
+</div>
          </Link>
         ))}
       </div>
