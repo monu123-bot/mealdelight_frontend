@@ -347,7 +347,17 @@ const addNewAddress =()=>{
   };
 
   const subscribe = async (planId) => {
+   console.log('sub called ')
+      try {
+        checkActive(planId,selectedAddress._id)
+      } catch (error) {
+        console.log(error)
+        console.log('error in checking is plan active')
+        return
+      }
+   
     try {
+      
       const payload = {
         planId: planId,
         couponName: isCouponVerified ? coupon : null,
@@ -421,11 +431,12 @@ const addNewAddress =()=>{
     }
 };
 
-const checkActive = (planId)=>{
-  console.log('checking for ',planId)
-   myPlans.forEach((plan)=>{
+const checkActive = (planId,addressId)=>{
+  console.log('checking for ',planId,addressId)
 
-    if(plan.plan_id==planId){
+   myPlans.forEach((plan)=>{
+   
+    if(plan.plan_id==planId && plan.address_id == addressId){
       setIsActive(true)
       alert('This plan is already active, validity will be added in available plan')
      
@@ -434,7 +445,7 @@ const checkActive = (planId)=>{
       setIsActive(false)
     }
    })
-   openModal();
+   
    return
 }
 
@@ -454,7 +465,7 @@ const checkActive = (planId)=>{
 
     const userConfirmed = window.confirm("Are you sure you want to subscribe to this plan?");
     if (userConfirmed) {
-      await subscribe(planId);
+      await subscribe(planId,selectedAddress._id);
     }
   };
 const ChoosePaymentOption = async (planId)=>{
@@ -614,7 +625,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
     setActivePlanPrice(plan.price)
     setStep("payment")
     setPage(1)
-    checkActive(plan._id)
+    openModal()
      // Track the selected plan for subscribing
   }}
 >
@@ -712,7 +723,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
                   Subscribe
                 </button>
               ) : (
-                <button className="btn-secondary" onClick={() => subscribe(activePlanId)}>
+                <button className="btn-secondary" onClick={() => subscribe(activePlanId,selectedAddress._id)}>
                   Subscribe
                 </button>
               )}
