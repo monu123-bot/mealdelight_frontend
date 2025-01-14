@@ -21,7 +21,9 @@
   .plans-slider::-webkit-scrollbar {
     display: none; /* Hide scrollbar in WebKit browsers */
   }
-  
+  .plan-card h3{
+    color: #cdedf6;
+  }
   .plan-card {
 
     background-color: #044243;
@@ -35,9 +37,7 @@
     height: 200px;
     
   }
-  .plan-card  h3{
-    color: aliceblue;
-  }
+ 
   
   .plan-card:hover {
     transform: scale(1.05);

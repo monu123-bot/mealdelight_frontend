@@ -3,6 +3,7 @@ import { host } from '../script/variables';
 import '../style/HomeArticles.css';
 import { Link } from 'react-router-dom';
 import { MdOutlineReadMore } from "react-icons/md";
+import Spinner from './spinner/Spinner';
 const HomeArticles = () => {
   const [blogs, setBlogs] = useState([]);
 
@@ -35,6 +36,7 @@ const HomeArticles = () => {
     <div className="home-blogs-container">
        <h2 className='q1-h'>Latest Articles</h2>
       <div className="blogs-slider">
+        {!blogs && <Spinner/>}
         {blogs.map((blog) => (
           <Link 
             key={blog._id} 

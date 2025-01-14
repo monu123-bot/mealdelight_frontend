@@ -34,7 +34,7 @@
   }
   
   .blog-card {
-    background-color: #fff;
+    background-color: #044243;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 16px;
@@ -54,7 +54,7 @@
   .blog-card p {
     font-size: 12px;
     font-weight: 500;
-    color: #044243;
+    color: #fff;
     margin-bottom: 10px;
   }
   

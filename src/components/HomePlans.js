@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { host } from '../script/variables';
 import '../style/HomePlans.css'
 import { Link } from 'react-router-dom';
+import Spinner from './spinner/Spinner';
 const HomePlans = () => {
   const [plans, setPlans] = useState([]);
   
@@ -41,6 +42,7 @@ const HomePlans = () => {
     <div className="home-plans-container">
       <h2 className='q1-h'>Meal Plans</h2>
       <div className="plans-slider">
+        {!plans && <Spinner/> }
         {plans.map((plan) => (
            <Link 
            key={plan._id} 
