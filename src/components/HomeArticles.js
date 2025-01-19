@@ -36,7 +36,7 @@ const HomeArticles = () => {
     <div className="home-blogs-container">
        <h2 className='q1-h'>Latest Articles</h2>
       <div className="blogs-slider">
-        {!blogs && <Spinner/>}
+        {blogs.length ==0 && <Spinner/>}
         {blogs.map((blog) => (
           <Link 
             key={blog._id} 

@@ -11,6 +11,7 @@ const DeliveryStatus = ({userId,planId}) => {
    const eventName = `status:${userId}:${planId}`;
    console.log('eventName: ',eventName)
    useChannel('delivery-status', eventName, (message) => {
+    console.log('message from ably ',message)
     setMessages(message);
   });
    

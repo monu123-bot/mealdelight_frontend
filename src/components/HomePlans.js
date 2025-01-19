@@ -42,7 +42,7 @@ const HomePlans = () => {
     <div className="home-plans-container">
       <h2 className='q1-h'>Meal Plans</h2>
       <div className="plans-slider">
-        {!plans && <Spinner/> }
+        {plans.length ==0 && <Spinner/> }
         {plans.map((plan) => (
            <Link 
            key={plan._id} 

@@ -33,7 +33,10 @@
   
   .plan-card p {
     margin: 5px 0;
-    color: #555;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 300;
+    font-size: larger;
   }
   
   .plan-card a {
@@ -545,4 +548,7 @@
   background-color: #d6d8db;
   color: #6c757d;
   cursor: not-allowed;
+}
+.dropdown{
+  background-color:#2a9d8f ;
 }
