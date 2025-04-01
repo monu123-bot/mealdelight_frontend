@@ -18,7 +18,7 @@ function App() {
 <>
       <Router>
         <Routes>
-          <Route path='/'  Component={ComingSoon}   exact/>
+          <Route path='/'  Component={MarketSize}   exact/>
           <Route   path='/regform' Component={UserCreationForm}    />
           <Route   path='/blog' Component={BlogsHome}    />
           <Route   path='/dashboard' Component={UserDashboard}    />
