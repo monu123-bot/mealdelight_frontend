@@ -1,0 +1,91 @@
+/* Welcome container */
+.welcome-container {
+    text-align: center;
+    padding: 50px;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+  
+  /* Title styling */
+  .welcome-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff6600;
+    opacity: 0;
+  }
+  
+  /* Subtitle styling */
+  .welcome-subtext {
+    font-size: 1.2rem;
+    color: #444;
+    opacity: 0;
+    margin-top: 10px;
+  }
+  
+  /* Fade-in effect */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Fade-in animation for title */
+  .fade-in {
+    animation: fadeInText 1s forwards;
+  }
+  
+  @keyframes fadeInText {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Slide-in effect for subtitle */
+  .slide-in {
+    animation: slideIn 1s forwards 0.5s; /* Delay for a smooth effect */
+  }
+  
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .welcome-title {
+      font-size: 1.5rem; /* Adjust font size for smaller screens */
+    }
+  
+    .welcome-subtext {
+      font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .welcome-title {
+      font-size: 1.2rem; /* Adjust font size further for very small screens */
+    }
+  
+    .welcome-subtext {
+      font-size: 0.9rem; /* Smaller font for subtitles on mobile */
+    }
+  
+    .welcome-container {
+      padding: 30px; /* Reduced padding on smaller screens */
+    }
+  }
+  

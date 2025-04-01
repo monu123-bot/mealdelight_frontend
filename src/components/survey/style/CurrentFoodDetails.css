@@ -1,0 +1,99 @@
+/* Container for the food details section */
+.food-details-container {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Section Title */
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  /* Input container for all form elements */
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  /* Label Styling */
+  .input-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  /* Checkbox and Radio Button Groups */
+  .checkbox-group,
+  .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  /* Input and Select Fields */
+  .text-input,
+  .dropdown {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* Specific input size */
+  .text-input.small {
+    width: 200px;
+    margin-left: 8px;
+  }
+  
+  /* Make the layout responsive */
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 1.25rem;
+    }
+  
+    .input-label {
+      font-size: 0.9rem;
+    }
+  
+    .text-input,
+    .dropdown {
+      font-size: 0.9rem;
+    }
+  
+    .checkbox-group,
+    .radio-group {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 1.125rem;
+    }
+  
+    .input-label {
+      font-size: 0.875rem;
+    }
+  
+    .text-input,
+    .dropdown {
+      font-size: 0.875rem;
+    }
+  
+    .checkbox-group,
+    .radio-group {
+      gap: 8px;
+    }
+  
+    .input-container {
+      margin-bottom: 16px;
+    }
+  }

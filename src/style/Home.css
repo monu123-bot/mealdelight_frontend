@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Futura:wght@400&family=Bodoni+Moda:wght@700&display=swap');
+.logo_div{
+    /* width: 99%; */
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 1px solid red; */
+    text-align: center;
+    align-items: center;
+  }
+  .logo_img{
+    width: 16rem;
+    
+  }
+  .div-small{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+    color: #044243;
+    text-align: center;
+   
+  }
+  .div-small a {
+    text-decoration: none;
+    color: #044243;
+    font-weight: 500;
+  }
+  .home-container{
+    background-color:#cdedf6 ;
+    
+    min-height: 100vh;
+    height: fit-content;
+    padding: 10px;
+    width: 98vw;
+  }
+  /* html, body {
+    margin: 0;
+    padding: 0;
+    overflow: auto; /* Prevent scrollbars 
+  } */
+  
+ .text-1{
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  color: #044243;
+
+  
+ }
+ .text-11{
+
+  font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.2;
+
+ margin: 0px;
+ /* font-weight: 700; */
+ margin-left: auto;
+ margin-right: auto;
+ text-align: center;
+ /* font-size: 20px; */
+ /* font-family: 'Times New Roman', Times, serif; */
+ }
+
+ .text-12{
+  font-weight: 900;
+  font-size: 60px;
+  margin: -5px;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ }
+ .wave {
+  display: block;
+  position: relative;
+  height: 40px;
+  width: 100%;
+  background: #5ce1e6;
+  transform: scale(1, 1.5);
+}
+
+.wave:before {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  width: 100%;
+  height: 300px;
+  background-color: white;
+  right: -25%;
+  top: 20px;
+}
+
+.wave:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 100%;
+  width: 100%;
+  height: 300px;
+  background-color: #5ce1e6;
+  left: -25%;
+  top: -240px;
+  clip-path: ellipse(100% 15% at -15% 100%);
+}
+
+.q1{
+  max-width: 700px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px;
+}
+.q1-h{
+
+  font-family: 'Bodoni Moda', serif;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 1.2;
+
+
+   /* font-size: 1.7em; */
+   padding: 3px;
+   /* font-weight: 700; */
+   /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+   color: #044243;
+}
+.q1-p{
+  font-family: 'Futura', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.6;
+
+
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  /* width: 20em; */
+
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  /* letter-spacing: 0.8px; */
+  /* line-height: 16px; */
+  text-align: justify;
+  color: #044243;
+}
+.join-now{
+  color: white;
+  border: 1px solid #044243;
+  padding: 20px;
+  border-radius:20px ;
+  background-color:#044243 ;
+  
+}
+/* .join-now a{
+  color: #5ce1e6;
+  font-weight: 800;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+} */
+
+.join-now a {
+  color: #5ce1e6;
+  font-weight: 800;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.join-now a:hover {
+  color: #2cb1b6; /* Darker shade on hover */
+  font-weight: 900; /* Slightly bolder on hover */
+}
+
+.header-div {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Flexbox setup for the inner divs */
+.logo_div {
+  flex: 1;
+}
+
+.text-1 {
+  flex: 2;
+  text-align: center;
+}
+
+/* Media query for phones (smaller screens) */
+@media (max-width: 768px) {
+  .header-div {
+      flex-direction: column;
+      align-items: center;
+      max-width: 700px;
+  }
+
+  .logo_div {
+      margin-bottom: 20px; /* Adds some space between logo and text */
+  }
+  
+  .text-1 {
+      text-align: center;
+  }
+}

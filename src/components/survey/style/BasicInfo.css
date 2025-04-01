@@ -1,0 +1,76 @@
+/* Basic container */
+.basic-info-container {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Section Title */
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+  
+  /* Label Styling */
+  .input-label {
+    display: block;
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  /* Input field styling */
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* Styling for dropdowns (select elements) */
+  select.input-field {
+    appearance: none;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23666' stroke-width='1.5'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px 12px;
+  }
+  
+  /* Responsive font sizes for different screen widths */
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 1.25rem;
+    }
+  
+    .input-label,
+    .radio-group label {
+      font-size: 0.9rem;
+    }
+  
+    .input-field {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 1.125rem;
+    }
+  
+    .input-label,
+    .radio-group label {
+      font-size: 0.875rem;
+    }
+  
+    .input-field {
+      font-size: 0.875rem;
+    }
+  }
+  

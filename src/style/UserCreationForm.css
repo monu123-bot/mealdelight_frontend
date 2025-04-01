@@ -1,0 +1,242 @@
+.user-creation-form {
+  min-width: 300px;
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  h3 {
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .btn {
+    background-color: #044243;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #044243;
+  }
+  .logo_div{
+    /* width: 99%; */
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 1px solid red; */
+    text-align: center;
+    align-items: center;
+  }
+  .logo_img{
+    
+    
+    width: 13rem;
+    
+  }
+  .regform-container{
+    background-color: #cdedf6;
+    min-height: 100vh;
+  }
+  
+.comp{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+   width: 90%;
+   margin-left: auto;
+   margin-right: auto;
+   max-width: 300px;
+   height: 50%;
+   border-radius: 12px;
+   padding: 10px;
+   
+}
+.compnb{
+   
+  display: flex;
+  justify-content: space-around;
+   width: 90%;
+   margin-left: auto;
+   margin-right: auto;
+   max-width: 300px;
+   
+   border-radius: 12px;
+   padding: 10px;
+   
+}
+.compskip{
+   display: flex;
+justify-content: right;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+  
+  border-radius: 12px;
+  padding: 10px;
+  
+}
+.innerCont{
+   margin: 7px;
+   border-radius: 16px;
+   background-color: #cdedf6;
+   padding: 8px;
+   cursor: pointer;
+   color: #064344;
+   font-family: 'Bodoni Moda', serif;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+
+}
+.updateprofmaindiv{
+  
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 300px;
+      height: fit-content;
+      border-radius: 12px;
+      padding: 10px;
+      background-color: #064344;
+}
+.selectwidth{
+   width: 90%;
+}
+.progressbar{
+   width: 90%;
+   margin-left: auto;
+   margin-right: auto;
+}
+.inp{
+  width: 99%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid rgba(128, 128, 128, 0.158);
+  border-radius: 12px;
+  padding: 10px;
+  text-align: left;
+}
+
+.reg-form-h{
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.2;
+  color: #cdedf6;
+  margin-left: auto;
+  margin-right: auto;
+}
+.success-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* Animated circle background for the checkmark */
+.circle {
+  width: 60px; /* Adjusted size to better fit the new container */
+  height: 60px;
+  border-radius: 50%;
+  background-color: #cdedf6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  animation: pulse 1.5s ease infinite;
+}
+
+/* Checkmark inside the circle */
+.checkmark {
+  width: 35px; /* Adjusted size */
+  height: 35px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+}
+
+/* Checkmark drawing */
+.checkmark::before {
+  content: '';
+  position: absolute;
+  width: 18px; /* Adjusted width */
+  height: 9px; /* Adjusted height */
+  border-left: 5px solid #064344;
+  border-bottom: 5px solid #064344;
+  top: 8px; /* Adjusted top position */
+  left: 6px; /* Adjusted left position */
+  transform: rotate(-45deg);
+  animation: draw-check 0.5s ease forwards;
+}
+
+/* Success message text */
+.success-message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #cdedf6;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.5s forwards;
+}
+
+/* Pulse effect around the circle */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 25px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* Checkmark drawing animation */
+@keyframes draw-check {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  50% {
+    width: 18px;
+    height: 9px;
+  }
+}
+
+/* Fade-in animation for success text */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

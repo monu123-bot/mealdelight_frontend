@@ -1,0 +1,41 @@
+.thankyou-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: fadeInScale 1s forwards;
+    text-align: center;
+  }
+  
+  .thankyou-message {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 10px;
+  }
+  
+  .thankyou-submessage {
+    font-size: 1.2rem;
+    color: #555;
+  }
+  
+  .show {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Keyframe animation for fade-in and scale */
+  @keyframes fadeInScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

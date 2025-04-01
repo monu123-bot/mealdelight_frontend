@@ -1,0 +1,64 @@
+/* Container for the location section */
+.location-container {
+    padding: 16px;
+    border-bottom: 1px solid #ddd;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Section Title */
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+  
+  /* Label Styling */
+  .input-label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 1rem; /* Standard font size */
+  }
+  
+  /* Text input field styling */
+  .text-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem; /* Consistent font size for inputs */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+  }
+  
+  /* Ensuring proper responsiveness for smaller screens */
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 1.25rem; /* Adjust section title font size */
+    }
+  
+    .input-label {
+      font-size: 0.9rem; /* Slightly smaller font on medium screens */
+    }
+  
+    .text-input {
+      font-size: 0.9rem; /* Slightly smaller font size on medium screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 1.125rem; /* Adjust section title font size for small screens */
+    }
+  
+    .input-label {
+      font-size: 0.875rem; /* Smaller font size for mobile */
+    }
+  
+    .text-input {
+      font-size: 0.875rem; /* Smaller input field text for mobile */
+    }
+  }
+  
