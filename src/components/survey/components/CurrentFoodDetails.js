@@ -41,10 +41,12 @@ const CurrentFoodDetails = ({ data, setData }) => {
           value={data.mealsOutside}
           onChange={(e) => setData({ ...data, mealsOutside: e.target.value })}
         >
-          <option value="1 Meal">1 Meal</option>
-          <option value="2 Meals">2 Meals</option>
-          <option value="3 Meals">3 Meals</option>
-          <option value="Occasionally">Occasionally</option>
+          <option value="">Select</option>
+          <option value="0">0 Meal</option>
+          <option value="1">1 Meal</option>
+          <option value="2">2 Meals</option>
+          <option value="3">3 Meals</option>
+          <option value="-1">Occasionally</option>
         </select>
       </div>
 
@@ -56,6 +58,7 @@ const CurrentFoodDetails = ({ data, setData }) => {
           value={data.mealServiceSubscribed}
           onChange={(e) => setData({ ...data, mealServiceSubscribed: e.target.value })}
         >
+          <option value="">Select</option>
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>

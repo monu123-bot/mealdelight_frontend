@@ -13,6 +13,7 @@ const BasicInfo = ({ data, setData }) => {
         value={data.fullName}
         onChange={(e) => setData({ ...data, fullName: e.target.value })}
         placeholder="Enter your full name"
+        required
       />
       
       <label className="input-label">Age:</label>
@@ -43,7 +44,7 @@ const BasicInfo = ({ data, setData }) => {
         ))}
       </select>
       
-      <label className="input-label">Contact Email (Optional for Updates & Discounts):</label>
+      <label className="input-label">Contact Email (For Updates & Discounts):</label>
       <input
         type="email"
         className="input-field"
@@ -52,7 +53,7 @@ const BasicInfo = ({ data, setData }) => {
         placeholder="Enter your email"
       />
       
-      <label className="input-label">Phone Number (Optional for Special Offers):</label>
+      <label className="input-label">Phone Number (For Special Offers):</label>
       <input
         type="tel"
         className="input-field"
