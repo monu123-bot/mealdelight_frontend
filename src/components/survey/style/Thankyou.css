@@ -1,41 +1,60 @@
 .thankyou-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    opacity: 0;
-    transform: scale(0.5);
-    animation: fadeInScale 1s forwards;
-    text-align: center;
-  }
-  
-  .thankyou-message {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #4caf50;
-    margin-bottom: 10px;
-  }
-  
-  .thankyou-submessage {
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  .show {
-    opacity: 1;
-    transform: scale(1);
-  }
-  
-  /* Keyframe animation for fade-in and scale */
-  @keyframes fadeInScale {
-    0% {
-      opacity: 0;
-      transform: scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+  background: linear-gradient(135deg, #f0f4f8, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+.thankyou-message {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.thankyou-submessage {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.coupon-container {
+  background: #e8f5e9;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #4caf50;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.coupon-code {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #388e3c;
+  background: #c8e6c9;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.copy-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: #388e3c;
+}

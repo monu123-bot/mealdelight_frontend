@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../style/Location.css";
+import Lottie from "lottie-react";
+import locationAnimation from "../../../assets/location.json";
 
 const Location = ({ data, setData }) => {
   const [hometownDetails, setHometownDetails] = useState(null);
@@ -41,6 +43,8 @@ const Location = ({ data, setData }) => {
 
   return (
     <div className="location-container">
+              <Lottie animationData={locationAnimation} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />
+      
       <h2 className="section-title">Location Details</h2>
       <small>Your location will help us understand your regional taste.</small>
       

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../style/CurrentFoodDetails.css"; // Assuming you have a CSS file for styling
+import Lottie from "lottie-react";
+import currentFoodAnimation from "../../../assets/current_food_details.json";
 
 const CurrentFoodDetails = ({ data, setData }) => {
   const handleCheckboxChange = (field, value) => {
@@ -13,6 +15,8 @@ const CurrentFoodDetails = ({ data, setData }) => {
 
   return (
     <div className="food-details-container">
+      <Lottie animationData={currentFoodAnimation} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />
+
       <h2 className="section-title">Current Food Details</h2>
 
       {/* Meal Management */}

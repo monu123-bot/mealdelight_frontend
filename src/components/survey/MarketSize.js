@@ -14,6 +14,8 @@ import { host } from "../../script/variables";
 const MarketSize = () => {
   const [step, setStep] = useState(0);
 const [surveyId, setSurveyId] = useState(null); // State to store the survey ID 
+
+const [discountCoupon, setDiscountCoupon] = useState(null); // State to store the discount coupon
   // Define state variables for each component
   const [basicInfo, setBasicInfo] = useState({
     fullName: "",
@@ -93,7 +95,7 @@ const [surveyId, setSurveyId] = useState(null); // State to store the survey ID
     <Budget data={budget} setData={setBudget} />,
     <Customizations data={customizations} setData={setCustomizations} />,
     <Recommendations data={recommendations} setData={setRecommendations} />,
-    <Thankyou />,
+    <Thankyou discountCoupon={discountCoupon} surveyId={surveyId} />,
   ];
   const validatedInput = (step) => {
     if (step < 0 || step >= data_indexes.length) {
@@ -189,16 +191,29 @@ console.log(info)
       return
     }
    }
-   else if (step > 1) {
+   else if (step > 1 ) {
     const response = await fetch(`${host}/survey/marketanalysis`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({step, data: data_indexes[step-1], surveyId,step_name: step_names[step-1] }),
-    });
+    }
+  
+  
+
+  );
+    
 
     if (response.ok) {
+      if(step==8 ){
+        setThankyou(true); // Show thank you message
+        setStep(steps.length - 1); // Navigate to the thank you step
+        const data = await response.json();
+        setDiscountCoupon(data.discountCode)
+
+
+      }
       console.log("Survey data updated successfully!");
     } else {
       console.error("Failed to update survey data.");
@@ -262,14 +277,17 @@ console.log(info)
 
       {/* Navigation Buttons */}
       <div className="navigation-buttons">
+        {step == 0 && (
+          <button onClick={nextStep} className="next-button">Start Survey</button>
+        )}
         {step > 0 && step < steps.length - 1 && (
           <button onClick={prevStep} className="prev-button">Previous</button>
         )}
-        {step < steps.length - 2 && (
+        {(step < steps.length - 2 && step>0) && (
           <button onClick={nextStep} className="next-button">Next</button>
         )}
         {step === steps.length - 2 && (
-          <button onClick={handleSubmit} className="submit-button">Submit</button>
+          <button onClick={nextStep} className="submit-button">Submit</button>
         )}
       </div>
     </div>

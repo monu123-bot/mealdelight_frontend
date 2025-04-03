@@ -1,91 +1,49 @@
-/* Welcome container */
 .welcome-container {
-    text-align: center;
-    padding: 50px;
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-  }
-  
-  /* Title styling */
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(135deg, #fdfbfb, #ebedee);
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+.welcome-subtext {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* Animation containers */
+.meal-animation, .hygiene-animation {
+  margin: 10px auto;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
   .welcome-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ff6600;
-    opacity: 0;
+      font-size: 1.5rem;
   }
-  
-  /* Subtitle styling */
   .welcome-subtext {
-    font-size: 1.2rem;
-    color: #444;
-    opacity: 0;
-    margin-top: 10px;
+      font-size: 1rem;
   }
-  
-  /* Fade-in effect */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+}
+
+@media (max-width: 480px) {
+  .welcome-title {
+      font-size: 1.2rem;
   }
-  
-  /* Fade-in animation for title */
-  .fade-in {
-    animation: fadeInText 1s forwards;
+  .welcome-subtext {
+      font-size: 0.9rem;
   }
-  
-  @keyframes fadeInText {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .welcome-container {
+      padding: 30px;
   }
-  
-  /* Slide-in effect for subtitle */
-  .slide-in {
-    animation: slideIn 1s forwards 0.5s; /* Delay for a smooth effect */
-  }
-  
-  @keyframes slideIn {
-    0% {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  /* Media Queries for Responsiveness */
-  @media (max-width: 768px) {
-    .welcome-title {
-      font-size: 1.5rem; /* Adjust font size for smaller screens */
-    }
-  
-    .welcome-subtext {
-      font-size: 1rem; /* Adjust font size for smaller screens */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .welcome-title {
-      font-size: 1.2rem; /* Adjust font size further for very small screens */
-    }
-  
-    .welcome-subtext {
-      font-size: 0.9rem; /* Smaller font for subtitles on mobile */
-    }
-  
-    .welcome-container {
-      padding: 30px; /* Reduced padding on smaller screens */
-    }
-  }
-  
+}

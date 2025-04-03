@@ -1,10 +1,14 @@
 
 import React from "react";
 import "../style/MealPreferences.css";
+import Lottie from "lottie-react";
+import PreferencesAnimation from "../../../assets/preferences.json";
 
 const MealPreferences = ({ data, setData }) => {
   return (
     <div className="meal-preferences-container">
+                    <Lottie animationData={PreferencesAnimation} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />
+
       <h2 className="section-title">Meal Preferences</h2>
 
       {/* Food Type */}
