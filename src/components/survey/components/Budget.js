@@ -6,21 +6,7 @@ const Budget = ({ data, setData }) => {
     <div className="budget-container">
       <h2 className="section-title">Budget Preferences</h2>
 
-      <label className="input-label">What is your monthly income range? (Confidential & Optional)</label>
-      <div className="radio-group">
-        {["Below ₹20,000", "₹20,000 - ₹40,000", "₹40,000 - ₹70,000", "₹70,000+"].map((range) => (
-          <label key={range}>
-            <input
-              type="radio"
-              name="incomeRange"
-              value={range}
-              checked={data.incomeRange === range}
-              onChange={(e) => setData({ ...data, incomeRange: e.target.value })}
-            />
-            {range}
-          </label>
-        ))}
-      </div>
+     
 
       <label className="input-label">How much are you willing to spend per month on a meal service?</label>
       <div className="radio-group">

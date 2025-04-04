@@ -12,11 +12,12 @@ import Location from "./components/Location";
 import "./style/MarketSize.css";
 import { host } from "../../script/variables";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 
-
-const MarketSize = () => {
-  
+const ContinueMarketSize = () => {
+  const { survey_Id } = useParams();
+  console.log(survey_Id)
   
 
   const [step, setStep] = useState(0);
@@ -292,7 +293,32 @@ console.log(info)
     }
   };
 
-  
+  useEffect(() => {
+    console.log("Survey ID:", survey_Id);
+    if (survey_Id) {
+      const fetchSurvey = async () => {
+        try {
+            const response = await axios.get(`${host}/survey/marketanalysis/${survey_Id}`);
+            const data = response.data;
+          setBasicInfo(data.basicInfo);
+          setLocation(data.location);
+          setCurrentFoodDetails(data.currentFoodDetails);
+          setMealPreferences(data.mealPreferences);
+          setWorkHabitats(data.workHabitats);
+          setBudget(data.budget);
+          setCustomizations(data.customizations);
+          setRecommendations(data.recommendations);
+          setStep(data.step);
+          setSurveyId(survey_Id);
+          console.log("Survey ID:", survey_Id);
+        } catch (error) {
+          console.error("Failed to fetch survey:", error);
+        }
+      };
+
+      fetchSurvey();
+    }
+  }, []); // Include dependencies
 
   return (
     <div className="market-size-container">
@@ -323,4 +349,4 @@ console.log(info)
   );
 };
 
-export default MarketSize;
+export default ContinueMarketSize;

@@ -48,8 +48,8 @@ const Thankyou = ({ discountCoupon, surveyId }) => {
           transition={{ delay: 0.7, duration: 0.5 }}
           className="coupon-container"
         >
-          <p className="thankyou-message">
-            Your Discount Coupon: <span className="coupon-code">{discountCoupon}</span>
+          <p className="thankyou-submessage">
+          Please check your email and spam folder for the coupon code.
           </p>
           <p className="thankyou-submessage">
             Your Survey ID: <strong>{surveyId}</strong>

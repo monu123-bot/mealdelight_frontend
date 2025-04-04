@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/Location.css";
 import Lottie from "lottie-react";
 import locationAnimation from "../../../assets/location.json";
 
-const Location = ({ data, setData }) => {
+const Location = ({ data, setData,setIsLocationValid }) => {
   const [hometownDetails, setHometownDetails] = useState(null);
   const [currentCityDetails, setCurrentCityDetails] = useState(null);
   const [message, setMessage] = useState("");
@@ -19,12 +19,14 @@ const Location = ({ data, setData }) => {
         const response = await axios.get(`https://api.postalpincode.in/pincode/${zip}`);
         if (response.data[0].Status === "Success") {
           setMessage("");
+          
           const details = response.data[0].PostOffice || [];
           if (type === "hometownZip") {
             setHometownDetails(details);
           } else {
             setCurrentCityDetails(details);
           }
+          
         } else {
           if (type === "hometownZip") setHometownDetails(null);
           else setCurrentCityDetails(null);
@@ -40,7 +42,13 @@ const Location = ({ data, setData }) => {
       else setCurrentCityDetails(null);
     }
   };
-
+// useEffect(() => {
+//   if (hometownDetails && currentCityDetails) {
+//     setIsLocationValid(true);
+//   } else {
+//     setIsLocationValid(false);
+//   }}, [data]);
+  
   return (
     <div className="location-container">
               <Lottie animationData={locationAnimation} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />

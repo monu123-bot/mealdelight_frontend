@@ -11,6 +11,7 @@ import SingleBlog from './components/blogs/SingleBlog';
 import BlogStats from './components/blogs/BlogStats';
 import MarketSize from './components/survey/MarketSize';
 import ComingSoon from './components/ComingSoon';
+import ContinueMarketSize from './components/survey/ContinueMarketSize';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
           <Route   path='/blog/stats/:authoremail' Component={BlogStats}   />
           <Route   path='/uos' Component={UpdatePaymentOrderStatus}    />
           <Route path="/plandetails" element={<SinglePlan />} />
-          <Route path="/survey/marketsize" element={<MarketSize />} />
+          <Route path="/survey/marketsize" element={<MarketSize  />} />
+          <Route path="/survey/continue/:survey_Id" element={<ContinueMarketSize  />} />
        </Routes>
       </Router>
       
