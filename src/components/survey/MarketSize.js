@@ -250,6 +250,7 @@ console.log(info)
         setStep(steps.length - 1); // Navigate to the thank you step
         const data = await response.json();
         setDiscountCoupon(data.discountCode)
+        localStorage.removeItem("mealdelightSurveyId");
 
 
       }
