@@ -318,7 +318,7 @@ console.log(info)
 
       fetchSurvey();
     }
-  }, []); // Include dependencies
+  }, [survey_Id]); // Include dependencies
 
   return (
     <div className="market-size-container">
