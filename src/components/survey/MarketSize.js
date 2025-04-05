@@ -14,6 +14,7 @@ import { host } from "../../script/variables";
 import axios from "axios";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { validateEmail } from "../../script/ValidateEmail";
 
 const MarketSize = () => {
   const navigate = useNavigate();
@@ -125,6 +126,8 @@ console.log(info)
     return true;
   }
 
+
+ 
   // Function to create survey
   const createSurvey = async (basicInfo) => {
     try {
@@ -182,6 +185,12 @@ console.log(info)
         alert("Please enter a valid email address.");
         return false;
       }
+      // let isValidEmail = await validateEmail(basicInfo.email)
+      // if (!isValidEmail) {
+      //   console.error("Invalid Email Address.");
+      //   alert("Please enter a valid email address.");
+      //   return false;
+      // }
     
       // Phone Number Validation
       if (!phoneRegex.test(basicInfo.phone)) {

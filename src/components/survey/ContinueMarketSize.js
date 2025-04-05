@@ -22,7 +22,7 @@ const ContinueMarketSize = () => {
     startTimeRef.last = new Date();
 
   const [step, setStep] = useState(0);
-const [surveyId, setSurveyId] = useState(null); // State to store the survey ID 
+const [surveyId, setSurveyId] = useState(survey_Id); // State to store the survey ID 
 const [isLocationValid, setIsLocationValid] = useState(false); // State to track if location is valid
 const [discountCoupon, setDiscountCoupon] = useState(null); // State to store the discount coupon
   // Define state variables for each component
@@ -227,9 +227,10 @@ console.log(info)
    else if (step > 1 ) {
 
     if (!surveyId){
-      const survey_Id = localStorage.getItem('mealdelightSurveyId');
-      console.log("Survey ID from localStorage:", survey_Id);
-      setSurveyId(survey_Id); // Store the survey ID in state if needed
+      
+      const surveyId = localStorage.getItem('mealdelightSurveyId');
+      console.log("Survey ID from localStorage:", surveyId);
+      setSurveyId(surveyId); // Store the survey ID in state if needed
     }
     data_indexes[step-1].timeTaken = timeDiff;
     const response = await fetch(`${host}/survey/marketanalysis`, {
@@ -273,12 +274,12 @@ console.log(info)
 
 
   useEffect(() => {
-    console.log("Survey ID:", survey_Id);
+    console.log("Survey ID:", surveyId);
     
-    if (survey_Id) {
+    if (surveyId) {
       const fetchSurvey = async () => {
         try {
-            const response = await axios.get(`${host}/survey/marketanalysis/${survey_Id}`);
+            const response = await axios.get(`${host}/survey/marketanalysis/${surveyId}`);
             const data = response.data;
 const step = data.completedSteps
             console.log("Fetched survey data:", data);
@@ -338,8 +339,8 @@ const step = data.completedSteps
             }
          
           setStep(data.completedSteps+1);
-          // setSurveyId(survey_Id);
-          console.log("Survey ID:", survey_Id);
+          // setSurveyId(surveyId);
+          console.log("Survey ID:", surveyId);
         } catch (error) {
           console.error("Failed to fetch survey:", error);
         }

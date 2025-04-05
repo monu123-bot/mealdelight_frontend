@@ -20,6 +20,7 @@
     "axios": "^1.7.7",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
+    "email-existence": "^0.1.6",
     "framer-motion": "^12.6.3",
     "html-react-parser": "^5.2.1",
     "lodash.debounce": "^4.0.8",
