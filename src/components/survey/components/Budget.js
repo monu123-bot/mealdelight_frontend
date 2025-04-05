@@ -10,7 +10,7 @@ const Budget = ({ data, setData }) => {
 
       <label className="input-label">How much are you willing to spend per month on a meal service?</label>
       <div className="radio-group">
-        {["₹2000-₹3000", "₹3000-₹4000", "₹4000-₹5000", "₹5000+"].map((budget) => (
+        {["₹3000-₹4000", "₹4000-₹5000", "₹5000-₹6000", "₹6000+"].map((budget) => (
           <label key={budget}>
             <input
               type="radio"
