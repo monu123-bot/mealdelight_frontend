@@ -295,21 +295,71 @@ console.log(info)
 
   useEffect(() => {
     console.log("Survey ID:", survey_Id);
+    
     if (survey_Id) {
       const fetchSurvey = async () => {
         try {
             const response = await axios.get(`${host}/survey/marketanalysis/${survey_Id}`);
             const data = response.data;
-          setBasicInfo(data.basicInfo);
-          setLocation(data.location);
-          setCurrentFoodDetails(data.currentFoodDetails);
-          setMealPreferences(data.mealPreferences);
-          setWorkHabitats(data.workHabitats);
-          setBudget(data.budget);
-          setCustomizations(data.customizations);
-          setRecommendations(data.recommendations);
-          setStep(data.step);
-          setSurveyId(survey_Id);
+const step = data.completedSteps
+            console.log("Fetched survey data:", data);
+            if (step==1){
+              setBasicInfo(data.surveyData.basicInfo);
+            }
+            else if (step==2){
+              setBasicInfo(data.surveyData.basicInfo);
+              setLocation(data.surveyData.location);
+            }
+            else if (step==3){
+              setBasicInfo(data.surveyData.basicInfo);
+              setLocation(data.surveyData.location);
+              setCurrentFoodDetails(data.surveyData.currentFoodDetails);
+            }
+            else if (step==4){
+              setBasicInfo(data.surveyData.basicInfo);
+              setLocation(data.surveyData.location);
+              setCurrentFoodDetails(data.surveyData.currentFoodDetails);
+              setMealPreferences(data.surveyData.mealPreferences);
+            }
+            else if (step==5){
+              setBasicInfo(data.surveyData.basicInfo);
+              setLocation(data.surveyData.location);
+              setCurrentFoodDetails(data.surveyData.currentFoodDetails);
+              setMealPreferences(data.surveyData.mealPreferences);
+              setWorkHabitats(data.surveyData.workHabitats);
+            }
+            else if (step==6){
+              setBasicInfo(data.surveyData.basicInfo);
+              setLocation(data.surveyData.location);
+              setCurrentFoodDetails(data.surveyData.currentFoodDetails);
+              setMealPreferences(data.surveyData.mealPreferences);
+              setWorkHabitats(data.surveyData.workHabitats);
+              setBudget(data.surveyData.budget);
+            }
+            else if (step==7){
+              setBasicInfo(data.surveyData.basicInfo);
+              setLocation(data.surveyData.location);
+              setCurrentFoodDetails(data.surveyData.currentFoodDetails);
+              setMealPreferences(data.surveyData.mealPreferences);
+              setWorkHabitats(data.surveyData.workHabitats);
+              setBudget(data.surveyData.budget);
+              setCustomizations(data.surveyData.customizations);
+
+            }
+            else if (step==8){
+              setBasicInfo(data.surveyData.basicInfo);
+              setLocation(data.surveyData.location);
+              setCurrentFoodDetails(data.surveyData.currentFoodDetails);
+              setMealPreferences(data.surveyData.mealPreferences);
+              setWorkHabitats(data.surveyData.workHabitats);
+              setBudget(data.surveyData.budget);
+              setCustomizations(data.surveyData.customizations);
+              setRecommendations(data.surveyData.recommendations);
+
+            }
+         
+          setStep(data.completedSteps+1);
+          // setSurveyId(survey_Id);
           console.log("Survey ID:", survey_Id);
         } catch (error) {
           console.error("Failed to fetch survey:", error);
@@ -317,8 +367,9 @@ console.log(info)
       };
 
       fetchSurvey();
+      
     }
-  }, [survey_Id]); // Include dependencies
+  }, []); // Include dependencies
 
   return (
     <div className="market-size-container">
