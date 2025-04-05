@@ -16,7 +16,7 @@ const Welcome = () => {
 
   return (
     <div className="welcome-container">
-      <p>Aproximated survey time : 2 minute</p>
+      <p>Average survey time : 2 minute</p>
       {/* Animated Meal Icon */}
       <motion.div 
         initial={{ scale: 0.5, opacity: 0 }} 
