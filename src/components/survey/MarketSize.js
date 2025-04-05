@@ -12,11 +12,17 @@ import Location from "./components/Location";
 import "./style/MarketSize.css";
 import { host } from "../../script/variables";
 import axios from "axios";
-
-
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MarketSize = () => {
-  
+  const navigate = useNavigate();
+
+ 
+
+
+  const startTimeRef = useRef(null);
+  startTimeRef.last = new Date();
   
 
   const [step, setStep] = useState(0);
@@ -127,13 +133,14 @@ console.log(info)
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({step, basicInfo }),
+        body: JSON.stringify({step, basicInfo}),
       });
 
       if (response.ok) {
         const data = await response.json();
         console.log("Survey ID:", data.surveyId); // Log the survey ID
         setSurveyId(data.surveyId); // Store the survey ID in state if needed
+        localStorage.setItem('mealdelightSurveyId', data.surveyId);
         console.log("Survey created successfully!");
         return true
       } else {
@@ -148,6 +155,9 @@ console.log(info)
 
   // Go to next step
   const nextStep =async () => {
+    const currentTime = new Date();
+    const timeDiff = Math.abs(currentTime - startTimeRef.last); // Calculate time difference in milliseconds
+    
     if (step === 1) {
 
       const nameRegex = /^[a-zA-Z\s]{3,50}$/; // Allows only alphabets & spaces, 3-50 characters
@@ -212,6 +222,7 @@ console.log(info)
 
    
    if(step==1){
+    basicInfo.timeTaken = timeDiff; // Store the time taken in milliseconds
     let resp1 = await createSurvey(basicInfo)
     if (!resp1) {
       alert("Failed to create survey. Please try again.");
@@ -219,6 +230,7 @@ console.log(info)
     }
    }
    else if (step > 1 ) {
+    data_indexes[step-1].timeTaken = timeDiff; // Store the time taken in milliseconds
     const response = await fetch(`${host}/survey/marketanalysis`, {
       method: "POST",
       headers: {
@@ -256,42 +268,24 @@ console.log(info)
   const prevStep = () => {
     if (step > 0) setStep(step - 1);
   };
+ // Load saved step from localStorage
 
-  // Handle final submission to backend
-  const handleSubmit = async () => {
-    console.log("Submitting survey data...");
-    const formData = {
-      basicInfo,
-      location,
-      currentFoodDetails,
-      mealPreferences,
-      workHabitats,
-      budget,
-      customizations,
-      recommendations,
-    };
 
-    try {
-      const response = await fetch(`${host}/survey/marketanalysis`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
 
-      if (response.ok) {
-        setThankyou(true); // Show thank you message
-        setStep(steps.length - 1); // Navigate to the thank you step
-        console.log("Survey submitted successfully!");
-      } else {
-        console.error("Submission failed.");
-      }
-    } catch (error) {
-      console.error("Error submitting survey:", error);
+
+  useEffect(() => {
+    const survey_Id = localStorage.getItem('mealdelightSurveyId');
+    const navigationEntries = performance.getEntriesByType("navigation");
+    console.log(navigationEntries[0].type);
+    const isReload =
+      navigationEntries.length > 0 &&
+      navigationEntries[0].type === "reload";
+    console.log(isReload,survey_Id)
+    if (isReload && survey_Id) {
+      // Redirect to home or another route
+      navigate(`/survey/continue/${survey_Id}`); // or "/start-over" or any other route
     }
-  };
-
+  }, []);
   
 
   return (

@@ -13,12 +13,13 @@ import "./style/MarketSize.css";
 import { host } from "../../script/variables";
 import axios from "axios";
 import { useParams } from 'react-router-dom';
-
+import { useRef } from "react";
 
 const ContinueMarketSize = () => {
   const { survey_Id } = useParams();
   console.log(survey_Id)
-  
+  const startTimeRef = useRef(null);
+    startTimeRef.last = new Date();
 
   const [step, setStep] = useState(0);
 const [surveyId, setSurveyId] = useState(null); // State to store the survey ID 
@@ -149,6 +150,9 @@ console.log(info)
 
   // Go to next step
   const nextStep =async () => {
+    const currentTime = new Date();
+    const timeDiff = Math.abs(currentTime - startTimeRef.last); // Calculate time difference in milliseconds
+    
     if (step === 1) {
 
       const nameRegex = /^[a-zA-Z\s]{3,50}$/; // Allows only alphabets & spaces, 3-50 characters
@@ -213,6 +217,7 @@ console.log(info)
 
    
    if(step==1){
+    basicInfo.timeTaken = timeDiff;
     let resp1 = await createSurvey(basicInfo)
     if (!resp1) {
       alert("Failed to create survey. Please try again.");
@@ -220,6 +225,13 @@ console.log(info)
     }
    }
    else if (step > 1 ) {
+
+    if (!surveyId){
+      const survey_Id = localStorage.getItem('mealdelightSurveyId');
+      console.log("Survey ID from localStorage:", survey_Id);
+      setSurveyId(survey_Id); // Store the survey ID in state if needed
+    }
+    data_indexes[step-1].timeTaken = timeDiff;
     const response = await fetch(`${host}/survey/marketanalysis`, {
       method: "POST",
       headers: {
@@ -258,40 +270,6 @@ console.log(info)
     if (step > 0) setStep(step - 1);
   };
 
-  // Handle final submission to backend
-  const handleSubmit = async () => {
-    console.log("Submitting survey data...");
-    const formData = {
-      basicInfo,
-      location,
-      currentFoodDetails,
-      mealPreferences,
-      workHabitats,
-      budget,
-      customizations,
-      recommendations,
-    };
-
-    try {
-      const response = await fetch(`${host}/survey/marketanalysis`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setThankyou(true); // Show thank you message
-        setStep(steps.length - 1); // Navigate to the thank you step
-        console.log("Survey submitted successfully!");
-      } else {
-        console.error("Submission failed.");
-      }
-    } catch (error) {
-      console.error("Error submitting survey:", error);
-    }
-  };
 
   useEffect(() => {
     console.log("Survey ID:", survey_Id);
