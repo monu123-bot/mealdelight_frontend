@@ -72,7 +72,7 @@ const Location = ({ data, setData,setIsLocationValid }) => {
         </div>
       )}
       
-      <label className="input-label">Current City ZIP:</label>
+      <label className="input-label">Current City ZIP/PIN:</label>
       <input
         type="text"
         className="text-input"
