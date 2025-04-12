@@ -19,8 +19,6 @@ import { validateEmail } from "../../script/ValidateEmail";
 const MarketSize = () => {
   const navigate = useNavigate();
 
- 
-
 
   const startTimeRef = useRef(null);
   startTimeRef.last = new Date();

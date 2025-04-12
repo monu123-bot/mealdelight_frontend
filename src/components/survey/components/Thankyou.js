@@ -49,7 +49,7 @@ const Thankyou = ({ discountCoupon, surveyId }) => {
           className="coupon-container"
         >
           <p className="thankyou-submessage">
-          Please check your email and spam folder for the coupon code.
+          Please check your email folder for the coupon code.
           </p>
           <p className="thankyou-submessage">
             Your Survey ID: <strong>{surveyId}</strong>

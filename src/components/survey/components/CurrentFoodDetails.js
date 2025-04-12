@@ -23,7 +23,7 @@ const CurrentFoodDetails = ({ data, setData }) => {
       <div className="input-container">
         <label className="input-label">How do you usually manage your meals?</label>
         <div className="checkbox-group">
-          {["Cook at home", "Order from restaurants", "Have a tiffin/meal service", "Eat outside frequently", "Rely on instant/ready-to-eat food"].map((option) => (
+          {["Cook at home", "Order from restaurants", "Have a tiffin/meal service", "Eat outside frequently", "Rely on instant/ready-to-eat food","PG/Hostel food"].map((option) => (
             <label key={option}>
               <input
                 type="checkbox"

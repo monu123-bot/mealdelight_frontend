@@ -2,6 +2,7 @@ import React from 'react';
 import '../style/BasicInfo.css';
 import Lottie from "lottie-react";
 import helloAnimation from "../../../assets/hello.json";
+// import ContinueWithGoogle from '../../ContinueWithGoogle';
 const BasicInfo = ({ data, setData }) => {
 
 
@@ -11,6 +12,10 @@ const BasicInfo = ({ data, setData }) => {
   return (
     <div className="basic-info-container">
       <Lottie animationData={helloAnimation} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />
+
+      {/* <ContinueWithGoogle /> */}
+
+      
       <h2 className="section-title">1. Basic Information</h2>
       
       <label className="input-label">Full Name:</label>
