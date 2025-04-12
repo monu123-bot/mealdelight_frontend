@@ -220,6 +220,7 @@
 
 .info-section {
   max-width: 600px;
+  width: 80%;
   margin: 40px auto;
   padding: 30px;
   background-color: #ffffff;
@@ -248,6 +249,7 @@
   color: #555555;
   line-height: 1.6;
   margin-bottom: 24px;
+  
 }
 
 /* CTA Button */

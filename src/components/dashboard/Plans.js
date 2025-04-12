@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../style/userdashboard/plans.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { host } from '../../script/variables';
 import { useLocation } from 'react-router-dom';
@@ -125,131 +125,13 @@ initializeSDK();
  const [amount, setAmount] = useState(''); // State to hold the amount input
  const currentTime = new Date();
  const expiryTime = new Date(currentTime.getTime() + 25 * 60000); 
- const handleAmountChange = (e) => {
-     setAmount(e.target.value); // Update the amount state on input change
- };
 
- const handleAddToWallet =async () => {
-  const upiAmount = calculateFinalPrice(activePlanPrice, activePlanDiscount);
 
-  console.log(upiAmount)
-     console.log('this is 1')
-     let curTimeStamp =Date.now()
-     let order_id = `${user._id}-${curTimeStamp}`
-     if (!upiAmount) {
-         alert("Please enter a valid amount"); // Simple validation
-         return;
-     }
-     let data = {
-         order_amount: upiAmount,
- order_currency: "INR",
- order_id: `${order_id}`,
- customer_details: {
-     customer_id: `${user._id}`,
-     customer_phone: `${user.phone}`,
-     customer_name: `${user.firstName} ${user.lastName}`,
-     customer_email: `${user.email}`
- },
- order_meta: {
-     return_url: `https://themealdelight.in/uos?order_id=${order_id}&plan_id=${activePlanId}&address_id=${selectedAddress._id}`,
-     notify_url: "https://www.cashfree.com/devstudio/preview/pg/webhooks/75802411",
-     payment_methods: "cc,dc,upi"
- },
- order_expiry_time: `${expiryTime.toISOString()}`
-     }
-     
-     try {
-         // Retrieve the token from localStorage
-         const token = localStorage.getItem('mealdelight');
-         if (!token) {
-             throw new Error("No authentication token found");
-         }
- 
-         // Set up the request headers with the token
-         const response = await fetch(`${host}/payment/create_order`, {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/json',
-                 'Authorization': `Bearer ${token}`
-             },
-             body:JSON.stringify(data)
-         });
- 
-         // Handle response
-         if (!response.ok) {
-             throw new Error("Failed to fetch user details");
-         }
- 
-         // Parse the JSON response
-         const paymentOrderDetails = await response.json();
-         console.log('User Details:', paymentOrderDetails);
-         setSessionId(paymentOrderDetails.payment_session_id)
-         await doPayment(paymentOrderDetails.payment_session_id)
-         // await UpdateOrderStatus(order_id)
-         // You could return or use the user data here
-         // setUser(userData)
- 
-     } catch (error) {
-         console.error('Error fetching user details:', error.message);
-     }
-     setUpiAmount(null);
- };
- const doPayment = async (sessionid, order_id) => {
-  console.log('Initiating payment...');
 
-  let checkoutOptions = {
-    paymentSessionId: sessionid,
-    redirectTarget: "_self",
-  };
 
-  // Initiate payment
-  cashfree.checkout(checkoutOptions);
- 
-};
 
-const fetchAddress = async () => {
-  try {
-    const token = localStorage.getItem('mealdelight');
-    if (!token) {
-      throw new Error("No authentication token found");
-    }
 
-    const response = await fetch(`${host}/user/get_address?page=${page}&limit=5`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch addresses");
-    }
-
-    const data = await response.json();
-
-    // Assuming `data.address` contains the list of addresses
-    setAddress((prevAddress) => [...prevAddress, ...data.address]);
-    setHasMore(data.hasMore); // Set if more addresses are available
-    setPage((prevPage) => prevPage + 1); // Increment the page for pagination
-  } catch (error) {
-    console.error('Error fetching addresses:', error.message);
-  }
-};
- /// payment add end
-
- const handleReview = (review)=>{
-  setStep("review")
- }
-  const handlePaymentSelection = (paymentMethod) => {
-    setSelectedPayment(paymentMethod);
-    fetchAddress()
-    
-    setStep("address");
-  };
-const addNewAddress =()=>{
-  setStep('add_address')
-}
   const verifyCoupon = async (name, planId) => {
     try {
       const token = localStorage.getItem('mealdelight');
@@ -342,69 +224,9 @@ const addNewAddress =()=>{
     }
   };
 
-  const toggleMenu = (planId) => {
-    setExpandedPlan(expandedPlan === planId ? null : planId);
-  };
 
-  const subscribe = async (planId) => {
-   console.log('sub called ')
-      try {
-        checkActive(planId,selectedAddress._id)
-      } catch (error) {
-        console.log(error)
-        console.log('error in checking is plan active')
-        return
-      }
-   
-    try {
-      
-      const payload = {
-        planId: planId,
-        couponName: isCouponVerified ? coupon : null,
-        addressId:selectedAddress._id
-      };
-      console.log('payload is ---------------------',payload)
-      
-     if(payload.planId == null || payload.addressId==null ){
-          alert('some issue in address selection')
-          return
-     }
-      if (selectedPayment === 'UPI') {
-        payload.couponName = null; // Reset couponName after adding to wallet
-       
-      }
-  
-      const token = localStorage.getItem('mealdelight');
-      if (!token) {
-        throw new Error('No authentication token found');
-      }
-  
-      const response = await fetch(`${host}/plans/subscribe`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(payload),
-      });
-  
-      if (!response.ok) {
-        const data = await response.json();
-        const message = data.message || 'Failed to subscribe to plan';
-        setSubscribeMessage(message);
-        throw new Error(message);
-      }
-  
-      // If subscription succeeds
-      closeModal();
-      const data = await response.json();
-      navigate('/dashboard');
-    } catch (error) {
-      console.error('Error subscribing to plan:', error.message);
-      setSubscribeMessage(error.message || 'An unexpected error occurred.');
-    }
-  };
-  
+
+ 
   const remainingDays = (expiringAt) => {
     const expiryMoment = new Date(expiringAt); // Parse the ISO date string
     const now = new Date();
@@ -461,16 +283,8 @@ const checkActive = (planId,addressId)=>{
     return discountedPrice;
   };
 
-  const subscribeAlert = async (planId) => {
 
-    const userConfirmed = window.confirm("Are you sure you want to subscribe to this plan?");
-    if (userConfirmed) {
-      await subscribe(planId,selectedAddress._id);
-    }
-  };
-const ChoosePaymentOption = async (planId)=>{
 
-}
 const openPauseModel =(planId,expiringDate,planPeriod)=>{
   console.log(planPeriod)
   if (planPeriod<30){
@@ -544,9 +358,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
             )}
 
             <div>
-            <button onClick={() => subscribeAlert(plan.plan_id)}>
-              Renew 
-            </button>
+            
             </div>
           </>
         )}
@@ -583,178 +395,17 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
         ) : (
           'No Coupons for trial'
         )}
-        <button onClick={() => toggleMenu(plan._id)}>
-          {expandedPlan === plan._id ? 'Hide Menu' : 'View Menu'}
-        </button>
+       
   
-        {/* <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            height: 0,
-            paddingTop: '100%',
-            boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)',
-            marginTop: '1.6em',
-            marginBottom: '0.9em',
-            overflow: 'hidden',
-            borderRadius: '8px',
-            willChange: 'transform',
-          }}
-        >
-          <iframe
-            loading="lazy"
-            style={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              top: 0,
-              left: 0,
-              border: 'none',
-              padding: 0,
-              margin: 0,
-            }}
-            src={`${plan.menu}?embed`} // corrected template literal
-            allowFullScreen
-            allow="fullscreen"
-          ></iframe>
-        </div> */}
+        
   
-        <button
-  onClick={() => {
-    
-    setActivePlanId(plan._id); // Track the active plan for coupons
-    setActivePlanName(plan.name)
-    setActivePlanDiscount(plan.discount)
-    setActivePlanPrice(plan.price)
-    setStep("payment")
-    setPage(1)
-    openModal()
-     // Track the selected plan for subscribing
-  }}
->
-  Buy Now
-</button>
+      
+<Link to={`/plandetails?plan_id=${plan._id}`} className="menu-link"> Explore plan</Link>
+
       </div>
     ))}
     {/* buy now model starting  */}
-    {isModalOpen && (
-        <div className="modal-overlay" onClick={closeModal}>
-        <div
-          className="modal-content"
-          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
-        >
-          <div className="modal-header">
-            <h5 className="modal-title">
-              {step === "payment" && "Choose Payment Option" }
-              {step === "address" && "Select Delivery Address"}
-              {step === "review" && "Order Preview"}
-            </h5>
-            <button className="close-btn" onClick={closeModal}>
-              &times;
-            </button>
-          </div>
-  
-          <div className="modal-body">
-            <p>{(isPlanActive) && 'This Plan Is Already Active, Validity will be increased on the current plan' }</p>
-            {step === "payment" && (
-              <div className="payment-options">
-                <div
-                  className="option"
-                  onClick={() => handlePaymentSelection("MealDelight Wallet")}
-                >
-                  <img src="wallet.png" alt="Wallet" className="option-icon" />
-                  <br />
-                  <span className="option-text">MealDelight Wallet</span>
-                </div>
-                <div
-                  className="option"
-                  onClick={() => handlePaymentSelection("UPI")}
-                >
-                  <img src="mobile-banking.png" alt="Cashfree" className="option-icon" />
-                  <br />
-                  <span className="option-text">UPI</span>
-                </div>
-              </div>
-            )}
-  
-            {step === "address" && (
-              <div className="address-selection">
-                <p>Selected Payment Method: {selectedPayment}</p>
-                <br/>
-                <li 
-                      className="address-item"
-                      onClick={() => {addNewAddress()}} >
-                    Add New Address
-                  </li>
-                
-                <ul className="address-list">
-                  <AddressList selectedAddress={selectedAddress} setSelectedAddress={setSelectedAddress} />
-                 
-                </ul>
-                
-              </div>
-            )}
-            {step === "add_address" && (
-              <>
-              <AddNewAddress formData={formData} setFormData={setFormData} step={step} setStep={setStep} />
-            </>
-            )}
-            {
-            step === "review" && (
-              <div className="subscription-review">
-              {subscribeMessage}
-              <p>Selected Address: </p>
-              {/* Display address fields correctly */}
-              <p>{selectedAddress ? `${selectedAddress.recievers_name}, ${selectedAddress.street}, ${selectedAddress.city}, ${selectedAddress.state}, ${selectedAddress.country}, ${selectedAddress.postalCode}` : "No address selected"}</p>
-            
-              <p>Selected Plan: </p>
-              <p>{activePlanName}</p>
-              <p>Price: ₹{activePlanPrice}</p>
-              <p>Discount: {activePlanDiscount}%</p>
-            
-              {/* Conditional rendering for coupon discount */}
-              {isCouponVerified && activePlanDiscount > 0 && <p>Coupon Discount: {couponData.discount}%</p>}
-              
-              {/* Inform user about payment types */}
-              {selectedPayment === 'UPI' && <small>Coupon discount is applicable only on Wallet payments.</small>}
-            
-              <p>Net Payable Amount: ₹{calculateFinalPrice(activePlanPrice, activePlanDiscount)}</p>
-            
-              {/* Conditional button rendering based on selected payment method */}
-              {selectedPayment === 'UPI' ? (
-                <button className="btn-secondary" onClick={handleAddToWallet}>
-                  Subscribe
-                </button>
-              ) : (
-                <button className="btn-secondary" onClick={() => subscribe(activePlanId,selectedAddress._id)}>
-                  Subscribe
-                </button>
-              )}
-            </div>
-            
-            )
-            }
-            
-          </div>
-  
-          <div className="modal-footer">
-            {step === "address" && (
-              <>
-              <button className="btn-secondary" onClick={() => setStep("payment")}>
-                Back to Payment Options
-              </button>
-              <button className="btn-secondary" onClick={() =>handleReview("review") }>
-              Review
-            </button>
-            </>
-            )}
-
-
-           
-          </div>
-        </div>
-      </div>
-      )}
+   
 
       {/* plan  Pause model starting  */}
       {isPauseModalOpen && (

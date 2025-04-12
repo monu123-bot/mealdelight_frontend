@@ -14,7 +14,7 @@ const Footer = () => {
         {/* Contact Section */}
         <div className="footer-section">
           <h4>Contact Us</h4>
-          <p>Email: admin@themealdelight.in</p>
+          <p>Email: ceo@themealdelight.in</p>
           <p>Phone: +91 8377840464 </p>
           <p>Address: Saraswati Vihar, Gurugram</p>
         </div>
