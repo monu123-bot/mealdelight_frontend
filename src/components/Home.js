@@ -6,7 +6,7 @@ import Header from './Header';
 import HomePlans from './HomePlans';
 import StoreMap from './home/Map';
 import HomeArticles from './HomeArticles';
-
+import { Link } from 'react-router-dom';
 const Home = () => {
 
 
@@ -14,7 +14,20 @@ const Home = () => {
   return (
     <>
       <Header />
+     
       <div className='home-container' >
+      <div className="info-section animate-fade-in delay-400">
+        <strong>300+ surveys already submitted</strong>
+          <h2>Help Us Understand Your Needs</h2>
+          <p>
+            We're creating a revolutionary meal service tailored to your preferences.
+            Help us by taking our survey and shape the future of food delivery!
+          </p>
+          
+          <Link to ="/survey/marketsize" className="cta-button">
+            Take Our Survey
+          </Link>
+        </div>
         <div className='header-div'>
           <div className='logo_div'>
             <img className='logo_img' src='/logo_transparent.svg' />

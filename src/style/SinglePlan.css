@@ -1,51 +1,174 @@
+
+/* SinglePlan.css */
+
 .single-plan-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 1rem;
+  min-height: 70vh;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+.plan-card1 {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: auto;
+  margin-bottom: 2rem;
+  
+}
+
+.plan-thumbnail {
+  width: 100%;             /* Full width of the container */
+  height: 100%;            /* Full height of the container */
+  object-fit: cover;       /* Ensures the image covers the entire area */
+  border-radius: 12px;     /* Optional: adds rounded corners */
+}
+
+.plan-details {
+  padding: 2rem;
+  flex: 1;
+  
+}
+
+.plan-details h1 {
+  margin-top: 0;
+  color: black;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.plan-description {
+  color: black;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.plan-details p {
+  margin: 0.7rem 0;
+  font-size: 1.1rem;
+}
+
+.final-price {
+  font-size: 1.5rem !important;
+  color: #2ecc71;
+  font-weight: bold;
+  margin: 1.5rem 0 !important;
+}
+
+.menu-link {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 1rem 0;
+  transition: background-color 0.3s;
+}
+
+.menu-link:hover {
+  background-color: #2980b9;
+}
+
+.coupon-input {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 300px;
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.verify-btn {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.verify-btn:hover {
+  background-color: #e67e22;
+}
+
+.coupon-success {
+  background-color: #d5f5e3;
+  color: #27ae60;
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.subscribe-btn {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.subscribe-btn:hover {
+  background-color: #219651;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .plan-card1 {
+    flex-direction: row;
   }
   
-  .single-plan-container h2 {
-    font-size: 1.8em;
-    color: #333;
-    margin-bottom: 10px;
+  .plan-thumbnail {
+    width: 100%;
+    max-height: auto;
   }
   
-  .single-plan-container p {
-    font-size: 1em;
-    color: #555;
-    margin: 8px 0;
+  .plan-details {
+    padding: 1.5rem;
+  }
+  
+  .plan-details h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .single-plan-container {
+    margin: 1rem auto;
+  }
+  
+  .plan-details h1 {
+    font-size: 1.5rem;
+  }
+  
+  .final-price {
+    font-size: 1.3rem !important;
   }
   
   .subscribe-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
+    width: 100%;
+    padding: 0.8rem;
   }
-  
-  .subscribe-btn:hover {
-    background-color: #45a049;
-  }
-  .plan-card {
-    width: 80%;
-    background-color: #044243;
-    padding: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  .log-sin{
-    text-align: center;
-  }
+}

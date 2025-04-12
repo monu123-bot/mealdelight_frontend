@@ -205,3 +205,63 @@
       text-align: center;
   }
 }
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-section {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+/* Optional delay using utility-style naming */
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+/* Headline */
+.info-section h2 {
+  font-size: 1.8rem;
+  color: #333333;
+  margin-bottom: 16px;
+}
+
+/* Paragraph */
+.info-section p {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* CTA Button */
+.cta-button {
+  display: inline-block;
+  background-color: #ff5722;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #e64a19;
+}

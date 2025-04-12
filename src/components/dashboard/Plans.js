@@ -518,11 +518,11 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
           </span>
           </div>
         
-        <p>{remainingDays(plan.expiringAt)}</p>
+        <p style={{color:'black'}}>{remainingDays(plan.expiringAt)}</p>
         {remainingDays(plan.expiringAt) === 'Plan has expired' && (
           <>
-            <p>Price: ₹{plan.planDetails.price}</p>
-            {plan.planDetails.discount > 0 && <p>Discount: {plan.planDetails.discount}%</p>}
+            <p style={{color:'black'}}>Price: ₹{plan.planDetails.price}</p>
+            {plan.planDetails.discount > 0 && <p style={{color:'black'}}>Discount: {plan.planDetails.discount}%</p>}
             {plan.isCoupon === 'true' ? (
               <>
                 <input
@@ -536,7 +536,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
                   placeholder="Coupon"
                 />
                 {isCouponVerified && couponData && (
-                  <p>Coupon: {couponData.discount}% applied</p>
+                  <p style={{color:'black'}}>Coupon: {couponData.discount}% applied</p>
                 )}
               </>
             ) : (
@@ -559,8 +559,8 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
 
       <div key={plan._id} className="plan-card">
         <h3>{plan.name}</h3>
-        <p>Price: ₹{plan.price}</p>
-        {plan.discount > 0 && <p>Discount: {plan.discount}%</p>}
+        <p style={{color:'black'}}>Price: ₹{plan.price}</p>
+        {plan.discount > 0 && <p style={{color:'black'}}>Discount: {plan.discount}%</p>}
         {plan.isCoupon === 'true' ? (
           <>
             <input
@@ -574,7 +574,10 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
               placeholder="Coupon"
             />
             {isCouponVerified && couponData && activePlanId === plan._id && (
-              <p>Coupon: {couponData.discount}% applied</p>
+              <p style={{color:'black'}}>Coupon: {couponData.discount}% applied</p>
+            )}
+            {isCouponVerified && couponData && activePlanId === plan._id && (
+              <p style={{color:'black'}}>Final Price: ₹{calculateFinalPrice(plan.price, plan.discount)}</p>
             )}
           </>
         ) : (

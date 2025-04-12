@@ -10,7 +10,7 @@ import WriteBlog from './components/blogs/WriteBlog';
 import SingleBlog from './components/blogs/SingleBlog';
 import BlogStats from './components/blogs/BlogStats';
 import MarketSize from './components/survey/MarketSize';
-import ComingSoon from './components/ComingSoon';
+
 import ContinueMarketSize from './components/survey/ContinueMarketSize';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
 <>
       <Router>
         <Routes>
-          <Route path='/'  Component={ComingSoon}   exact/>
+          <Route path='/'  Component={Home}   exact/>
           <Route   path='/regform' Component={UserCreationForm}    />
           <Route   path='/blog' Component={BlogsHome}    />
           <Route   path='/dashboard' Component={UserDashboard}    />

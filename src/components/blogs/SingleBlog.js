@@ -122,11 +122,11 @@ const [tagBlogs,setTagBlogs] = useState([])
         } else if (type === 'paragraph') {
             return `<p>${obj.data.text}</p>`;
         } else if (type === 'list') {
-            let listItems = '';
-            for (let item of obj.data.items) {
-                listItems += `<li>${item}</li>`;
-            }
-            return obj.data.style === 'ordered' ? `<ol>${listItems}</ol>` : `<ul>${listItems}</ul>`;
+            const tag = obj.data.style === 'ordered' ? 'ol' : 'ul';
+      const listItems = obj.data.items
+        .map(item => `<li>${item.content || item}</li>`)
+        .join('');
+      return `<${tag}>${listItems}</${tag}>`;
         } else if (type === 'image') {
             return `
                 <figure>
