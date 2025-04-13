@@ -5,6 +5,7 @@
   padding: 3rem 0;
   position: relative;
   color: #f5f5f5;
+  width: 100vw;
 }
 
 .header-title {
@@ -19,7 +20,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 1rem;
   overflow: hidden;
   background: linear-gradient(90deg, #FF5722, #FFD700, #4CAF50, #FF5722);

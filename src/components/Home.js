@@ -13,9 +13,10 @@ const Home = () => {
 
   return (
     <>
-      <Header />
+      
      
       <div className='home-container' >
+      <Header />
       <div className="info-section animate-fade-in delay-400">
         <strong>300+ surveys already submitted</strong>
           <h2>Help Us Understand Your Needs</h2>
@@ -117,10 +118,10 @@ const Home = () => {
           <br />
 
         </div>
-
+        <Footer />
       </div>
       
-      <Footer />
+     
       {/* <div class="wave">
   
   
