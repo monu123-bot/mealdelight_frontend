@@ -12,6 +12,7 @@ import BlogStats from './components/blogs/BlogStats';
 import MarketSize from './components/survey/MarketSize';
 
 import ContinueMarketSize from './components/survey/ContinueMarketSize';
+import AddMenu from './admin/components/AddMenu';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/plandetails" element={<SinglePlan />} />
           <Route path="/survey/marketsize" element={<MarketSize  />} />
           <Route path="/survey/continue/:survey_Id" element={<ContinueMarketSize  />} />
+          <Route path="/admin/addmenu" element={<AddMenu  />} />
        </Routes>
       </Router>
       

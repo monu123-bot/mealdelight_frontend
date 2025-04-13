@@ -9,6 +9,7 @@ import { verifyToken } from '../script/tokenVerification';
 import Login from './Login';
 import AddressList from './dashboard/AddressList';
 import AddNewAddress from './dashboard/AddNewAddress';
+import ShowMenu from './ShowMenu';
 const SinglePlan = () => {
   const [plan, setPlan] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -347,16 +348,19 @@ initializeSDK();
       <div className="single-plan-container">
         <div className="plan-card1">
           <img className="plan-thumbnail" src={plan.thumbnail} alt={plan.name} />
+          
           <div className="plan-details">
+
             <h1>{plan.name}</h1>
+            <ShowMenu MenuId={plan.menu} />
             <p className="plan-description">{plan.description}</p>
             <p style={{color:'black'}}><strong>Duration:</strong> {plan.period} days</p>
             <p style={{color:'black'}}><strong>Original Price:</strong> ₹{plan.price}</p>
             <p style={{color:'black'}}><strong>Plan Discount:</strong> {plan.discount}%</p>
             <p style={{color:'black'}} className="final-price">Final Price: ₹{calculateFinalPrice(plan.price, plan.discount)}</p>
 
-            <a href={plan.menu} target="_blank" rel="noopener noreferrer" className="menu-link">View Menu</a>
-
+            
+           
             {plan.isCoupon === 'true' && (
               <>
                 <input
