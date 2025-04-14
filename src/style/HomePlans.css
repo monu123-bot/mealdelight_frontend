@@ -29,9 +29,9 @@
     background-color: #044243;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
-    padding: 10px;
-    min-width: 250px; /* Defines fixed width for scrolling */
-    min-height: 200px;
+    padding: 5px;
+    min-width: 225px; /* Defines fixed width for scrolling */
+    min-height: 180px;
     text-align: left;
     transition: transform 0.3s ease;
     height: 200px;

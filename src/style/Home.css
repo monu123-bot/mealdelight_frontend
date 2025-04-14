@@ -267,3 +267,28 @@
 .cta-button:hover {
   background-color: #e64a19;
 }
+
+
+.q1-h1{
+  font-family: 'Bodoni Moda', serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.2;
+
+
+   /* font-size: 1.7em; */
+   padding: 3px;
+   /* font-weight: 700; */
+   /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+   color: #044243;
+   text-align: left
+  ;
+}
+
+.q1-step{
+  box-shadow: #044243;
+  background-color: rgb(196, 234, 255);
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 12px;
+}

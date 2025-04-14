@@ -7,6 +7,12 @@ import HomePlans from './HomePlans';
 import StoreMap from './home/Map';
 import HomeArticles from './HomeArticles';
 import { Link } from 'react-router-dom';
+import Lottie from "lottie-react";
+import ImageProcessingLotty from "../assets/AI_image_processing.json";
+import CookingLotty from "../assets/cooking.json";
+import DeliveryLotty from "../assets/delivery.json";
+import OrganicFarmingLotty from "../assets/organic_farming.json";
+
 const Home = () => {
 
 
@@ -41,7 +47,7 @@ const Home = () => {
             <p className='text-12'>US</p>
           </div>
         </div>
-        <div className='q1' >
+        {/* <div className='q1' >
           <p className='q1-h'>Meal Delight
 
           </p>
@@ -95,7 +101,48 @@ const Home = () => {
           <br />
 
           
-        </div>
+        </div> */}
+        <div className='q1'>
+  <p className='q1-h1'>From Farm to Your Plate, With Love</p>
+  <div className='q1-section'>
+    {/* 1. Organic Farming */}
+    <div className='q1-step'>
+    <Lottie animationData={OrganicFarmingLotty} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />
+
+      <p className='q1-p'>
+        It all starts with organic farms — free from chemicals, full of care. Every ingredient we use is grown with nature's touch.
+      </p>
+    </div>
+
+    {/* 2. AI Quality Testing */}
+    <div className='q1-step'>
+    <Lottie animationData={ImageProcessingLotty} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />
+
+      <p className='q1-p'>
+        Every vegetable is scanned using AI image processing to ensure top-notch quality, color, and freshness before it enters our kitchen.
+      </p>
+    </div>
+
+    {/* 3. Hygienic Cooking */}
+    <div className='q1-step'>
+    <Lottie animationData={CookingLotty} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />
+
+      <p className='q1-p'>
+        In our spotless kitchens, your food is prepared with the same love, care, and hygiene as a mother’s kitchen.
+      </p>
+    </div>
+
+    {/* 4. Fresh Delivery */}
+    <div className='q1-step'>
+    <Lottie animationData={DeliveryLotty} loop autoplay style={{ width: 150, height: 150,marginLeft:'auto',marginRight:'auto' }} />
+
+      <p className='q1-p'>
+        Finally, it reaches your doorstep — warm, fresh, and full of the goodness your body deserves.
+      </p>
+    </div>
+  </div>
+</div>
+
         <HomePlans />
           <div className='q1' >
             <p className='q1-h'>

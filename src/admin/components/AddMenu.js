@@ -59,6 +59,7 @@ export default function AddMenu() {
               <strong>{meal}</strong>
               {menu[day][meal].map((dish, index) => (
                 <input
+                className='addmenu-input'
                   key={index}
                   value={dish}
                   onChange={e => handleChange(day, meal, index, e.target.value)}

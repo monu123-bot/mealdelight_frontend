@@ -27,6 +27,7 @@ const CurrentFoodDetails = ({ data, setData }) => {
             <label key={option}>
               <input
                 type="checkbox"
+                
                 value={option}
                 checked={data.mealManagement.includes(option)}
                 onChange={() => handleCheckboxChange("mealManagement", option)}
