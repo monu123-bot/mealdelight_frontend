@@ -1,7 +1,8 @@
 .recipes-page {
     padding: 2rem;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: auto;
+    background-color:#5ce1e6 ;
   }
   
   .search-input {
