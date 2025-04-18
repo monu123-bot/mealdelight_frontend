@@ -152,6 +152,20 @@ const Home = () => {
 
           </div>
         <br />
+
+        <div className='q1' >
+            <p className='q1-h'>
+
+              <b>Explore Our Keto Recipe</b></p>
+            
+            <p className='q1-p'>
+
+              Our keto recipes are designed to be delicious, nutritious, and easy to prepare. Whether you're a seasoned keto enthusiast or just starting out, our recipes will help you stay on track while enjoying every bite.
+</p>
+<Link style={{textDecoration:'underline'}} to="/recipes" className='q1-p'>Explore</Link>
+          </div>
+        <br />
+
         <div className='q1 div-small'>
           <p className='q1-h'>Haven't joined yet ?</p>
           <a href='/regform' ><p className='join-now'>join now</p></a>
@@ -159,6 +173,7 @@ const Home = () => {
         </div>
 
         <Login />
+        
         <HomeArticles/>
         <div className='div-small' >
 

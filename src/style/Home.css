@@ -220,7 +220,7 @@
 
 .info-section {
   max-width: 600px;
-  width: 80%;
+  width: 50%;
   margin: 40px auto;
   padding: 30px;
   background-color: #ffffff;
@@ -238,14 +238,14 @@
 
 /* Headline */
 .info-section h2 {
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   color: #333333;
   margin-bottom: 16px;
 }
 
 /* Paragraph */
 .info-section p {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #555555;
   line-height: 1.6;
   margin-bottom: 24px;

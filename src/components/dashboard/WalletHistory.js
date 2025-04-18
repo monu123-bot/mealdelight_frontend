@@ -7,7 +7,15 @@ const WalletHistory = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [copiedOrderId, setCopiedOrderId] = useState(null);
 
+
+  const copyToClipboard = (text, orderId) => {
+    navigator.clipboard.writeText(text);
+    setCopiedOrderId(orderId);
+    setTimeout(() => setCopiedOrderId(null), 1500); // Reset copied state for this order
+  };
+  
   const toggleDropdown = (orderId) => {
     setActiveDropdown(activeDropdown === orderId ? null : orderId);
   };
@@ -118,12 +126,22 @@ const WalletHistory = () => {
       {history.map((item) => (
         <div key={item.order_id} className="history-item">
           <div className="history-header">
-            <p><strong>Order ID:</strong> {item.order_id}</p>
+           
+            
+          <p
+  onClick={() => copyToClipboard(item.order_id, item.order_id)}
+  style={{ cursor: "pointer", color: "#007bff" }}
+  title="Click to copy"
+>
+  {copiedOrderId === item.order_id ? "Order ID Copied!" : "Copy Order ID"}
+</p>
+
+          
           {  (item.isClaimed==false && item.order_status=='FAILED' ) ? (
   <div className="dots-menu" onClick={() => toggleDropdown(item.order_id)}>
     •••
     {activeDropdown === item.order_id && (
-      <div className="dropdown">
+      <div className="dropdown-paymentHistory">
         <p onClick={() => claimPayment(item.order_id)}>Claim</p>
         {/* Uncomment and add other options as needed */}
         {/* <p onClick={() => console.log("Another option")}>Another option</p> */}
