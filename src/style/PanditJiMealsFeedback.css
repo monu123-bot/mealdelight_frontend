@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .meal-container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 1rem;
+    background: #f9f9f9;
+    color: #333;
+  }
+  
+  .logo {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .logo img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .menu-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-item:hover {
+    background: #f0f0f0;
+  }
+  
+  .ingredients {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    padding-left: 1rem;
+  }
+  
+  .qr-section {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .qr-section img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .whatsapp-button {
+    display: inline-block;
+    margin-top: 0.3rem;
+    background-color: #632C00;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  @media screen and (min-width: 600px) {
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .menu-item {
+      font-size: 1.1rem;
+    }
+  }
+  
