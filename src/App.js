@@ -15,6 +15,8 @@ import ContinueMarketSize from './components/survey/ContinueMarketSize';
 import AddMenu from './admin/components/AddMenu';
 import Reciepes from './components/Reciepes';
 import PanditJiMealsFeedback from './components/PanditJiMealsFeedback';
+import Login from './admin/components/Login';
+import AdminPage from './admin/components/AdminPage';
 
 function App() {
   return (
@@ -37,6 +39,12 @@ function App() {
           <Route path="/recipes" element={<Reciepes  />} />
           <Route path="/pandit-Ji-meals" element={<PanditJiMealsFeedback  />} />
           {/* Add other routes here */}
+
+
+          {/* Admin */}
+
+          <Route path="/admin" element={<AdminPage/>} />
+
        </Routes>
       </Router>
       

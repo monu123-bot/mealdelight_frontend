@@ -307,17 +307,17 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
     <h2>Active Plans</h2>
     {(plans.length===0) && "Loading..."}
     {myPlans.map((plan) => (
-      <div key={plan._id} className="plan-card">
-        <div className='plan-card-header'>
+      <div key={plan._id} className="plan-card-dash-dash">
+        <div className='plan-card-dash-dash-dashheader'>
           
-          <h3 className='plan-card-heading'>{plan.planDetails.name}</h3>
+          <h3 className='plan-card-dash-dash-dashheading'>{plan.planDetails.name}</h3>
           
           <DeliveryComp userId={user._id} planId={plan._id}/>
 
-          <span  onClick={() => toggleDropdown(plan._id)} className='plan-card-option dots-menu'>•••
+          <span  onClick={() => toggleDropdown(plan._id)} className='plan-card-dash-dash-dashoption dots-menu'>•••
 
           {  activeDropdown === plan._id && (
-      <div className="dropdown">
+      <div className="dropdown-pausePlan">
         
         <p onClick={()=>{
           
@@ -369,7 +369,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
     {(plans.length===0) && "Loading..."}
     {plans.map((plan) => (
 
-      <div key={plan._id} className="plan-card">
+      <div key={plan._id} className="plan-card-dash-dash">
         <h3>{plan.name}</h3>
         <p style={{color:'black'}}>Price: ₹{plan.price}</p>
         {plan.discount > 0 && <p style={{color:'black'}}>Discount: {plan.discount}%</p>}

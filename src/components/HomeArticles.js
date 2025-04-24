@@ -43,7 +43,8 @@ const HomeArticles = () => {
             to={`/blog/${blog.title}`} // Correct query parameter for blogs
           >
             <div className="blog-card">
-              <p>{blog.title}</p>
+            <p>{blog.title.substring(0, 30)}</p>
+
               <img style={{width:'200px'}} src={`${blog.thumbnail}`} />
             </div>
           </Link>

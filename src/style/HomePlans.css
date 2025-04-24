@@ -22,10 +22,11 @@
     display: none; /* Hide scrollbar in WebKit browsers */
   }
   .plan-card h3{
+    height: 40px;
     color: #cdedf6;
   }
   .plan-card {
-
+width: fit-content;
     background-color: #044243;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
@@ -34,7 +35,7 @@
     min-height: 180px;
     text-align: left;
     transition: transform 0.3s ease;
-    height: 200px;
+    height: fit-content
     
   }
  

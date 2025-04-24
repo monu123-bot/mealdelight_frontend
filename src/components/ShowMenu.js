@@ -20,9 +20,16 @@ export default function ShowMenu({ MenuId }) {
     fetchMenu();
   }, [MenuId]);
 
-  const validDays = Object.keys(menu || {}).filter(
-    day => !['_id', 'createdAt', '__v'].includes(day)
-  );
+  const weekdays = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    
+  ];
+  
 
   if (!menu) return <div className="show-menu-loading">Loading menu...</div>;
 
@@ -30,16 +37,25 @@ export default function ShowMenu({ MenuId }) {
     <div className="show-menu-container">
       <h2 className="menu-title">This Week's Menu</h2>
       <div className="menu-scroll-wrapper">
-        {validDays.map(day => {
+        {weekdays.map(day => {
           const meals = menu?.[day];
           if (!meals) return null;
-
+  
           return (
             <div key={day} className="day-card">
               <h3>{day.toUpperCase()}</h3>
-              <p><strong>Breakfast:</strong> {meals.breakfast?.map(m => m.name).filter(Boolean).join(', ') || 'N/A'}</p>
-              <p><strong>Lunch:</strong> {meals.lunch?.map(m => m.name).filter(Boolean).join(', ') || 'N/A'}</p>
-              <p><strong>Dinner:</strong> {meals.dinner?.map(m => m.name).filter(Boolean).join(', ') || 'N/A'}</p>
+              <p>
+                <strong>Breakfast:</strong>{' '}
+                {meals.breakfast?.map(m => m.name).filter(Boolean).join(', ') || 'N/A'}
+              </p>
+              <p>
+                <strong>Lunch:</strong>{' '}
+                {meals.lunch?.map(m => m.name).filter(Boolean).join(', ') || 'N/A'}
+              </p>
+              <p>
+                <strong>Dinner:</strong>{' '}
+                {meals.dinner?.map(m => m.name).filter(Boolean).join(', ') || 'N/A'}
+              </p>
             </div>
           );
         })}
