@@ -7,7 +7,7 @@ import Complaints from './Complaints'
 import './style/adminPage.css'
 
 const AdminPage = () => {
-  const [isLogin, setIsLogin] = useState(true)
+  const [isLogin, setIsLogin] = useState(false)
   const [activeComponent, setActiveComponent] = useState('finance')
   
   // Define available components - easily extendable for future components
