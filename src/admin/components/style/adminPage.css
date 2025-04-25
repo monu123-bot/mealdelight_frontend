@@ -31,10 +31,19 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+    overflow-x: auto;         /* Enable horizontal scroll */
+    white-space: nowrap;      /* Prevent items from wrapping */
+    scrollbar-width: none;    /* Hide scrollbar on Firefox */
+  }
+  
+  .admin-nav ul::-webkit-scrollbar {
+    display: none;            /* Hide scrollbar on Chrome, Safari */
   }
   
   .admin-nav li {
+    display: inline-block;
     margin: 0 5px;
+    flex-shrink: 0;           /* Prevent shrinking on small screens */
   }
   
   .admin-nav button {
@@ -69,7 +78,7 @@
     background-color: #e74c3c;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 4px 8px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: 500;

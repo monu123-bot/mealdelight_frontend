@@ -45,7 +45,7 @@ const AdminPage = () => {
               <h2>Admin Dashboard</h2>
             </div>
             
-            <nav className="admin-nav">
+            {/* <nav className="admin-nav">
               <ul>
                 {components.map(comp => (
                   <li key={comp.id}>
@@ -58,13 +58,25 @@ const AdminPage = () => {
                   </li>
                 ))}
               </ul>
-            </nav>
+            </nav> */}
+
+            <div className="admin-nav">
+        {components.map((comp) => (
+          <button 
+          className={activeComponent === comp.id ? 'active' : ''}
+          onClick={() => handleNavClick(comp.id)}
+        >
+          {comp.name}
+        </button>
             
-            <div className="admin-actions">
+        ))}
+      </div>
+            
+            <small className="admin-actions">
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
               </button>
-            </div>
+            </small>
           </header>
           
           <main className="admin-content">

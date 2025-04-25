@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../style/AddMenu.css';
 import axios from 'axios';
 import { host } from '../../script/variables';
-
+import Cookies from 'js-cookie'
 const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 const meals = ['breakfast', 'lunch', 'dinner'];
 
@@ -72,7 +72,7 @@ export default function AddMenu() {
       };
       
       // Get the token from localStorage
-      const token = localStorage.getItem('token');
+      const  token = Cookies.get('adminToken');
       
       const response = await axios.post(
         `${host}/admin/addmenu`, 

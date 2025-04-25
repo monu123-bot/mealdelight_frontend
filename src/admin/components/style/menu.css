@@ -1,0 +1,570 @@
+/* style/menu.css */
+
+.admin-menus-container {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .admin-menus-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .admin-menus-container {
+      padding: 2rem;
+    }
+    
+    .admin-menus-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  .admin-menus-header h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+  }
+  
+  .search-form {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) {
+    .search-form {
+      width: auto;
+    }
+  }
+  
+  .search-input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+    min-width: 0; /* Prevents input from overflowing */
+  }
+  
+  @media (min-width: 768px) {
+    .search-input {
+      width: 250px;
+    }
+  }
+  
+  .search-button {
+    padding: 0.5rem 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+  }
+  
+  .search-button:hover {
+    background-color: #3a7bc8;
+  }
+  
+  .loading, .error-message, .no-menus {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+  }
+  
+  /* Menu Grid */
+  .admin-menus-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .admin-menus-grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+  }
+  
+  .admin-menu-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white;
+    width: 100%;
+  }
+  
+  .admin-menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admin-menu-header {
+    padding: 0.75rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 480px) {
+    .admin-menu-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  .admin-menu-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+    word-break: break-word;
+  }
+  
+  .menu-date {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 0.3rem;
+  }
+  
+  @media (min-width: 480px) {
+    .menu-date {
+      margin-top: 0;
+    }
+  }
+  
+  .admin-menu-details {
+    padding: 0.75rem;
+  }
+  
+  .menu-description {
+    color: #555;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+  
+  .menu-days-overview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 480px) {
+    .menu-days-overview {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .menu-day {
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .menu-day h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .menu-day p {
+    margin: 0.2rem 0 0;
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  .menu-preview {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+  }
+  
+  .menu-preview h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .meal-types {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .meal-type {
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-word;
+  }
+  
+  .meal-label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: #555;
+    white-space: nowrap;
+  }
+  
+  .meal-items {
+    color: #666;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .admin-menu-actions {
+    display: flex;
+    padding: 0.75rem;
+    border-top: 1px solid #eee;
+    gap: 0.5rem;
+  }
+  
+  .edit-menu, .delete-menu, .view-details {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-menu {
+    background-color: #4a90e2;
+    color: white;
+  }
+  
+  .edit-menu:hover {
+    background-color: #3a7bc8;
+  }
+  
+  .delete-menu {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .delete-menu:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Pagination */
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .pagination-button {
+    padding: 0.5rem 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .page-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .page-number {
+    padding: 0.5rem 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .page-number.active {
+    background-color: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+  }
+  
+  .page-size-select {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* Modals */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1rem;
+  }
+  
+  .modal {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  @media (min-width: 640px) {
+    .modal {
+      padding: 1.5rem;
+      width: 90%;
+    }
+  }
+  
+  .menu-edit-modal {
+    width: 100%;
+    max-width: 900px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #333;
+  }
+  
+  .close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+  }
+  
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  /* Meal editing sections */
+  .menu-days-edit {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .menu-days-edit {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .day-edit {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+  }
+  
+  .day-edit h4 {
+    margin: 0 0 0.75rem;
+    color: #333;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+  }
+  
+  .meal-type-edit {
+    margin-bottom: 1rem;
+  }
+  
+  .meal-type-edit h5 {
+    margin: 0.5rem 0;
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  .meal-edit {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-items: center;
+  }
+  
+  .meal-edit input {
+    flex: 1;
+    padding: 0.4rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 0; /* Prevents input from overflowing */
+  }
+  
+  .remove-meal {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  
+  .add-meal {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .cancel-button,
+  .save-button,
+  .delete-button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .cancel-button {
+    background-color: #f1f1f1;
+    color: #333;
+  }
+  
+  .save-button {
+    background-color: #4a90e2;
+    color: white;
+  }
+  
+  .delete-button {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  /* Delete confirmation modal */
+  .delete-modal {
+    max-width: 500px;
+  }
+  
+  .warning {
+    color: #e74c3c;
+    font-weight: 500;
+  }
+  
+  /* Notification */
+  .notification {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    z-index: 1100;
+    width: calc(100% - 2rem);
+    max-width: 400px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .notification.success {
+    background-color: #2ecc71;
+    color: white;
+  }
+  
+  .notification.error {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .close-notification {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0;
+  }
