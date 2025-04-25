@@ -8,10 +8,13 @@
     align-items: center;
     margin-bottom: 20px;
     flex-wrap: wrap;
+    padding: 10px;
   }
   
   .admin-plans-header h2 {
-    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:5px ;
     color: #333;
   }
   

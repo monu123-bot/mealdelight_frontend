@@ -307,10 +307,10 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
     <h2>Active Plans</h2>
     {(plans.length===0) && "Loading..."}
     {myPlans.map((plan) => (
-      <div key={plan._id} className="plan-card-dash-dash">
-        <div className='plan-card-dash-dash-dashheader'>
+      <div key={plan._id} className="plan-card-dash">
+        <div className='plan-card-dash-header'>
           
-          <h3 className='plan-card-dash-dash-dashheading'>{plan.planDetails.name}</h3>
+          <h3 className='plan-card-dash-heading'>{plan.planDetails.name}</h3>
           
           <DeliveryComp userId={user._id} planId={plan._id}/>
 
@@ -369,7 +369,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
     {(plans.length===0) && "Loading..."}
     {plans.map((plan) => (
 
-      <div key={plan._id} className="plan-card-dash-dash">
+      <div key={plan._id} className="plan-card-dash">
         <h3>{plan.name}</h3>
         <p style={{color:'black'}}>Price: ₹{plan.price}</p>
         {plan.discount > 0 && <p style={{color:'black'}}>Discount: {plan.discount}%</p>}
