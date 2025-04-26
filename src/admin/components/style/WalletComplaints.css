@@ -1,0 +1,301 @@
+.wallet-complaints-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+  }
+  
+  .filter-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .filter-group select,
+  .filter-group input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .clear-filters {
+    align-self: flex-end;
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 22px;
+  }
+  
+  .clear-filters:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .limit-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .limit-selector select {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .transactions-table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+  
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .transactions-table th,
+  .transactions-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .transactions-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  .transactions-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .status, .claim-status {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+   
+  }
+  
+  .status.success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .status.failed {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .claim-status.not-claimed {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .claim-status.under-review {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+  
+  .claim-status.payment-completed {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .claim-status.payment-rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .view-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .view-button:hover {
+    background-color: #0069d9;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 5px;
+  }
+  
+  .pagination-button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .pagination-button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .pagination-button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  .pagination-button:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+  }
+  
+  .pagination-info {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .error {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-radius: 4px;
+  }
+  
+  .no-data {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+  }
+  
+  @media (max-width: 768px) {
+    .filters-container {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .filter-group {
+      width: 100%;
+    }
+    
+    .clear-filters {
+      align-self: flex-start;
+      margin-top: 10px;
+    }
+  }
+
+  /* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .modal h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  
+  .modal-group {
+    margin-bottom: 15px;
+  }
+  
+  .modal-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+  
+  .modal-group select,
+  .modal-group textarea,
+  .modal-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .submit-button, .cancel-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .cancel-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .cancel-button:hover {
+    background-color: #d32f2f;
+  }
+  
