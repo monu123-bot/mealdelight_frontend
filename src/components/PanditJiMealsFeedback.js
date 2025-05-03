@@ -4,34 +4,51 @@ import { Link } from 'react-router-dom';
 
 const meals = [
   {
-    name: 'Normal Thali',
-    ingredients: ['Rice', '2-Tawa Roti', 'Daal', 'Aloo', 'Bhujia', 'Salad'],
-  },
-  {
-    name: 'Special Thali',
-    ingredients: ['Rice', '2-Tawa Roti', 'Daal', 'Aloo Bhujia', 'Chhole', 'Salad', '1 Sweet'],
+    name: 'Aloo Bhujia',
+    ingredients: ['Potato', 'Asafoetida Powder', 'Cumin Seeds', 'Green Chili', 'Tata Salt', 'Coriander', 'Turmeric Powder', 'Lemon Juice'],
   },
   {
     name: 'Rice Bowl',
-    ingredients: ['500 gm Boiled Rice'],
+    ingredients: ['Boiled Basmati Rice', 'Tata Salt', 'Whole Spices'],
   },
   {
     name: 'Mix Daal',
-    ingredients: ['Toor Daal', 'Chana Daal', 'Moong Daal', 'Spices', 'Salt'],
+    ingredients: ['Pigeon Pea (Toor Dal)', 'Bengal Gram (Chana Dal)', 'Split Green Gram (Moong Dal)', 'Split Black Gram (Urad Dal)', 'Red Lentils (Masoor Dal)', 'Ginger', 'Onion', 'Coriander', 'Tomato', 'Red Chili', 'Tata Salt', 'Coriander Powder'],
   },
   {
     name: 'Chhole',
-    ingredients: ['Chickpeas', 'Onion', 'Tomato', 'Spices', 'Oil'],
+    ingredients: ['Chickpeas', 'Onion', 'Tomato', 'Green Chili', 'Coriander Powder', 'Dried Fenugreek Leaves', 'Tata Salt', 'Garam Masala', 'Turmeric Powder', 'Kitchen King Masala', 'Amul Cream'],
   },
   {
     name: 'Rajma',
-    ingredients: ['Kidney Beans', 'Onion', 'Tomato', 'Spices', 'Oil'],
+    ingredients: ['Kidney Beans', 'Onion', 'Tomato', 'Green Chili', 'Coriander Powder', 'Dried Fenugreek Leaves', 'Tata Salt', 'Garam Masala', 'Turmeric Powder', 'Kitchen King Masala', 'Amul Cream'],
   },
   {
     name: 'Tawa Roti',
-    ingredients: ['Wheat Flour', 'Water', 'Salt (optional)'],
+    ingredients: ['Wheat Flour (Ashirvaad)', 'Water', 'Salt (optional)'],
+  },
+  {
+    name: 'Suji Halwa',
+    ingredients: ['Semolina (Suji)', 'Cardamom', 'Raisins', 'Patanjali Ghee', 'Desiccated Coconut'],
+  },
+  {
+    name: 'Suji Chilla',
+    ingredients: ['Semolina (Suji)', 'Onion', 'Tomato', 'Spices', 'Salt', 'Coriander', 'Curd (Yogurt)'],
+  },
+  {
+    name: 'Special Chutney',
+    ingredients: ['Green Chili', 'Coriander', 'Onion', 'Salt', 'Curd (Yogurt)', 'Tomato'],
+  },
+  {
+    name: 'Besan Chilla',
+    ingredients: ['Gram Flour (Besan)', 'Onion', 'Tomato', 'Green Chili', 'Salt', 'Coriander'],
+  },
+  {
+    name: 'Raita',
+    ingredients: ['Gram Flour Boondi', 'Rock Salt', 'Cumin Seeds', 'Coriander', 'Tata Salt', 'Curd (Yogurt)'],
   },
 ];
+
 
 const PanditJiMealsFeedback = () => {
   const [openIndex, setOpenIndex] = useState(null);
