@@ -12,9 +12,9 @@ const AdminPage = () => {
   
   // Define available components - easily extendable for future components
   const components = [
-    { id: 'finance', name: 'Finance Management', component: <FinanceManagement /> },
-    { id: 'plan', name: 'Plan Management', component: <PlanManagement /> },
-    { id: 'customer', name: 'Customer Management', component: <CustomerManagement /> },
+    { id: 'finance', name: 'Finance', component: <FinanceManagement /> },
+    { id: 'plan', name: 'Plan', component: <PlanManagement /> },
+    { id: 'customer', name: 'Customer', component: <CustomerManagement /> },
     { id: 'complaints', name: 'Complaints', component: <Complaints /> }
   ]
   
