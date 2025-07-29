@@ -42,6 +42,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.9.0",
     "react-spinner": "^0.2.7",
+    "react-toastify": "^11.0.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

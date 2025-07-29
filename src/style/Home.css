@@ -292,3 +292,20 @@
   margin: 10px 0px;
   border-radius: 12px;
 }
+.forgot_pas_btn{
+  background-color: transparent;
+  color: #044243;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-left: auto;
+width: fit-content;
+  margin-right: auto;
+}
+
+.forgot_btn_div{
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -12,9 +12,10 @@ import ImageProcessingLotty from "../assets/AI_image_processing.json";
 import CookingLotty from "../assets/cooking.json";
 import DeliveryLotty from "../assets/delivery.json";
 import OrganicFarmingLotty from "../assets/organic_farming.json";
+import ResetPassword from './home/ResetPassword';
 
 const Home = () => {
-
+const [isResetPasswordOn, setIsResetPasswordOn] = React.useState(false);
 
 
   return (
@@ -171,8 +172,15 @@ const Home = () => {
           <a href='/regform' ><p className='join-now'>join now</p></a>
 
         </div>
-
-        <Login />
+     
+     {(isResetPasswordOn) ?  <ResetPassword/> : <Login /> }
+        
+       
+        <div className='forgot_btn_div' >
+    <button className='forgot_pas_btn' onClick={() => setIsResetPasswordOn(!isResetPasswordOn)}>
+      {(isResetPasswordOn) ? 'Login': 'Forget password?'}
+    </button>
+</div>
         
         <HomeArticles/>
         <div className='div-small' >

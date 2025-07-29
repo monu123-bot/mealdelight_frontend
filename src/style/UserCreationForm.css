@@ -57,7 +57,8 @@
   }
   .regform-container{
     background-color: #cdedf6;
-    min-height: 100vh;
+    min-height: fit-content;
+    padding: 10px;
   }
   
 .comp{
