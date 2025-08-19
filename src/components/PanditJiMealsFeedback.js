@@ -53,7 +53,7 @@ const meals = [
   },
   {
     name: 'Soya Chunks Sabji',
-    ingredients: ['Fortune Soya Chunks', 'Cumin Seeds', 'Coriander', 'Tata Salt', 'Turmeric Powder', 'Green Chili', 'Onion', 'Tomato','Mustard Oil'],
+    ingredients: ['Fortune Soya Chunks', 'Cumin Seeds', 'Coriander', 'Tata Salt', 'Turmeric Powder', 'Green Chili', 'Onion', 'Tomato','Mustard Oil','Potato','Kitchen King Masala'],
   },
 ];
 
