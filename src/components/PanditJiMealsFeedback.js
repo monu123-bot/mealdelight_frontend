@@ -47,6 +47,14 @@ const meals = [
     name: 'Raita',
     ingredients: ['Gram Flour Boondi', 'Rock Salt', 'Cumin Seeds', 'Coriander', 'Tata Salt', 'Curd (Yogurt)'],
   },
+  {
+    name: 'Bhindi Sabji',
+    ingredients: ['Fresh Bhindi', 'Tata Salt', 'Cumin Seeds', 'Coriander', 'Mustard Oil', 'Turmeric Powder', 'Green Chili', 'Onion'],
+  },
+  {
+    name: 'Soya Chunks Sabji',
+    ingredients: ['Fortune Soya Chunks', 'Cumin Seeds', 'Coriander', 'Tata Salt', 'Turmeric Powder', 'Green Chili', 'Onion', 'Tomato','Mustard Oil'],
+  },
 ];
 
 
