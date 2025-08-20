@@ -20,7 +20,7 @@
 }
 
 .plan-card1 {
-  display: flex;
+  /* display: flex; */
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -30,8 +30,8 @@
 }
 
 .plan-thumbnail {
-  width: 100%;             /* Full width of the container */
-  height: 100%;            /* Full height of the container */
+  width: 90%;             /* Full width of the container */
+  height: 90%;            /* Full height of the container */
   object-fit: cover;       /* Ensures the image covers the entire area */
   border-radius: 12px;     /* Optional: adds rounded corners */
 }
