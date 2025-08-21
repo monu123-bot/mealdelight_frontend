@@ -77,7 +77,9 @@ const UserDashboard = () => {
        
     <div className='wallet'>
     <p>Hyy {user.firstName}  </p> 
-        <p>Available Balance (INR):{Number(user.walletbalance).toFixed(2)} <MdRefresh onClick={()=>{fetchUser()}} /> </p>
+        <p>Available Balance (INR):{Number(user.walletbalance).toFixed(2)}  <span onClick={fetchUser} style={{ cursor: "pointer" }}>
+    <MdRefresh />
+  </span> </p>
     </div>
     <div className='action'>
         <div className='action-options'>
