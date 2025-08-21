@@ -395,7 +395,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
         ) : (
           'No Coupons for trial'
         )}
-        <p style={{color:'black'}}>Duration: ₹{plan.period}</p>
+        <p style={{color:'black'}}>Duration: {plan.period} d </p>
 
        
   
