@@ -7,6 +7,7 @@ import '../style/userdashboard.css'
 import { host } from '../script/variables'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { verifyToken } from '../script/tokenVerification'
+import { MdRefresh } from "react-icons/md";
 const UserDashboard = () => {
 
     const navigate = useNavigate();
@@ -75,8 +76,8 @@ const UserDashboard = () => {
     {(user) && <>
        
     <div className='wallet'>
-    <p>Hyy {user.firstName} </p> 
-        <p>Available Balance (INR):{Number(user.walletbalance).toFixed(2)} </p>
+    <p>Hyy {user.firstName}  </p> 
+        <p>Available Balance (INR):{Number(user.walletbalance).toFixed(2)} <MdRefresh onClick={()=>{fetchUser()}} /> </p>
     </div>
     <div className='action'>
         <div className='action-options'>
