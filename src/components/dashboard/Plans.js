@@ -287,8 +287,8 @@ const checkActive = (planId,addressId)=>{
 
 const openPauseModel =(planId,expiringDate,planPeriod)=>{
   console.log(planPeriod)
-  if (planPeriod<30){
-    alert('Pause is not allowed on trial plans')
+  if (planPeriod<10){
+    alert('Pause is not allowed on plans with less than 10 days period')
     return
   }
   setExpiringDate(expiringDate)
@@ -324,7 +324,7 @@ const openPauseModel =(planId,expiringDate,planPeriod)=>{
           openPauseModel(plan._id,plan.expiringAt,plan.planDetails.period)
         }} >Pause </p>
       
-        <p>Pause 1</p>
+        {/* <p>Pause 1</p> */}
         {/* Uncomment and add other options as needed */}
         {/* <p onClick={() => console.log("Another option")}>Another option</p> */}
       </div>
