@@ -113,6 +113,31 @@ const Referral = ({ user, setUser }) => {
     }
   };
 
+  const redeemReferral = async(referralId) => {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("mealdelight");
+      if (!token) throw new Error("No authentication token found");
+      const response = await fetch(`${host}/referral/redeem_referral`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ referralId }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Failed to redeem referral");
+      setMessage(data.message || "Referral redeemed successfully");
+      fetchReferrals(); // Refresh the referrals list to reflect changes
+    } catch (error) {
+      console.error("Error redeeming referral:", error.message);
+      setMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchReferrals();
   }, []);
@@ -193,9 +218,19 @@ const Referral = ({ user, setUser }) => {
                       className="status-dot" 
                       style={{ backgroundColor: statusColor }}
                     ></div>
-                    <span className={`status-text status-${status.toLowerCase()}`}>
+                    {
+                      ref.redemmed ? <span className={`status-text status-${status.toLowerCase()}`}>Redeemed</span> : <span className={`status-text status-${status.toLowerCase()}`}>
                       {status.charAt(0).toUpperCase() + status.slice(1)}
                     </span>
+                    }
+                    
+                    {status === "success" && !ref.redemmed 
+                    
+                      ? <span className="redeem-badge">💰 {ref.redemmed_amount} <p onClick={()=>{redeemReferral(ref._id)}} >Redeem Now</p></span>
+                      : null
+                    
+                    }
+                    
                   </div>
                   <div className="joined-date">
                     {formatDate(ref.createdAt)}
