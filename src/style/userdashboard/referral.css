@@ -1,0 +1,761 @@
+/* Base responsive setup */
+html {
+  font-size: 16px; /* Base font size */
+}
+
+/* Referral Cards Styles */
+.referral-container {
+  max-width: min(95vw, 800px);
+  margin: 0 auto;
+  padding: clamp(16px, 4vw, 24px);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.referral-container h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  margin-bottom: clamp(16px, 3vw, 24px);
+  color: #333;
+  font-weight: 600;
+}
+
+.referral-code-section {
+  background: linear-gradient(135deg, #f8f4e6 0%, #f0ead6 100%);
+  padding: clamp(20px, 5vw, 32px);
+  border-radius: clamp(12px, 3vw, 20px);
+  margin-bottom: clamp(24px, 5vw, 40px);
+  border: 2px solid #d4b896;
+  box-shadow: 0 8px 24px rgba(139, 117, 93, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.referral-code-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #8b755d, #a6956e, #8b755d);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(20px, 4vw, 28px);
+}
+
+.section-title {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 700;
+  color: #5d4e37;
+  margin: 0 0 clamp(6px, 1.5vw, 8px) 0;
+  text-shadow: 0 1px 2px rgba(93, 78, 55, 0.1);
+}
+
+.section-subtitle {
+  font-size: clamp(0.813rem, 2.5vw, 1rem);
+  color: #8b755d;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Wooden Code Container */
+.wooden-code-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 3vw, 24px);
+}
+
+.wooden-plank {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    #d2b48c 0%,
+    #deb887 20%,
+    #cd853f 40%,
+    #d2b48c 60%,
+    #f4a460 80%,
+    #daa520 100%
+  );
+  border-radius: clamp(8px, 2vw, 12px);
+  padding: clamp(16px, 4vw, 24px);
+  box-shadow: 
+    inset 0 2px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(139, 117, 93, 0.3),
+    0 2px 4px rgba(139, 117, 93, 0.2);
+  border: 1px solid #a0845c;
+  min-width: clamp(200px, 50vw, 300px);
+  transform: perspective(800px) rotateX(5deg);
+  transition: transform 0.3s ease;
+}
+
+.wooden-plank:hover {
+  transform: perspective(800px) rotateX(2deg) translateY(-2px);
+}
+
+/* Wood Grain Effects */
+.wood-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  opacity: 0.3;
+}
+
+.wood-grain:nth-child(1) {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    rgba(139, 117, 93, 0.1) 1px,
+    transparent 2px,
+    transparent 8px
+  );
+}
+
+.wood-grain-2 {
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    rgba(160, 132, 92, 0.15) 0.5px,
+    transparent 1px,
+    transparent 12px
+  );
+  opacity: 0.2 !important;
+}
+
+.wood-grain-3 {
+  background: radial-gradient(
+    ellipse 100px 20px at 30% 40%,
+    rgba(139, 117, 93, 0.2) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    ellipse 80px 15px at 70% 70%,
+    rgba(160, 132, 92, 0.15) 0%,
+    transparent 50%
+  );
+  opacity: 0.4 !important;
+}
+
+.code-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.engraved-text {
+  background: rgba(93, 78, 55, 0.1);
+  border-radius: clamp(4px, 1vw, 6px);
+  padding: clamp(2px, 0.5vw, 4px);
+  border: 1px inset rgba(93, 78, 55, 0.2);
+}
+
+.referral-code {
+  font-family: 'Courier New', 'Monaco', monospace;
+  font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+  font-weight: 700;
+  color: #3e2723;
+  text-shadow: 
+    1px 1px 0 rgba(255, 255, 255, 0.3),
+    0 1px 2px rgba(93, 78, 55, 0.8);
+  letter-spacing: clamp(1px, 0.3vw, 2px);
+  display: block;
+  padding: clamp(4px, 1vw, 8px);
+}
+
+/* Wooden Details (Nails) */
+.wooden-details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.nail {
+  position: absolute;
+  width: clamp(6px, 1.5vw, 8px);
+  height: clamp(6px, 1.5vw, 8px);
+  background: radial-gradient(circle, #8b735a 30%, #5d4e37 70%);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.nail-1 { top: 8px; left: 8px; }
+.nail-2 { top: 8px; right: 8px; }
+.nail-3 { bottom: 8px; left: 8px; }
+.nail-4 { bottom: 8px; right: 8px; }
+
+.copy-btn {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: clamp(10px, 2.5vw, 14px) clamp(20px, 4vw, 28px);
+  border-radius: clamp(6px, 1.5vw, 8px);
+  font-size: clamp(0.813rem, 2.25vw, 0.938rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.copy-btn:hover {
+  background: linear-gradient(135deg, #218838 0%, #1ca085 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+/* Generate Code Container */
+.generate-code-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 4vw, 28px);
+}
+
+.generate-illustration {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 3vw, 16px);
+  margin-bottom: clamp(8px, 2vw, 12px);
+}
+
+.tree-icon, .wood-piece {
+  font-size: clamp(2rem, 5vw, 3rem);
+  filter: drop-shadow(2px 2px 4px rgba(139, 117, 93, 0.3));
+}
+
+.arrow-down {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: #8b755d;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.generate-btn {
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #cd853f 100%);
+  color: #fff;
+  border: none;
+  padding: clamp(12px, 3vw, 16px) clamp(24px, 5vw, 32px);
+  border-radius: clamp(8px, 2vw, 12px);
+  cursor: pointer;
+  font-size: clamp(0.938rem, 2.75vw, 1.125rem);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 12px rgba(139, 69, 19, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 12px);
+  position: relative;
+  overflow: hidden;
+}
+
+.generate-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.generate-btn:hover::before {
+  left: 100%;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7a3f0f 0%, #8b4513 50%, #b8860b 100%);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 16px rgba(139, 69, 19, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.generate-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(139, 69, 19, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.generate-btn:disabled {
+  background: linear-gradient(135deg, #8b755d 0%, #a0845c 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(139, 117, 93, 0.2);
+}
+
+.btn-icon {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  animation: hammer 1.5s ease-in-out infinite;
+}
+
+@keyframes hammer {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+.generate-btn:disabled .btn-icon {
+  animation: none;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 1;
+}
+
+.message {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+  padding: clamp(10px, 2.5vw, 16px);
+  border-radius: clamp(4px, 1vw, 6px);
+  margin-bottom: clamp(16px, 3vw, 24px);
+  font-size: clamp(0.813rem, 2.25vw, 0.938rem);
+  line-height: 1.4;
+}
+
+.loading-container {
+  text-align: center;
+  padding: clamp(32px, 6vw, 48px);
+  color: #6c757d;
+}
+
+.loading-container p {
+  font-size: clamp(0.938rem, 2.75vw, 1.125rem);
+  margin: 0;
+}
+
+/* Cards Container */
+.referral-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3vw, 20px);
+  max-height: clamp(500px, 65vh, 800px);
+  min-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: clamp(4px, 1vw, 8px);
+  border: 1px solid #e9ecef;
+  border-radius: clamp(8px, 2vw, 12px);
+  background: #fafbfc;
+}
+
+.referral-cards-container::-webkit-scrollbar {
+  width: clamp(4px, 1vw, 8px);
+}
+
+.referral-cards-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: clamp(2px, 0.5vw, 4px);
+}
+
+.referral-cards-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: clamp(2px, 0.5vw, 4px);
+}
+
+.referral-cards-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Individual Card */
+.referral-card {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: clamp(8px, 2vw, 16px);
+  padding: clamp(16px, 4vw, 24px);
+  box-shadow: 0 clamp(1px, 0.5vw, 3px) clamp(4px, 1.5vw, 12px) rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.referral-card:hover {
+  transform: translateY(clamp(-1px, -0.25vw, -3px));
+  box-shadow: 0 clamp(2px, 1vw, 6px) clamp(8px, 3vw, 20px) rgba(0, 0, 0, 0.15);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: clamp(12px, 3vw, 18px);
+  padding-bottom: clamp(8px, 2vw, 14px);
+  border-bottom: 1px solid #f1f3f4;
+  flex-wrap: wrap;
+  gap: clamp(8px, 2vw, 12px);
+}
+
+.status-section {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 10px);
+  flex-shrink: 0;
+}
+
+.status-dot {
+  width: clamp(10px, 2.5vw, 14px);
+  height: clamp(10px, 2.5vw, 14px);
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+.status-text {
+  font-weight: 600;
+  font-size: clamp(0.75rem, 2vw, 0.938rem);
+  text-transform: capitalize;
+  letter-spacing: 0.025em;
+}
+
+.status-active {
+  color: #FFC107;
+}
+
+.status-success,
+.status-completed {
+  color: #28A745;
+}
+
+.status-pending {
+  color: #6C757D;
+}
+
+.status-failed,
+.status-rejected {
+  color: #DC3545;
+}
+
+.joined-date {
+  font-size: clamp(0.688rem, 1.75vw, 0.813rem);
+  color: #6c757d;
+  background: #f8f9fa;
+  padding: clamp(3px, 0.75vw, 6px) clamp(6px, 1.5vw, 10px);
+  border-radius: clamp(3px, 0.75vw, 5px);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* Card Content */
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(12px, 3vw, 16px);
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0; /* Allows text to wrap properly */
+}
+
+.user-name {
+  margin: 0 0 clamp(6px, 1.5vw, 10px) 0;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-weight: 600;
+  color: #333;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.phone-number {
+  margin: 0;
+  font-size: clamp(0.813rem, 2.25vw, 0.938rem);
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1vw, 6px);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* No Referrals State */
+.no-referrals {
+  text-align: center;
+  padding: clamp(40px, 8vw, 80px) clamp(16px, 4vw, 24px);
+  color: #6c757d;
+}
+
+.no-referrals p {
+  margin: 0 0 clamp(6px, 1.5vw, 12px) 0;
+  font-size: clamp(0.938rem, 2.75vw, 1.125rem);
+  line-height: 1.5;
+}
+
+.no-referrals-subtitle {
+  font-size: clamp(0.813rem, 2.25vw, 0.938rem) !important;
+  color: #9ca3af !important;
+  line-height: 1.4 !important;
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 480px) {
+  .referral-container {
+    padding: clamp(12px, 3vw, 16px);
+  }
+  
+  .referral-code-section {
+    padding: clamp(12px, 3vw, 16px);
+    margin-bottom: clamp(16px, 3vw, 20px);
+  }
+  
+  .referral-code-section p {
+    font-size: 0.875rem;
+  }
+  
+  .referral-code {
+    display: block;
+    margin: clamp(8px, 2vw, 12px) 0 0 0;
+    text-align: center;
+    padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 16px);
+    font-size: 0.938rem;
+  }
+  
+  .generate-btn {
+    display: block;
+    margin: clamp(8px, 2vw, 12px) 0 0 0;
+    width: 100%;
+    text-align: center;
+    padding: clamp(10px, 2.5vw, 12px);
+    font-size: 0.875rem;
+  }
+  
+  .referral-cards-container {
+    max-height: 50vh;
+    gap: clamp(10px, 2.5vw, 12px);
+  }
+  
+  .referral-card {
+    padding: clamp(12px, 3vw, 16px);
+    border-radius: clamp(6px, 1.5vw, 8px);
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(6px, 1.5vw, 8px);
+  }
+  
+  .joined-date {
+    align-self: flex-end;
+    font-size: 0.688rem;
+  }
+  
+  .user-name {
+    font-size: 1rem;
+    margin-bottom: clamp(4px, 1vw, 6px);
+  }
+  
+  .phone-number {
+    font-size: 0.813rem;
+  }
+  
+  .status-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .status-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .referral-container {
+    padding: clamp(16px, 3.5vw, 20px);
+  }
+  
+  .card-header {
+    align-items: flex-start;
+  }
+  
+  .referral-cards-container {
+    max-height: 55vh;
+  }
+  
+  .user-name {
+    font-size: clamp(1.063rem, 3vw, 1.125rem);
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .referral-container {
+    max-width: 90vw;
+    padding: clamp(18px, 3vw, 22px);
+  }
+  
+  .referral-cards-container {
+    max-height: 60vh;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .referral-container {
+    max-width: 800px;
+    padding: 24px;
+  }
+  
+  .referral-cards-container {
+    max-height: 65vh;
+  }
+  
+  .referral-code-section p {
+    font-size: 1rem;
+  }
+  
+  .user-name {
+    font-size: 1.25rem;
+  }
+  
+  .phone-number {
+    font-size: 0.938rem;
+  }
+}
+
+/* High DPI / Retina displays */
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+       screen and (min-resolution: 2dppx) {
+  .status-dot {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+  }
+  
+  .referral-card {
+    box-shadow: 0 clamp(1px, 0.5vw, 2px) clamp(4px, 1.5vw, 8px) rgba(0, 0, 0, 0.1);
+  }
+  
+  .referral-card:hover {
+    box-shadow: 0 clamp(2px, 1vw, 4px) clamp(8px, 3vw, 16px) rgba(0, 0, 0, 0.18);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .referral-container h3 {
+    color: #f8f9fa;
+  }
+  
+  .referral-code-section {
+    background: #2d3748;
+    border-color: #4a5568;
+  }
+  
+  .referral-code-section p,
+  .referral-code-section strong {
+    color: #e2e8f0;
+  }
+  
+  .referral-card {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .card-header {
+    border-bottom-color: #4a5568;
+  }
+  
+  .user-name {
+    color: #f7fafc;
+  }
+  
+  .joined-date {
+    background: #4a5568;
+    color: #cbd5e0;
+  }
+  
+  .message {
+    background: #276749;
+    border-color: #38a169;
+    color: #9ae6b4;
+  }
+  
+  .no-referrals {
+    color: #a0aec0;
+  }
+  
+  .no-referrals-subtitle {
+    color: #718096 !important;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .referral-card,
+  .generate-btn {
+    transition: none;
+  }
+  
+  .referral-card:hover {
+    transform: none;
+  }
+  
+  .generate-btn:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* Focus states for accessibility */
+.generate-btn:focus-visible,
+.referral-card:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .referral-container {
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .referral-cards-container {
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .referral-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .generate-btn {
+    display: none;
+  }
+}

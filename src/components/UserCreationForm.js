@@ -34,6 +34,7 @@ const [otpSending,setOtpSending] = useState(false)
 const [isSearchingPostalCode,setIsSearchingPostalCode] = useState(false)
 const [isUserRegistered,setIsUserRegistered] = useState(false)
 const [message,setMessage] = useState('')
+const [referral_code,setReferralCode] = useState(null)
  const handlePostOfficeChange = (e) => {
   const selectedPostOfficeName = e.target.value;
   setSelectedPostOffice(selectedPostOfficeName);
@@ -75,8 +76,8 @@ const [message,setMessage] = useState('')
       case 'apartment':
         setApartment(value);
         break;
-      // case 'address':
-      //   setAddress(value);
+      case 'referral_code':
+        setReferralCode(value);
         break;
       default:
         break;
@@ -176,7 +177,7 @@ const [message,setMessage] = useState('')
   const saveUser = async ()=>{
     setMessage('Saving Your Details...')
     const data = {
-      firstName:fName, lastName:lName, email:email, phone:phone, password:password
+      firstName:fName, lastName:lName, email:email, phone:phone, password:password,referral_code_:referral_code
       // , street:street, apartment:apartment, city:city, state:state, postalCode:postalcode,address:address
     }
     try {
@@ -186,6 +187,11 @@ const [message,setMessage] = useState('')
         setMessage('')
          console.log('account created')
          setIsUserRegistered(true)
+      } 
+      if (resp.status === 201) {
+        console.log(resp.data.msg)
+        setMessage(resp.data.msg)
+         
       } 
   } catch (error) {
       console.log("Error show in frontend", error)
@@ -276,7 +282,23 @@ const [message,setMessage] = useState('')
           <br/>
         </>
       )
-    }
+    },
+    {
+      html: (
+        <>
+          <p className='reg-form-h'>Hy {fName}! <br/>Do you have referral code ?</p><br/>
+          <input 
+            className='inp' 
+            type="text" 
+            value={referral_code} 
+            onChange={(e) => handleInputChange('referral_code', e.target.value)} 
+            placeholder='Referral code (if any)' 
+          />
+          <br/>
+        </>
+      )
+    },
+    
     // {
     //   html: (
     //     <>
@@ -352,6 +374,12 @@ const [message,setMessage] = useState('')
     // }
   ];
   const isNameValid = ()=>{
+    // return true
+    // fName = fName.trim();
+    // lName = lName.trim();
+
+    setfname(fName.trim())
+    setlName(lName.trim())
    // Check if first or last name is empty
    if (!fName || !lName)
 {
@@ -377,6 +405,7 @@ const [message,setMessage] = useState('')
   }
     return true
   }
+
   const isEmailValid = ()=>{
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -443,7 +472,7 @@ const [message,setMessage] = useState('')
         alert("Enter Email")
         return
       }
-      setApartment('')
+      setReferralCode('')
 
     }
     
