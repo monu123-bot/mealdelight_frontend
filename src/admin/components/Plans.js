@@ -25,7 +25,8 @@ const Plans = () => {
     period: 30,
     thumbnail: '',
     isCoupon: false,
-    isHome: false
+    isHome: false,
+    includes: [false, false, false] // breakfast, lunch, dinner
   });
 
   // Delete confirmation modal states
@@ -94,16 +95,28 @@ const Plans = () => {
       period: plan.period,
       thumbnail: plan.thumbnail !== '#' ? plan.thumbnail : '',
       isCoupon: plan.isCoupon === 'true', // Convert string to boolean
-      isHome: plan.isHome
+      isHome: plan.isHome,
+      includes: plan.includes || [false, false, false] // Default to all false if undefined
     });
     setShowEditModal(true);
   };
 
   const handleFormChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleIncludesChange = (index) => {
+    const updatedIncludes = [...formData.includes];
+    updatedIncludes[index] = !updatedIncludes[index];
+    setFormData(prev => ({
+      ...prev,
+      includes: updatedIncludes
+
     }));
   };
 
@@ -122,7 +135,8 @@ const Plans = () => {
         thumbnail: formData.thumbnail || '#',
         // Ensure boolean values are correctly passed
         isCoupon: formData.isCoupon ? 'true' : 'false', // Keep as string as per original schema
-        isHome: Boolean(formData.isHome)
+        isHome: Boolean(formData.isHome),
+        includes: formData.includes.map(val => Boolean(val)) // Ensure includes is an array of booleans
       };
       
       await axios.put(`${host}/admin/editPlan/${editingPlan._id}`, dataToSend, {
@@ -416,6 +430,36 @@ const Plans = () => {
                   onChange={handleFormChange} 
                 />
                 <label htmlFor="isHome">Featured Plan (Show on Homepage)</label>
+              </div>
+              <div className="form-check">
+                <input 
+                  type="checkbox" 
+                  id="includesBreakfast" 
+                  name="includes[0]" 
+                  checked={formData.includes[0]} 
+                  onChange={()=>{handleIncludesChange(0)}} 
+                />
+                <label htmlFor="includes[0]">Includes  Breakfast</label>
+              </div>
+              <div className="form-check">
+                <input 
+                  type="checkbox" 
+                  id="includesLunch" 
+                  name="includes[1]" 
+                  checked={formData.includes[1]} 
+                  onChange={()=>{handleIncludesChange(1)}} 
+                />
+                <label htmlFor="includes[1]">Includes  Lunch</label>
+              </div>
+              <div className="form-check">
+                <input 
+                  type="checkbox" 
+                  id="includesDinner" 
+                  name="includes[2]" 
+                  checked={formData.includes[2]} 
+                  onChange={()=>{handleIncludesChange(2)}} 
+                />
+                <label htmlFor="includes[0">Includes  Dinner</label>
               </div>
               
               <div className="modal-actions">

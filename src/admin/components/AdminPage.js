@@ -5,6 +5,7 @@ import PlanManagement from './PlanManagement'
 import CustomerManagement from './CustomerManagement'
 import Complaints from './Complaints'
 import './style/adminPage.css'
+import Daily from './Daily'
 
 const AdminPage = () => {
   const [isLogin, setIsLogin] = useState(false)
@@ -15,7 +16,9 @@ const AdminPage = () => {
     { id: 'finance', name: 'Finance', component: <FinanceManagement /> },
     { id: 'plan', name: 'Plan', component: <PlanManagement /> },
     { id: 'customer', name: 'Customer', component: <CustomerManagement /> },
-    { id: 'complaints', name: 'Complaints', component: <Complaints /> }
+    { id: 'complaints', name: 'Complaints', component: <Complaints /> },
+    { id: 'daily', name: 'Daily', component: <Daily /> }
+
   ]
   
   // Function to handle navigation clicks
