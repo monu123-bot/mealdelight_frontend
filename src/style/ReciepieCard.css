@@ -1,31 +1,104 @@
 .recipe-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 1rem;
-    max-width: 400px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    overflow: auto;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.recipe-content {
+  padding: 1rem 1.2rem;
+}
+
+.recipe-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #0d3b3e;
+}
+
+.recipe-category {
+  font-size: 0.9rem;
+  color: #5ce1e6;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.recipe-meta span {
+  background: #f1fafa;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 0.6rem;
+  background: #5ce1e6;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-bottom: 0.8rem;
+}
+
+.toggle-btn:hover {
+  background: #3db7bb;
+}
+
+.recipe-details {
+  margin-top: 0.8rem;
+}
+
+.ingredient-list,
+.direction-list {
+  padding-left: 1.2rem;
+  margin: 0.4rem 0 1rem 0;
+}
+
+.ingredient-list li,
+.direction-list li {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
   .recipe-img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-    object-fit: cover;
-    max-height: 250px;
+    height: 180px;
   }
-  
-  .ingredient-list,
-  .direction-list {
-    padding-left: 1.2rem;
-    margin: 0.5rem 0;
+  .recipe-title {
+    font-size: 1.1rem;
   }
-  
-  .ingredient-list li,
-  .direction-list li {
-    font-size: 0.9rem;
-    margin-bottom: 4px;
+  .recipe-meta {
+    font-size: 0.8rem;
   }
-  
+}

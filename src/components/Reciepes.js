@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import RecipeCard from './ReciepeCard';
-import '../style/Reciepies.css'; // Optional: for styling
+import '../style/Reciepies.css';
 import { host } from '../script/variables';
+import { Search } from 'lucide-react'; // nice search icon
 
 const Reciepes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -36,20 +37,28 @@ const Reciepes = () => {
 
   return (
     <div className="recipes-page">
-      <h2>Explore Healthy Keto Recipes</h2>
-      <input
-        type="text"
-        placeholder="Search by recipe name or category..."
-        value={search}
-        onChange={handleSearch}
-        className="search-input"
-      />
+      <h2 className="recipes-title">🍴 Explore Healthy Keto Recipes</h2>
 
-      <div className="recipes-grid">
-        {filteredRecipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
+      <div className="search-bar">
+        <Search className="search-icon" />
+        <input
+          type="text"
+          placeholder="Search recipes by name or category..."
+          value={search}
+          onChange={handleSearch}
+          className="search-input"
+        />
       </div>
+
+      {filteredRecipes.length > 0 ? (
+        <div className="recipes-grid">
+          {filteredRecipes.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
+        </div>
+      ) : (
+        <p className="no-results">No recipes found 😔</p>
+      )}
     </div>
   );
 };
