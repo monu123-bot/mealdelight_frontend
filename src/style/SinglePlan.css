@@ -1,4 +1,3 @@
-
 /* SinglePlan.css */
 
 .single-plan-container {
@@ -26,7 +25,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   height: auto;
   margin-bottom: 2rem;
-  
 }
 
 .plan-thumbnail {
@@ -39,7 +37,6 @@
 .plan-details {
   padding: 2rem;
   flex: 1;
-  
 }
 
 .plan-details h1 {
@@ -134,6 +131,119 @@
   background-color: #219651;
 }
 
+/* Packaging Options Styling */
+.packaging-display {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.packaging-display h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.packaging-options-grid {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.packaging-option-card {
+  background-color: #fff;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  width: 15rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.packaging-option-card:hover {
+  border-color: #3498db;
+  box-shadow: 0 4px 16px rgba(52, 152, 219, 0.15);
+  transform: translateY(-2px);
+}
+
+.packaging-option-card.selected {
+  border-color: #27ae60;
+  background-color: #f0fff4;
+  box-shadow: 0 4px 16px rgba(39, 174, 96, 0.2);
+}
+
+.packaging-card-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 2px solid transparent;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.packaging-option-card.selected .packaging-card-image {
+  border-color: #27ae60;
+}
+
+.packaging-card-content {
+  text-align: center;
+}
+
+.packaging-card-content h4 {
+  color: #2c3e50;
+  margin: 0 0 0.8rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.packaging-description {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.packaging-pricing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.packaging-price {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.packaging-discount {
+  background-color: #e74c3c;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.packaging-total {
+  color: #27ae60;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
 /* Responsive styling */
 @media (max-width: 768px) {
   .plan-card1 {
@@ -151,6 +261,16 @@
   
   .plan-details h1 {
     font-size: 1.8rem;
+  }
+
+  .packaging-options-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .packaging-display {
+    padding: 1rem;
+    margin: 1.5rem 0;
   }
 }
 
@@ -170,5 +290,23 @@
   .subscribe-btn {
     width: 100%;
     padding: 0.8rem;
+  }
+
+  .packaging-display {
+    margin: 1rem 0;
+    padding: 0.8rem;
+  }
+
+  .packaging-display h3 {
+    font-size: 1.2rem;
+  }
+
+  .packaging-option-card {
+    padding: 1rem;
+  }
+
+  .packaging-card-image {
+    width: 100px;
+    height: 100px;
   }
 }
